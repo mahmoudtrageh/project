@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Admin\Http\Controllers\AuthController;
+use Modules\Admin\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Authenticated routes
     Route::middleware('auth:admin')->group(function () {
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-        Route::get('dashboard', function() {
-            return view('admin.dashboard');
-        })->name('dashboard');
+        Route::get('profile', [ProfileController::class, 'edit'])->name('profile');
+        Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
     });
 });

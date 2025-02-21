@@ -1,3 +1,6 @@
 {
-    "Admin": true
+    "Admin": true,
+    "Setting": true,
+    "Cms": true,
+    "Contact": true
 }
