@@ -12,7 +12,7 @@
             <div class="flex justify-between items-center mb-6">
                 <a href="{{route('admin.projects.create')}}"
                     class="inline-flex items-center px-6 py-3 bg-blue-600 text-white text-sm font-medium rounded-xl shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200">
-                    <i class="fas fa-plus mr-2"></i> Create Project
+                    <i class="fas fa-plus me-2"></i> Create Project
                 </a>
             </div>
         </div>
@@ -26,7 +26,7 @@
                     <div class="relative">
                         <input type="text" placeholder="Search projects..."
                             class="w-64 px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200" />
-                        <i class="fas fa-search absolute right-3 top-3.5 text-gray-400"></i>
+                        <i class="fas fa-search absolute ltr:right-3 rtl:left-3 top-3.5 text-gray-400"></i>
                     </div>
 
                     <!-- Delete All Button -->
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="responsive-table overflow-x-auto">
+            <div class="responsive-table overflow-x-auto max-w-[87vw]">
                 <table class="w-full">
                     <thead class="bg-gray-50/75 backdrop-blur-sm sticky top-0">
                         <tr>
