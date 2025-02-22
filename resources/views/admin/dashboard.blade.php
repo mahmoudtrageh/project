@@ -11,10 +11,10 @@
             <!-- Stat Card 1 -->
             <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
                 <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-blue-500 bg-opacity-10">
+                    <div class="p-3 size-11 flex items-center justify-center rounded-full bg-blue-500 bg-opacity-10">
                         <i class="fas fa-users text-blue-500 text-xl"></i>
                     </div>
-                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                    <div class="ms-4">
                         <h3 class="text-gray-500 text-sm">Total Users</h3>
                         <p class="text-2xl font-semibold">1,234</p>
                     </div>
@@ -28,10 +28,10 @@
             <!-- Stat Card 2 -->
             <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
                 <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-green-500 bg-opacity-10">
+                    <div class="p-3 size-11 flex items-center justify-center rounded-full bg-green-500 bg-opacity-10">
                         <i class="fas fa-shopping-cart text-green-500 text-xl"></i>
                     </div>
-                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                    <div class="ms-4">
                         <h3 class="text-gray-500 text-sm">Total Orders</h3>
                         <p class="text-2xl font-semibold">856</p>
                     </div>
@@ -45,10 +45,10 @@
             <!-- Stat Card 3 -->
             <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
                 <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-purple-500 bg-opacity-10">
+                    <div class="p-3 size-11 flex items-center justify-center rounded-full bg-purple-500 bg-opacity-10">
                         <i class="fas fa-dollar-sign text-purple-500 text-xl"></i>
                     </div>
-                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                    <div class="ms-4">
                         <h3 class="text-gray-500 text-sm">Total Revenue</h3>
                         <p class="text-2xl font-semibold">$45,678</p>
                     </div>
@@ -62,10 +62,10 @@
             <!-- Stat Card 4 -->
             <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
                 <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-yellow-500 bg-opacity-10">
+                    <div class="p-3 size-11 flex items-center justify-center rounded-full bg-yellow-500 bg-opacity-10">
                         <i class="fas fa-star text-yellow-500 text-xl"></i>
                     </div>
-                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                    <div class="ms-4">
                         <h3 class="text-gray-500 text-sm">Average Rating</h3>
                         <p class="text-2xl font-semibold">4.8</p>
                     </div>
@@ -98,30 +98,30 @@
             <div class="space-y-4">
                 <!-- Timeline Item 1 -->
                 <div class="flex items-start">
-                    <div class="p-2 rounded-full bg-blue-500 bg-opacity-10">
+                    <div class="p-2 size-10 flex items-center justify-center rounded-full bg-blue-500 bg-opacity-10">
                         <i class="fas fa-user-plus text-blue-500"></i>
                     </div>
-                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                    <div class="ms-4">
                         <p class="text-sm font-medium text-gray-900">New user registered</p>
                         <p class="text-sm text-gray-500">2 minutes ago</p>
                     </div>
                 </div>
                 <!-- Timeline Item 2 -->
                 <div class="flex items-start">
-                    <div class="p-2 rounded-full bg-green-500 bg-opacity-10">
+                    <div class="p-2 size-10 flex items-center justify-center rounded-full bg-green-500 bg-opacity-10">
                         <i class="fas fa-shopping-bag text-green-500"></i>
                     </div>
-                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                    <div class="ms-4">
                         <p class="text-sm font-medium text-gray-900">New order placed</p>
                         <p class="text-sm text-gray-500">15 minutes ago</p>
                     </div>
                 </div>
                 <!-- Timeline Item 3 -->
                 <div class="flex items-start">
-                    <div class="p-2 rounded-full bg-yellow-500 bg-opacity-10">
+                    <div class="p-2 size-10 flex items-center justify-center rounded-full bg-yellow-500 bg-opacity-10">
                         <i class="fas fa-star text-yellow-500"></i>
                     </div>
-                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                    <div class="ms-4">
                         <p class="text-sm font-medium text-gray-900">New review received</p>
                         <p class="text-sm text-gray-500">1 hour ago</p>
                     </div>
