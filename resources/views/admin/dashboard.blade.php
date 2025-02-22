@@ -9,7 +9,7 @@
         <!-- Stats Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
             <!-- Stat Card 1 -->
-            <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
+            <div class="bg-white rounded-lg shadow p-6 card-animation hover-scale">
                 <div class="flex items-center">
                     <div class="p-3 size-11 flex items-center justify-center rounded-full bg-blue-500 bg-opacity-10">
                         <i class="fas fa-users text-blue-500 text-xl"></i>
@@ -26,7 +26,7 @@
             </div>
 
             <!-- Stat Card 2 -->
-            <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
+            <div class="bg-white rounded-lg shadow p-6 card-animation hover-scale">
                 <div class="flex items-center">
                     <div class="p-3 size-11 flex items-center justify-center rounded-full bg-green-500 bg-opacity-10">
                         <i class="fas fa-shopping-cart text-green-500 text-xl"></i>
@@ -43,7 +43,7 @@
             </div>
 
             <!-- Stat Card 3 -->
-            <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
+            <div class="bg-white rounded-lg shadow p-6 card-animation hover-scale">
                 <div class="flex items-center">
                     <div class="p-3 size-11 flex items-center justify-center rounded-full bg-purple-500 bg-opacity-10">
                         <i class="fas fa-dollar-sign text-purple-500 text-xl"></i>
@@ -60,7 +60,7 @@
             </div>
 
             <!-- Stat Card 4 -->
-            <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
+            <div class="bg-white rounded-lg shadow p-6 card-animation hover-scale">
                 <div class="flex items-center">
                     <div class="p-3 size-11 flex items-center justify-center rounded-full bg-yellow-500 bg-opacity-10">
                         <i class="fas fa-star text-yellow-500 text-xl"></i>
@@ -80,20 +80,20 @@
         <!-- Charts Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             <!-- Sales Chart -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="bg-white rounded-lg shadow p-6">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Sales Analytics</h3>
                 <div class="h-80" id="salesChart"></div>
             </div>
 
             <!-- Revenue Chart -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="bg-white rounded-lg shadow p-6">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Revenue Overview</h3>
                 <div class="h-80" id="revenueChart"></div>
             </div>
         </div>
 
         <!-- Activity Timeline -->
-        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
             <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h3>
             <div class="space-y-4">
                 <!-- Timeline Item 1 -->
@@ -130,7 +130,7 @@
         </div>
 
         <!-- Table -->
-        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="bg-white rounded-lg shadow overflow-hidden">
             <div class="p-6 border-b border-gray-100 flex justify-between items-center">
                 <h2 class="text-lg font-semibold text-gray-800">Recent Orders</h2>
                 <div class="flex items-center gap-x-4">
