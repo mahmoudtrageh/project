@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex items-center justify-between gap-5 flex-wrap">
-        <div class="mb-6 space-y-2">
+        <div class="mb-8">
             <h1 class="text-2xl font-semibold text-gray-800">Pages Management</h1>
             <p class="text-gray-600">Manage your website pages</p>
         </div>
@@ -10,7 +10,7 @@
         <!-- Table -->
         <a href="{{ route('admin.pages.create') }}"
             class="inline-block px-4 py-2 mb-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            Create New Page
+            <i class="fas fa-plus me-2"></i> Create New Page
         </a>
     </div>
     <div class="bg-white rounded-lg shadow overflow-hidden">

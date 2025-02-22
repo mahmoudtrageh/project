@@ -42,9 +42,8 @@
                     <label for="name" class="absolute ltr:left-2 rtl:right-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 ltr:peer-placeholder-shown:left-4 rtl:peer-placeholder-shown:right-4 peer-focus:-top-2.5 ltr:peer-focus:left-2 rtl:peer-focus:right-2 peer-focus:text-sm peer-focus:text-blue-600">Email address</label>
                 </div>
         
-                <!-- Save Button -->
                 <div class="flex justify-end">
-                    <button type="submit" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transform hover:scale-105 transition-all duration-200">
+                    <button type="submit" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transform hover:scale-105 transition-all duration-200">
                         Save Changes
                     </button>
                 </div>
@@ -76,9 +75,8 @@
                         <label for="confirm-password" class="absolute rtl:right-2 ltr:left-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-placeholder-shown:left-4 peer-focus:-top-2.5 peer-focus:left-2 peer-focus:text-sm peer-focus:text-blue-600">Confirm New Password</label>
                     </div>
                 
-                    <!-- Save Button -->
                     <div class="flex justify-end">
-                        <button type="submit" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transform hover:scale-105 transition-all duration-200">
+                        <button type="submit" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transform hover:scale-105 transition-all duration-200">
                             Update Password
                         </button>
                     </div>

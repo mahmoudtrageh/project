@@ -10,7 +10,7 @@
     <!-- Table -->
     <a href="{{ route('admin.blogs.create') }}"
         class="inline-block px-4 py-2 mb-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        Create Blog Post
+        <i class="fas fa-plus me-2"></i> Create Blog Post
     </a>
   </div>
 

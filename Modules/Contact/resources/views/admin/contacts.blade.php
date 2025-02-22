@@ -1,10 +1,12 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="container mx-auto px-4 py-6">
-        <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
-            <p class="text-lg text-gray-600">Manage Your Contacts</p>
+    <div class="container mx-auto">
+        <div class="flex items-center justify-between gap-5 flex-wrap">
+            <div class="mb-8">
+                <h1 class="text-2xl font-semibold text-gray-800">Dashboard</h1>
+                <p class="text-gray-600">Manage Your Contacts</p>
+            </div>
         </div>
 
         <div class="bg-white rounded-xl shadow-sm border border-gray-100">

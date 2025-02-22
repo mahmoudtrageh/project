@@ -39,11 +39,11 @@
                 <div class="relative">
                     <button 
                         id="notificationBtn" 
-                        class="relative text-white hover:text-gray-200 focus:outline-hidden transition-colors duration-200"
+                        class="relative text-gray-600 hover:text-gray-800 focus:outline-hidden transition-colors duration-200"
                     >
                         <i class="fas fa-bell text-xl"></i>
                         @if(contacts()->count() > 0)
-                            <span class="absolute top-0 {{ Session::get('locale') === 'ar' ? 'left-0 -translate-x-1/2' : 'right-0 translate-x-1/2' }} -translate-y-1/2 bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                            <span class="absolute top-2 {{ Session::get('locale') === 'ar' ? 'left-0 -translate-x-1/2' : 'right-1 translate-x-1/2' }} -translate-y-1/2 bg-red-500 text-white text-xs rounded-full px-2 py-1">
                                 {{ contacts()->count() }}
                             </span>
                         @endif

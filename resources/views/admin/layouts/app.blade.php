@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ Session::get('locale', 'en') }}" dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
+<!DOCTYPE html><html lang="{{ Session::get('locale', 'en') }}" dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta charset="UTF-8">
@@ -434,4 +433,5 @@ console.log(userMenuBtn);
     </script>
 </body>
 
+</body>
 </html>

@@ -1,20 +1,17 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="px-4 sm:px-6 lg:px-8 py-8">
         <div class="flex items-center justify-between gap-5 flex-wrap">
             <div class="mb-8">
-                <h1 class="text-3xl font-bold text-gray-900 mb-2">Projects Dashboard</h1>
+                <h1 class="text-2xl font-semibold text-gray-800">Projects Dashboard</h1>
                 <p class="text-gray-600">Manage and track all your projects in one place</p>
             </div>
 
             <!-- Main Content -->
-            <div class="flex justify-between items-center mb-6">
                 <a href="{{route('admin.projects.create')}}"
-                    class="inline-flex items-center px-6 py-3 bg-blue-600 text-white text-sm font-medium rounded-xl shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200">
+                    class="inline-block px-4 py-2 mb-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <i class="fas fa-plus me-2"></i> Create Project
                 </a>
-            </div>
         </div>
         <div
             class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-200 hover:shadow-md">
