@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
+  <div class="flex items-center justify-between gap-5 flex-wrap">
     <div class="mb-6">
         <h1 class="text-2xl font-semibold text-gray-800">Blog Management</h1>
         <p class="text-gray-600">Manage your blog posts</p>
@@ -11,8 +12,9 @@
         class="inline-block px-4 py-2 mb-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
         Create Blog Post
     </a>
+  </div>
 
-    <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="bg-white rounded-lg shadow">
         <div class="p-6 border-b border-gray-100 flex justify-between items-center">
             <h2 class="text-lg font-semibold text-gray-800">Blog Posts</h2>
             <div class="flex items-center gap-x-4">

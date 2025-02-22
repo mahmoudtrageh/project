@@ -7,7 +7,7 @@
             <p class="text-lg text-gray-600">Manage Your Contacts</p>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100">
             <div class="p-6 border-b border-gray-100">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <h2 class="text-xl font-semibold text-gray-800">Recent Contacts</h2>
@@ -17,9 +17,9 @@
                             <input
                                 type="text"
                                 placeholder="Search contacts..."
-                                class="w-64 px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                                class="w-64 px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200"
                             />
-                            <i class="fas fa-search absolute ltr:right-3 rtl:left-3 top-3.5 text-gray-400"></i>
+                            <i class="fas fa-search absolute ltr:right-3 rtl:left-3 top-4 text-gray-400"></i>
                         </div>
 
                         <!-- Delete All Button -->
@@ -43,7 +43,7 @@
                             </button>
                             <div
                                 id="exportDropdown"
-                                class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 border border-gray-100"
+                                class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100"
                             >
                                 <a
                                     href="#"
