@@ -1,7 +1,7 @@
 <header class="shadow-xs bg-white border border-b border-b-gray-200">
     <div class="flex items-center px-4 py-3">
-        <button id="openSidebar" class="md:hidden text-white hover:text-gray-200">
-            <i class="fas fa-bars"></i>
+        <button id="openSidebar" class="md:hidden text-gray-600 hover:bg-gray-100 p-2 rounded-lg transition-all duration-200">
+            <i class="fas fa-bars text-sm"></i>
         </button>
         
         <div class="flex items-center flex-1 px-4 justify-between">
@@ -11,7 +11,7 @@
                        class="w-full px-4 py-2 rounded-lg border focus:outline-hidden focus:ring-2 focus:ring-blue-500">
                 <i class="fas fa-search absolute {{ Session::get('locale') === 'ar' ? 'left-3' : 'right-3' }} top-4 text-gray-400"></i>
             </div>
-            <div class="flex items-center gap-x-4">
+            <div class="flex items-center space-x-2 md:space-x-4">
                 <!-- Theme Switcher -->
                 {{-- <div class="relative">
                     <button
@@ -23,7 +23,7 @@
                     </button>
                 </div> --}}
                 <!-- Language Switcher -->
-                <div class="relative">
+                <div class="relative flex-shrink-0">
                     <form action="{{ route('language.switch') }}" method="POST" class="inline-block">
                         @csrf
                         <button type="submit" class="relative inline-flex items-center h-8 rounded-full bg-gray-200 w-16 transition-colors duration-200 focus:outline-none hover:bg-gray-300 {{ Session::get('locale') === 'ar' ? 'bg-blue-600 hover:bg-blue-700' : '' }}">
