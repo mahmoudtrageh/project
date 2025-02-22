@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ Session::get('locale', 'en') }}" dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    @vite('resources/css/app.css')
     @yield('css')
 
     <style>
         /* Custom Styles */
+        body {
+            direction: {{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }};
+        }
+
         .sidebar-transition {
             transition: all 0.3s ease-in-out;
         }
@@ -45,13 +50,37 @@
 
         .dropdown-outside {
             position: absolute;
-            left: 5rem;
+            {{ Session::get('locale') === 'ar' ? 'right' : 'left' }}: 5rem;
             top: 0;
             background: white;
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             min-width: 12rem;
+        }
+
+        /* RTL specific styles */
+        [dir="rtl"] .fa-chevron-left {
+            transform: rotate(180deg);
+        }
+
+        [dir="rtl"] .fa-chevron-right {
+            transform: rotate(180deg);
+        }
+
+        [dir="rtl"] .ml-2 {
+            margin-left: 0;
+            margin-right: 0.5rem;
+        }
+
+        [dir="rtl"] .mr-2 {
+            margin-right: 0;
+            margin-left: 0.5rem;
+        }
+
+        [dir="rtl"] .mr-4 {
+            margin-right: 0;
+            margin-left: 1rem;
         }
 
         /* Table Responsiveness */
@@ -176,7 +205,7 @@
 
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 {{ Session::get('locale') === 'ar' ? 'font-cairo' : 'font-poppins' }} " dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
 
     <div class="min-h-screen flex">
 

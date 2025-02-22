@@ -11,10 +11,10 @@
                 <div class="flex space-x-2">
                     {{-- Previous --}}
                     @if ($paginator->onFirstPage())
-                        <button disabled class="px-3 py-1 border rounded text-gray-400">Previous</button>
+                        <button disabled class="px-3 py-1 border rounded-sm text-gray-400">Previous</button>
                     @else
                         <a href="{{ $paginator->previousPageUrl() }}" 
-                           class="px-3 py-1 border rounded text-gray-600 hover:bg-gray-100">Previous</a>
+                           class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">Previous</a>
                     @endif
 
                     {{-- Pagination Elements --}}
@@ -28,12 +28,12 @@
                         @if (is_array($element))
                             @foreach ($element as $page => $url)
                                 @if ($page == $paginator->currentPage())
-                                    <span class="px-3 py-1 border rounded bg-blue-600 text-white">
+                                    <span class="px-3 py-1 border rounded-sm bg-blue-600 text-white">
                                         {{ $page }}
                                     </span>
                                 @else
                                     <a href="{{ $url }}" 
-                                       class="px-3 py-1 border rounded text-gray-600 hover:bg-gray-100">
+                                       class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">
                                         {{ $page }}
                                     </a>
                                 @endif
@@ -44,9 +44,9 @@
                     {{-- Next --}}
                     @if ($paginator->hasMorePages())
                         <a href="{{ $paginator->nextPageUrl() }}" 
-                           class="px-3 py-1 border rounded text-gray-600 hover:bg-gray-100">Next</a>
+                           class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">Next</a>
                     @else
-                        <button disabled class="px-3 py-1 border rounded text-gray-400">Next</button>
+                        <button disabled class="px-3 py-1 border rounded-sm text-gray-400">Next</button>
                     @endif
                 </div>
             </div>

@@ -40,8 +40,8 @@
                         @else
                             <img src="https://placehold.co/40x40" alt="User" class="w-8 h-8 rounded-full">
                         @endif
-                        <span class="ml-2 text-white hidden md:block">{{auth()->user()->name}}</span>
-                        <i class="fas fa-chevron-down ml-2 text-gray-200"></i>
+                        <span class="ms-2 text-white hidden md:block">{{auth()->user()->name}}</span>
+                        <i class="fas fa-chevron-down ms-2 text-gray-200"></i>
                     </button>
                     
                     <div id="userMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2">
@@ -50,7 +50,7 @@
                         </a>
                         <form action="{{ route('admin.logout') }}" method="post" class="w-full">
                             @csrf
-                            <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 appearance-none bg-transparent border-0 cursor-pointer">
+                            <button type="submit" class="w-full text-start px-4 py-2 text-gray-700 hover:bg-gray-100 appearance-none bg-transparent border-0 cursor-pointer">
                                 <i class="fas fa-sign-out-alt mr-2"></i> Logout
                             </button>
                         </form>

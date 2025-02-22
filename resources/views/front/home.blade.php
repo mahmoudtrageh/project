@@ -49,7 +49,7 @@
           <div class="lg:w-1/2 mb-12 lg:mb-0 relative group">
                <!-- Image container with hover effect -->
           <div class="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-300 group-hover:shadow-3xl">
-              <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 group-hover:opacity-75 transition-opacity duration-300"></div>
+              <div class="absolute inset-0 bg-linear-to-r from-blue-500/10 to-purple-500/10 group-hover:opacity-75 transition-opacity duration-300"></div>
             @if(settings()->get('about_image'))
                 <img src="{{ Storage::url(settings()->get('about_image')) }}" alt="Site Logo" class="w-full h-96 object-cover transform transition-transform duration-500 group-hover:scale-110">
             @else
@@ -66,7 +66,7 @@
       </div>
       <div class="lg:w-1/2 relative">
           <h1 class="text-5xl font-bold text-gray-900 mb-6 flex items-center">Hi, I'm {{settings()->get('about_name')}}
-              <span class="ml-3 inline-block w-4 h-4 bg-green-500 rounded-full"></span>
+              <span class="ms-3 inline-block w-4 h-4 bg-green-500 rounded-full"></span>
           </h1>
             <p class="text-xl text-gray-600 mb-8 leading-relaxed">
                 {{settings()->get('about_description')}}
@@ -85,8 +85,8 @@
                     <i data-lucide="mail" class="w-8 h-8"></i>
                 </a>
             </div>
-            <a href="{{route('about')}}" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl text-lg font-semibold">
-                Learn more about me  <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="{{route('about')}}" class="inline-flex items-center px-6 py-3 bg-linear-to-r from-blue-500 to-purple-500 text-white rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl text-lg font-semibold">
+                Learn more about me  <svg class="w-6 h-6 ms-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                 </svg>
             </a>
@@ -96,11 +96,11 @@
 </section>
 
 <!-- Services Section -->
-<section id="services" class="py-16 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+<section id="services" class="py-16 bg-linear-to-b from-white to-gray-50 relative overflow-hidden">
 
   <!-- Decorative Shapes -->
   <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-linear-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -108,7 +108,7 @@
     <div class="text-center mb-16">
       <h2 class="text-3xl font-bold text-gray-900 relative inline-block">
         My Services
-        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-linear-to-r from-blue-500 to-purple-500"></div>
       </h2>
       <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
         I specialize in web development, API development, and consulting to help you build scalable, efficient, and user-friendly solutions.
@@ -131,7 +131,7 @@
           </p>
           {{-- <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-300">
             Learn More
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 ms-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
           </a> --}}
@@ -152,7 +152,7 @@
           </p>
           {{-- <a href="#" class="inline-flex items-center text-purple-600 hover:text-purple-800 transition-colors duration-300">
             Learn More
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 ms-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
           </a> --}}
@@ -173,7 +173,7 @@
           </p>
           {{-- <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-300">
             Learn More
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 ms-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
           </a> --}}
@@ -184,11 +184,11 @@
 </section>
 
 <!-- Tech Stack Section -->
-<section id="tech-stack" class="py-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+<section id="tech-stack" class="py-16 bg-linear-to-b from-gray-50 to-white relative overflow-hidden">
 
   <!-- Decorative Shapes -->
   <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-linear-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -196,7 +196,7 @@
     <div class="text-center mb-16">
       <h2 class="text-3xl font-bold text-gray-900 relative inline-block">
         My Tech Stack
-        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-linear-to-r from-blue-500 to-purple-500"></div>
       </h2>
       <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
         We use the latest technologies and tools to build innovative and scalable solutions. Here are some of the technologies we work with:
@@ -258,21 +258,21 @@
 </section>
 
 <!-- Projects Section -->
-<section id="projects" class="py-16 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+<section id="projects" class="py-16 bg-linear-to-b from-white to-gray-50 relative overflow-hidden">
   <!-- Decorative Shapes -->
   <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-linear-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="flex justify-between items-center mb-12">
       <h2 class="text-3xl font-bold text-gray-900 relative">
         Featured Projects
-        <div class="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+        <div class="absolute -bottom-2 left-0 w-24 h-1 bg-linear-to-r from-blue-500 to-purple-500"></div>
       </h2>
       <a href="projects.html" class="group inline-flex items-center px-4 py-2 text-blue-600 hover:text-blue-800 transition-colors duration-300">
         View all projects
-        <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 ms-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
         </svg>
       </a>
@@ -281,7 +281,7 @@
       @foreach($projects as $project)
       <div class="group bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-1 flex flex-col">
         <!-- Mock Browser Window -->
-        <div class="relative overflow-hidden flex-shrink-0">
+        <div class="relative overflow-hidden shrink-0">
           <!-- Browser Top Bar -->
           <div class="absolute top-0 left-0 w-full h-8 bg-gray-100 flex items-center px-3 space-x-2 z-10">
             <div class="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -297,15 +297,15 @@
             />
           </div>
           <!-- Shape Overlay -->
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute inset-0 bg-linear-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
         <!-- Project Details -->
-        <div class="p-6 flex flex-col flex-grow">
+        <div class="p-6 flex flex-col grow">
           <h3 class="text-xl font-semibold mb-2 text-gray-900">{{$project->title}}</h3>
-          <p class="text-gray-600 mb-4 flex-grow">{{getCleanContentAttribute($project->description)}}</p>
+          <p class="text-gray-600 mb-4 grow">{{getCleanContentAttribute($project->description)}}</p>
           <a href="{{$project->url}}" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-300 mt-auto">
             View Project
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 ms-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
           </a>
@@ -317,11 +317,11 @@
 </section>
 
 <!-- Clients Section -->
-<section id="clients" class="py-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+<section id="clients" class="py-16 bg-linear-to-b from-gray-50 to-white relative overflow-hidden">
 
   <!-- Decorative Shapes -->
   <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-linear-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -329,7 +329,7 @@
     <div class="text-center mb-16">
       <h2 class="text-3xl font-bold text-gray-900 relative inline-block">
         Clients I've Worked With
-        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-linear-to-r from-blue-500 to-purple-500"></div>
       </h2>
       <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
         I’ve had the privilege of working with some amazing companies and brands. Here are a few of them:
@@ -372,11 +372,11 @@
 </section>
 
 <!-- Pricing Section -->
-{{-- <section id="pricing" class="py-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+{{-- <section id="pricing" class="py-16 bg-linear-to-b from-gray-50 to-white relative overflow-hidden">
 
   <!-- Decorative Shapes -->
   <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-linear-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -384,7 +384,7 @@
     <div class="text-center mb-16">
       <h2 class="text-3xl font-bold text-gray-900 relative inline-block">
         Pricing
-        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-linear-to-r from-blue-500 to-purple-500"></div>
       </h2>
       <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
         Choose a plan that fits your needs. All plans come with a 100% satisfaction guarantee.
@@ -454,11 +454,11 @@
 </section> --}}
 
 <!-- Testimonial Section -->
-{{-- <section id="testimonials" class="py-16 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+{{-- <section id="testimonials" class="py-16 bg-linear-to-b from-white to-gray-50 relative overflow-hidden">
 
   <!-- Decorative Shapes -->
   <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-linear-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -466,7 +466,7 @@
     <div class="text-center mb-16">
       <h2 class="text-3xl font-bold text-gray-900 relative inline-block">
         What Our Clients Say
-        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-linear-to-r from-blue-500 to-purple-500"></div>
       </h2>
       <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
         Hear from our satisfied clients who have experienced our services.
@@ -480,7 +480,7 @@
         <div class="p-8">
           <div class="flex items-center mb-4">
             <img class="w-12 h-12 rounded-full object-cover" src="https://placehold.co/150" alt="Client 1">
-            <div class="ml-4">
+            <div class="ms-4">
               <h3 class="text-lg font-semibold text-gray-900">John Doe</h3>
               <p class="text-sm text-gray-600">CEO, Company A</p>
             </div>
@@ -496,7 +496,7 @@
         <div class="p-8">
           <div class="flex items-center mb-4">
             <img class="w-12 h-12 rounded-full object-cover" src="https://placehold.co/150" alt="Client 2">
-            <div class="ml-4">
+            <div class="ms-4">
               <h3 class="text-lg font-semibold text-gray-900">Jane Smith</h3>
               <p class="text-sm text-gray-600">Founder, Startup B</p>
             </div>
@@ -512,7 +512,7 @@
         <div class="p-8">
           <div class="flex items-center mb-4">
             <img class="w-12 h-12 rounded-full object-cover" src="https://placehold.co/150" alt="Client 3">
-            <div class="ml-4">
+            <div class="ms-4">
               <h3 class="text-lg font-semibold text-gray-900">Michael Brown</h3>
               <p class="text-sm text-gray-600">CTO, Enterprise C</p>
             </div>
@@ -528,7 +528,7 @@
         <div class="p-8">
           <div class="flex items-center mb-4">
             <img class="w-12 h-12 rounded-full object-cover" src="https://placehold.co/150" alt="Client 4">
-            <div class="ml-4">
+            <div class="ms-4">
               <h3 class="text-lg font-semibold text-gray-900">Sarah Johnson</h3>
               <p class="text-sm text-gray-600">Marketing Director, Agency D</p>
             </div>
@@ -544,7 +544,7 @@
         <div class="p-8">
           <div class="flex items-center mb-4">
             <img class="w-12 h-12 rounded-full object-cover" src="https://placehold.co/150" alt="Client 5">
-            <div class="ml-4">
+            <div class="ms-4">
               <h3 class="text-lg font-semibold text-gray-900">David Wilson</h3>
               <p class="text-sm text-gray-600">Product Manager, Tech E</p>
             </div>
@@ -560,7 +560,7 @@
         <div class="p-8">
           <div class="flex items-center mb-4">
             <img class="w-12 h-12 rounded-full object-cover" src="https://placehold.co/150" alt="Client 6">
-            <div class="ml-4">
+            <div class="ms-4">
               <h3 class="text-lg font-semibold text-gray-900">Emily Davis</h3>
               <p class="text-sm text-gray-600">Design Lead, Creative F</p>
             </div>
@@ -574,21 +574,21 @@
   </div>
 </section> --}}
 
-<section class="py-16 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+<section class="py-16 bg-linear-to-b from-white to-gray-50 relative overflow-hidden">
   <!-- Decorative Shapes -->
   <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-linear-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="flex justify-between items-center mb-12">
       <h2 class="text-3xl font-bold text-gray-900 relative">
         Latest Videos
-        <div class="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+        <div class="absolute -bottom-2 left-0 w-24 h-1 bg-linear-to-r from-blue-500 to-purple-500"></div>
       </h2>
       <a href="#" class="group inline-flex items-center px-4 py-2 text-blue-600 hover:text-blue-800 transition-colors duration-300">
         View all videos
-        <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 ms-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
         </svg>
       </a>
@@ -599,7 +599,7 @@
       <!-- Video Card 1 -->
       <div class="group relative">
         <img src="https://placehold.co/640x360" alt="Video Title" class="w-full aspect-video object-cover rounded-lg">
-        <div class="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white text-sm px-2 py-1 rounded">
+        <div class="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white text-sm px-2 py-1 rounded-sm">
           12:34
         </div>
       </div>
@@ -607,7 +607,7 @@
       <!-- Video Card 2 -->
       <div class="group relative">
         <img src="https://placehold.co/640x360" alt="Video Title" class="w-full aspect-video object-cover rounded-lg">
-        <div class="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white text-sm px-2 py-1 rounded">
+        <div class="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white text-sm px-2 py-1 rounded-sm">
           15:20
         </div>
       </div>
@@ -615,7 +615,7 @@
       <!-- Video Card 3 -->
       <div class="group relative">
         <img src="https://placehold.co/640x360" alt="Video Title" class="w-full aspect-video object-cover rounded-lg">
-        <div class="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white text-sm px-2 py-1 rounded">
+        <div class="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white text-sm px-2 py-1 rounded-sm">
           08:45
         </div>
       </div>
@@ -628,17 +628,17 @@
 
   <!-- Decorative Shapes -->
   <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-linear-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex justify-between items-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 relative">Latest Blog Posts
-            <div class="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+            <div class="absolute -bottom-2 left-0 w-24 h-1 bg-linear-to-r from-blue-500 to-purple-500"></div>
           </h2>
           <a href="blog.html" class="group inline-flex items-center px-4 py-2 text-blue-600 hover:text-blue-800 transition-colors duration-300">
               View all posts  
-              <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 ms-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
           </a>
@@ -646,24 +646,24 @@
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           @foreach($blogs as $blog)
           <article class="group bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-1 flex flex-col">
-            <div class="relative overflow-hidden flex-shrink-0">
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 group-hover:opacity-75 transition-opacity duration-300"></div>  
+            <div class="relative overflow-hidden shrink-0">
+                <div class="absolute inset-0 bg-linear-to-r from-blue-500/10 to-purple-500/10 group-hover:opacity-75 transition-opacity duration-300"></div>  
                 <img
                   src="{{asset('storage/'.$blog->image)}}"
                   alt="Blog post 1"
                   class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-110"
                 />
                 <!-- Shape Overlay -->
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 bg-linear-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-              <div class="p-6 flex flex-col flex-grow">
+              <div class="p-6 flex flex-col grow">
                 <div class="flex items-center mb-4">
                     <div>
                       <p class="text-xs text-gray-500">March 15, 2024</p>
                     </div>
                 </div>
                 <h3 class="text-xl font-semibold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors duration-300">{{$blog->title}}</h3>
-                <p class="text-gray-600 mb-4 flex-grow">{{getCleanContentAttribute($blog->content)}}</p>
+                <p class="text-gray-600 mb-4 grow">{{getCleanContentAttribute($blog->content)}}</p>
                 
                 <div class="flex justify-between items-center mt-auto">
                   <div class="flex items-center text-gray-500 text-sm">
@@ -671,7 +671,7 @@
                   </div>
                   <a href="{{route('blog.details', $blog)}}" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-300">
                       Read More
-                      <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-4 h-4 ms-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                       </svg>
                   </a>

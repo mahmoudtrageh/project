@@ -52,7 +52,7 @@
     <div id="content" class="flex flex-col min-h-screen bg-gray-50">
       @include('front.layouts.nav')
 
-      <main class="flex-grow">
+      <main class="grow">
         @yield('content')
       </main>
 

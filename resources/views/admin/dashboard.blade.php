@@ -1,21 +1,20 @@
 @extends('admin.layouts.app')
 
 @section('content')
-
         <div class="mb-6">
             <h1 class="text-2xl font-semibold text-gray-800">Dashboard</h1>
-            <p class="text-gray-600">Welcome back, John Doe</p>
+            <p class="text-gray-600">Welcome back, {{ auth()->user()->name }}</p>
         </div>
 
         <!-- Stats Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
             <!-- Stat Card 1 -->
-            <div class="bg-white rounded-lg shadow p-6 card-animation hover-scale">
+            <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
                 <div class="flex items-center">
                     <div class="p-3 rounded-full bg-blue-500 bg-opacity-10">
                         <i class="fas fa-users text-blue-500 text-xl"></i>
                     </div>
-                    <div class="ml-4">
+                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
                         <h3 class="text-gray-500 text-sm">Total Users</h3>
                         <p class="text-2xl font-semibold">1,234</p>
                     </div>
@@ -26,59 +25,112 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow p-6 card-animation hover-scale">
+            <!-- Stat Card 2 -->
+            <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
                 <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-blue-500 bg-opacity-10">
-                        <i class="fas fa-users text-blue-500 text-xl"></i>
+                    <div class="p-3 rounded-full bg-green-500 bg-opacity-10">
+                        <i class="fas fa-shopping-cart text-green-500 text-xl"></i>
                     </div>
-                    <div class="ml-4">
-                        <h3 class="text-gray-500 text-sm">Total Users</h3>
-                        <p class="text-2xl font-semibold">1,234</p>
+                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                        <h3 class="text-gray-500 text-sm">Total Orders</h3>
+                        <p class="text-2xl font-semibold">856</p>
                     </div>
                 </div>
                 <div class="mt-4 text-green-600 text-sm">
                     <i class="fas fa-arrow-up"></i>
-                    <span>12.5% increase</span>
+                    <span>8.2% increase</span>
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow p-6 card-animation hover-scale">
+            <!-- Stat Card 3 -->
+            <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
                 <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-blue-500 bg-opacity-10">
-                        <i class="fas fa-users text-blue-500 text-xl"></i>
+                    <div class="p-3 rounded-full bg-purple-500 bg-opacity-10">
+                        <i class="fas fa-dollar-sign text-purple-500 text-xl"></i>
                     </div>
-                    <div class="ml-4">
-                        <h3 class="text-gray-500 text-sm">Total Users</h3>
-                        <p class="text-2xl font-semibold">1,234</p>
+                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                        <h3 class="text-gray-500 text-sm">Total Revenue</h3>
+                        <p class="text-2xl font-semibold">$45,678</p>
                     </div>
                 </div>
                 <div class="mt-4 text-green-600 text-sm">
                     <i class="fas fa-arrow-up"></i>
-                    <span>12.5% increase</span>
+                    <span>15.3% increase</span>
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow p-6 card-animation hover-scale">
+            <!-- Stat Card 4 -->
+            <div class="bg-white rounded-lg shadow-sm p-6 card-animation hover-scale">
                 <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-blue-500 bg-opacity-10">
-                        <i class="fas fa-users text-blue-500 text-xl"></i>
+                    <div class="p-3 rounded-full bg-yellow-500 bg-opacity-10">
+                        <i class="fas fa-star text-yellow-500 text-xl"></i>
                     </div>
-                    <div class="ml-4">
-                        <h3 class="text-gray-500 text-sm">Total Users</h3>
-                        <p class="text-2xl font-semibold">1,234</p>
+                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                        <h3 class="text-gray-500 text-sm">Average Rating</h3>
+                        <p class="text-2xl font-semibold">4.8</p>
                     </div>
                 </div>
                 <div class="mt-4 text-green-600 text-sm">
                     <i class="fas fa-arrow-up"></i>
-                    <span>12.5% increase</span>
+                    <span>2.1% increase</span>
                 </div>
             </div>
+        </div>
 
-            <!-- Add more stat cards... -->
+        <!-- Charts Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <!-- Sales Chart -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Sales Analytics</h3>
+                <div class="h-80" id="salesChart"></div>
+            </div>
+
+            <!-- Revenue Chart -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Revenue Overview</h3>
+                <div class="h-80" id="revenueChart"></div>
+            </div>
+        </div>
+
+        <!-- Activity Timeline -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h3>
+            <div class="space-y-4">
+                <!-- Timeline Item 1 -->
+                <div class="flex items-start">
+                    <div class="p-2 rounded-full bg-blue-500 bg-opacity-10">
+                        <i class="fas fa-user-plus text-blue-500"></i>
+                    </div>
+                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                        <p class="text-sm font-medium text-gray-900">New user registered</p>
+                        <p class="text-sm text-gray-500">2 minutes ago</p>
+                    </div>
+                </div>
+                <!-- Timeline Item 2 -->
+                <div class="flex items-start">
+                    <div class="p-2 rounded-full bg-green-500 bg-opacity-10">
+                        <i class="fas fa-shopping-bag text-green-500"></i>
+                    </div>
+                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                        <p class="text-sm font-medium text-gray-900">New order placed</p>
+                        <p class="text-sm text-gray-500">15 minutes ago</p>
+                    </div>
+                </div>
+                <!-- Timeline Item 3 -->
+                <div class="flex items-start">
+                    <div class="p-2 rounded-full bg-yellow-500 bg-opacity-10">
+                        <i class="fas fa-star text-yellow-500"></i>
+                    </div>
+                    <div class="{{ Session::get('locale') === 'ar' ? 'me-4' : 'ms-4' }}">
+                        <p class="text-sm font-medium text-gray-900">New review received</p>
+                        <p class="text-sm text-gray-500">1 hour ago</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Table -->
-        <div class="bg-white rounded-lg shadow overflow-hidden">
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
             <div class="p-6 border-b border-gray-100 flex justify-between items-center">
                 <h2 class="text-lg font-semibold text-gray-800">Recent Orders</h2>
                 <div class="flex items-center space-x-4">
@@ -87,15 +139,15 @@
                         <input
                             type="text"
                             placeholder="Search orders..."
-                            class="w-48 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            class="w-48 px-4 py-2 rounded-lg border border-gray-300 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
                         />
-                        <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                        <i class="fas fa-search absolute ltr:right-3 rtl:left-3 top-4 text-gray-400"></i>
                     </div>
 
                     <!-- Delete All Button -->
                     <button
                         id="deleteAllButton"
-                        class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+                        class="px-4 py-2.5 bg-red-600 text-white rounded-xl hover:bg-red-700 focus:outline-hidden focus:ring-2 focus:ring-red-500"
                         onclick="deleteSelectedRows()"
                     >
                         Delete All
@@ -105,9 +157,9 @@
                     <div class="relative">
                         <button
                             id="exportDropdownButton"
-                            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            class="px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
                         >
-                            Export <i class="fas fa-chevron-down ml-2"></i>
+                            Export <i class="fas fa-chevron-down ms-2"></i>
                         </button>
                         <div
                             id="exportDropdown"
@@ -143,7 +195,7 @@
                 <table class="w-full">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 <input
                                     type="checkbox"
                                     id="selectAllCheckbox"
@@ -151,19 +203,19 @@
                                     onclick="toggleSelectAll()"
                                 />
                             </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Order ID
                             </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Customer
                             </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Status
                             </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Amount
                             </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Actions
                             </th>
                         </tr>
@@ -183,7 +235,7 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <img class="h-8 w-8 rounded-full" src="https://placehold.co/32" alt="">
-                                    <div class="ml-4">
+                                    <div class="ms-4">
                                         <div class="text-sm font-medium text-gray-900">John Smith</div>
                                         <div class="text-sm text-gray-500">john@example.com</div>
                                     </div>
@@ -213,15 +265,79 @@
                         Showing 1 to 10 of 97 results
                     </div>
                     <div class="flex space-x-2">
-                        <button class="px-3 py-1 border rounded text-gray-600 hover:bg-gray-100">Previous</button>
-                        <button class="px-3 py-1 border rounded bg-blue-600 text-white">1</button>
-                        <button class="px-3 py-1 border rounded text-gray-600 hover:bg-gray-100">2</button>
-                        <button class="px-3 py-1 border rounded text-gray-600 hover:bg-gray-100">3</button>
-                        <button class="px-3 py-1 border rounded text-gray-600 hover:bg-gray-100">Next</button>
+                        <button class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">Previous</button>
+                        <button class="px-3 py-1 border rounded-sm bg-blue-600 text-white">1</button>
+                        <button class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">2</button>
+                        <button class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">3</button>
+                        <button class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">Next</button>
                     </div>
                 </div>
             </div>
         </div>
+        @yield('js')
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script>
+            // Sales Chart
+            var salesOptions = {
+                series: [{
+                    name: 'Sales',
+                    data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+                }],
+                chart: {
+                    type: 'area',
+                    height: 320,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                colors: ['#3B82F6'],
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shadeIntensity: 1,
+                        opacityFrom: 0.7,
+                        opacityTo: 0.3
+                    }
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                xaxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+                }
+            };
 
+            var salesChart = new ApexCharts(document.querySelector("#salesChart"), salesOptions);
+            salesChart.render();
+
+            // Revenue Chart
+            var revenueOptions = {
+                series: [44, 55, 41, 17, 15],
+                chart: {
+                    type: 'donut',
+                    height: 320
+                },
+                labels: ['Direct', 'Affiliate', 'Sponsored', 'E-mail', 'Other'],
+                colors: ['#3B82F6', '#10B981', '#8B5CF6', '#F59E0B', '#EF4444'],
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+
+            var revenueChart = new ApexCharts(document.querySelector("#revenueChart"), revenueOptions);
+            revenueChart.render();
+        </script>
 
 @endsection
+
+        <!-- Initialize Charts -->
+     
+{{-- @endsection --}}

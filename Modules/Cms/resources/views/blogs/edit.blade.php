@@ -91,7 +91,7 @@
                             {{ old('featured', $blog->featured) ? 'checked' : '' }}
                             class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                         />
-                        <label for="featured" class="ml-2 block text-sm text-gray-700">Feature this blog post</label>
+                        <label for="featured" class="ms-2 block text-sm text-gray-700">Feature this blog post</label>
                     </div>
                     @error('featured')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>

@@ -60,7 +60,7 @@
 
 @section('content')
 <!-- About Content -->
-<div class="pt-24 pb-16 bg-gradient-to-b from-gray-50 to-white">
+<div class="pt-24 pb-16 bg-linear-to-b from-gray-50 to-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Heading -->
         <h2 class="text-4xl font-bold text-gray-900 mb-12 text-center">

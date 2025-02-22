@@ -1,5 +1,5 @@
  <!-- Navbar -->
- <nav class="bg-white shadow-sm fixed w-full z-50">
+ <nav class="bg-white shadow-xs fixed w-full z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <!-- Logo/Brand -->
@@ -11,7 +11,7 @@
             <div class="flex items-center md:hidden">
                 <button
                     id="mobileMenuButton"
-                    class="text-gray-600 hover:text-gray-900 focus:outline-none"
+                    class="text-gray-600 hover:text-gray-900 focus:outline-hidden"
                 >
                 <i data-lucide="menu"></i>
                 </button>
@@ -34,7 +34,7 @@
             <!-- Dropdown Button -->
             <button
                 id="mobileDropdownButton"
-                class="w-full flex justify-between items-center px-3 py-2 text-gray-600 hover:text-gray-900 focus:outline-none"
+                class="w-full flex justify-between items-center px-3 py-2 text-gray-600 hover:text-gray-900 focus:outline-hidden"
             >
                 <span>Menu</span>
                 <i data-lucide="chevron-down"></i>

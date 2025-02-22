@@ -13,7 +13,7 @@
     <nav class="mt-4">
         <a href="{{route('dashboard')}}" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
             <i class="fas fa-home w-6"></i>
-            <span class="sidebar-text ml-2">Dashboard</span>
+            <span class="sidebar-text ms-2">Dashboard</span>
         </a>
         
         <!-- Dropdown Example -->
@@ -21,7 +21,7 @@
             <div class="flex items-center justify-between px-4 py-3 text-gray-300 hover:bg-gray-700 cursor-pointer transition-colors duration-200">
                 <div class="flex items-center">
                     <i class="fa-solid fa-diagram-project"></i>
-                    <span class="sidebar-text ml-2">Projects</span>
+                    <span class="sidebar-text ms-2">Projects</span>
                 </div>
                 <i class="fas fa-chevron-down text-xs dropdown-arrow"></i>
             </div>
@@ -36,7 +36,7 @@
             <div class="flex items-center justify-between px-4 py-3 text-gray-300 hover:bg-gray-700 cursor-pointer transition-colors duration-200">
                 <div class="flex items-center">
                     <i class="fa-solid fa-pen-nib"></i>
-                    <span class="sidebar-text ml-2">Blogs</span>
+                    <span class="sidebar-text ms-2">Blogs</span>
                 </div>
                 <i class="fas fa-chevron-down text-xs dropdown-arrow"></i>
             </div>
@@ -51,7 +51,7 @@
             <div class="flex items-center justify-between px-4 py-3 text-gray-300 hover:bg-gray-700 cursor-pointer transition-colors duration-200">
                 <div class="flex items-center">
                     <i class="fa-solid fa-newspaper"></i>
-                    <span class="sidebar-text ml-2">Pages</span>
+                    <span class="sidebar-text ms-2">Pages</span>
                 </div>
                 <i class="fas fa-chevron-down text-xs dropdown-arrow"></i>
             </div>
@@ -63,7 +63,7 @@
       
         <a href="{{route('admin.settings')}}" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
             <i class="fas fa-cog w-6"></i>
-            <span class="sidebar-text ml-2">Settings</span>
+            <span class="sidebar-text ms-2">Settings</span>
         </a>
     </nav>
 </aside>

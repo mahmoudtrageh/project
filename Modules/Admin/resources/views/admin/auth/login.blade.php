@@ -60,7 +60,7 @@
                         name="remember"
                         class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                     />
-                    <label for="remember" class="ml-2 text-sm text-gray-700">Remember me</label>
+                    <label for="remember" class="ms-2 text-sm text-gray-700">Remember me</label>
                 </div>
             </div>
 

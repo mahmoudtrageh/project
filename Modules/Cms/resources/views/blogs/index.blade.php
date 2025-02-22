@@ -34,7 +34,7 @@
                 <div class="relative">
                     <button id="exportDropdownButton"
                         class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        Export <i class="fas fa-chevron-down ml-2"></i>
+                        Export <i class="fas fa-chevron-down ms-2"></i>
                     </button>
                     <div id="exportDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10">
                         <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
@@ -52,23 +52,23 @@
             <table class="w-full">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                             <input type="checkbox" id="selectAllCheckbox"
                                 class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Blog Info
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Status
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Featured
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Published At
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Actions
                         </th>
                     </tr>
@@ -84,7 +84,7 @@
                             <div class="flex items-center">
                                 <img class="h-10 w-10 rounded-lg object-cover" src="{{ Storage::url($blog->image) }}"
                                     alt="{{ $blog->title }}">
-                                <div class="ml-4">
+                                <div class="ms-4">
                                     <div class="text-sm font-medium text-gray-900">{{ $blog->title }}</div>
                                     <div class="text-xs text-gray-500">{{ $blog->slug }}</div>
                                     <div class="text-sm text-gray-500">{{ Str::limit($blog->content, 50) }}</div>

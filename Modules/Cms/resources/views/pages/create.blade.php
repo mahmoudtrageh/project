@@ -90,7 +90,7 @@
                                 {{ old('show_in_menu') ? 'checked' : '' }}
                                 class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                             />
-                            <label for="show_in_menu" class="ml-2 block text-sm text-gray-700">Show in Navigation Menu</label>
+                            <label for="show_in_menu" class="ms-2 block text-sm text-gray-700">Show in Navigation Menu</label>
                         </div>
                         @error('show_in_menu')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
