@@ -33,13 +33,13 @@
                 <!-- Name Section -->
                 <div class="relative">
                     <input type="text" id="name" name="name" value="{{auth()->user()->name}}" class="peer w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-transparent transition-all duration-200" placeholder=" " />
-                    <label for="name" class="absolute left-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-placeholder-shown:left-4 peer-focus:-top-2.5 peer-focus:left-2 peer-focus:text-sm peer-focus:text-blue-600">Full Name</label>
+                    <label for="name" class="absolute ltr:left-2 rtl:right-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 ltr:peer-placeholder-shown:left-4 rtl:peer-placeholder-shown:right-4 peer-focus:-top-2.5 ltr:peer-focus:left-2 rtl:peer-focus:right-2 peer-focus:text-sm peer-focus:text-blue-600">Full Name</label>
                 </div>
         
                 <!-- Email Section -->
                 <div class="relative">
                     <input type="email" id="email" name="email" value="{{auth()->user()->email}}" class="peer w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-transparent transition-all duration-200" placeholder=" " />
-                    <label for="email" class="absolute left-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-placeholder-shown:left-4 peer-focus:-top-2.5 peer-focus:left-2 peer-focus:text-sm peer-focus:text-blue-600">Email Address</label>
+                    <label for="name" class="absolute ltr:left-2 rtl:right-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 ltr:peer-placeholder-shown:left-4 rtl:peer-placeholder-shown:right-4 peer-focus:-top-2.5 ltr:peer-focus:left-2 rtl:peer-focus:right-2 peer-focus:text-sm peer-focus:text-blue-600">Email address</label>
                 </div>
         
                 <!-- Save Button -->
@@ -61,19 +61,19 @@
                     <!-- Current Password -->
                     <div class="relative">
                         <input type="password" name="current_password" id="current-password" class="peer w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-transparent transition-all duration-200" placeholder=" " />
-                        <label for="current-password" class="absolute left-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-placeholder-shown:left-4 peer-focus:-top-2.5 peer-focus:left-2 peer-focus:text-sm peer-focus:text-blue-600">Current Password</label>
+                        <label for="current-password" class="absolute rtl:right-2 ltr:left-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-placeholder-shown:left-4 peer-focus:-top-2.5 peer-focus:left-2 peer-focus:text-sm peer-focus:text-blue-600">Current Password</label>
                     </div>
                 
                     <!-- New Password -->
                     <div class="relative">
                         <input type="password" id="new-password" name="password" class="peer w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-transparent transition-all duration-200" placeholder=" " />
-                        <label for="new-password" class="absolute left-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-placeholder-shown:left-4 peer-focus:-top-2.5 peer-focus:left-2 peer-focus:text-sm peer-focus:text-blue-600">New Password</label>
+                        <label for="new-password" class="absolute rtl:right-2 ltr:left-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-placeholder-shown:left-4 peer-focus:-top-2.5 peer-focus:left-2 peer-focus:text-sm peer-focus:text-blue-600">New Password</label>
                     </div>
                 
                     <!-- Confirm New Password -->
                     <div class="relative">
                         <input type="password" id="confirm-password" name="password_confirmation" class="peer w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-transparent transition-all duration-200" placeholder=" " />
-                        <label for="confirm-password" class="absolute left-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-placeholder-shown:left-4 peer-focus:-top-2.5 peer-focus:left-2 peer-focus:text-sm peer-focus:text-blue-600">Confirm New Password</label>
+                        <label for="confirm-password" class="absolute rtl:right-2 ltr:left-2 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all duration-200 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-placeholder-shown:left-4 peer-focus:-top-2.5 peer-focus:left-2 peer-focus:text-sm peer-focus:text-blue-600">Confirm New Password</label>
                     </div>
                 
                     <!-- Save Button -->

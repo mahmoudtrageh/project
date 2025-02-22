@@ -9,7 +9,7 @@
             <div class="relative flex-1 max-w-xs {{ Session::get('locale') === 'ar' ? 'ml-4' : 'mr-4' }}">
                 <input type="text" placeholder="Search..." 
                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200">
-                <i class="fas fa-search absolute {{ Session::get('locale') === 'ar' ? 'left-3' : 'right-3' }} top-3 text-gray-400"></i>
+                <i class="fas fa-search absolute {{ Session::get('locale') === 'ar' ? 'left-3' : 'right-3' }} top-4 text-gray-400"></i>
             </div>
             <div class="flex items-center space-x-2 md:space-x-4">
                 <!-- Theme Switcher -->
