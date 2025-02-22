@@ -91,11 +91,11 @@
                     
                     <div 
                         id="userMenu" 
-                        class="hidden absolute {{ Session::get('locale') === 'ar' ? 'left-0' : 'right-0' }} mt-2 w-48 bg-white rounded-lg shadow-lg py-3 z-50"
+                        class="hidden absolute {{ Session::get('locale') === 'ar' ? 'left-0' : 'right-0' }} mt-2 w-48 bg-white rounded-lg shadow-lg py-3 z-[99]"
                     >
                         <a 
                             href="{{ route('admin.profile') }}" 
-                            class="block flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                            class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200"
                         >
                             <i class="fas fa-user text-blue-500"></i> Profile
                         </a>
@@ -114,7 +114,7 @@
         </div>
     </div>
 </header>
-<script>
+{{-- <script>
 function toggleTheme() {
     const html = document.documentElement;
     const themeIcon = document.getElementById('themeIcon');
@@ -143,4 +143,4 @@ if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.match
     document.getElementById('themeIcon').classList.remove('fa-moon');
     document.getElementById('themeIcon').classList.add('fa-sun');
 }
-</script>
+</script> --}}

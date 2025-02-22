@@ -270,7 +270,7 @@
             }
         }
 
-        toggleBtn.addEventListener('click', toggleSidebar);
+        toggleBtn?.addEventListener('click', toggleSidebar);
 
         // Mobile sidebar controls
         openSidebarBtn.addEventListener('click', () => {
@@ -286,8 +286,9 @@
         // User Menu Toggle
         const userMenuBtn = document.getElementById('userMenuBtn');
         const userMenu = document.getElementById('userMenu');
-
+console.log(userMenuBtn);
         userMenuBtn.addEventListener('click', () => {
+            console.log('clicked');
             userMenu.classList.toggle('hidden');
         });
 
