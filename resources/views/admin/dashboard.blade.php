@@ -139,9 +139,9 @@
                         <input
                             type="text"
                             placeholder="Search orders..."
-                            class="w-48 px-4 py-2 rounded-lg border border-gray-300 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+                             class="w-64 px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200"
                         />
-                        <i class="fas fa-search absolute ltr:right-3 rtl:left-3 top-4 text-gray-400"></i>
+                        <i class="fas fa-search absolute ltr:right-3 rtl:left-3 top-3 text-gray-400"></i>
                     </div>
 
                     <!-- Delete All Button -->
@@ -191,67 +191,68 @@
                 </div>
             </div>
 
-            <div class="responsive-table">
+            <div class="responsive-table overflow-hidden rounded-xl border border-gray-200">
                 <table class="w-full">
-                    <thead class="bg-gray-50">
+                    <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
                         <tr>
-                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <input
-                                    type="checkbox"
-                                    id="selectAllCheckbox"
-                                    class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
-                                    onclick="toggleSelectAll()"
-                                />
+                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                <label class="inline-flex items-center hover:bg-gray-50 p-1 rounded-lg transition-colors duration-200">
+                                    <input
+                                        type="checkbox"
+                                        id="selectAllCheckbox"
+                                        class="form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 transition duration-150 ease-in-out focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                        onclick="toggleSelectAll()"
+                                    />
+                                </label>
                             </th>
-                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Order ID
-                            </th>
-                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Customer
-                            </th>
-                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Status
-                            </th>
-                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Amount
-                            </th>
-                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Actions
-                            </th>
+                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Order ID</th>
+                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Customer</th>
+                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Amount</th>
+                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
+                    <tbody class="bg-white divide-y divide-gray-100">
                         <!-- Sample row -->
-                        <tr class="table-row">
+                        <tr class="table-row hover:bg-gray-50 transition-colors duration-200">
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <input
-                                    type="checkbox"
-                                    class="row-checkbox form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
-                                />
+                                <label class="inline-flex items-center hover:bg-gray-100 p-1 rounded-lg transition-colors duration-200">
+                                    <input
+                                        type="checkbox"
+                                        class="row-checkbox form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 transition duration-150 ease-in-out focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                    />
+                                </label>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-sm text-gray-900">#12345</span>
+                                <span class="text-sm font-medium text-gray-900">#12345</span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    <img class="h-8 w-8 rounded-full" src="https://placehold.co/32" alt="">
+                                    <img class="h-9 w-9 rounded-full object-cover ring-2 ring-gray-100" src="https://placehold.co/32" alt="">
                                     <div class="ms-4">
-                                        <div class="text-sm font-medium text-gray-900">John Smith</div>
+                                        <div class="text-sm font-semibold text-gray-900">John Smith</div>
                                         <div class="text-sm text-gray-500">john@example.com</div>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                <span class="px-3 py-1 inline-flex items-center gap-1 text-xs font-medium rounded-full bg-green-50 text-green-700 border border-green-100">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
                                     Completed
                                 </span>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                $459.00
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="text-sm font-medium text-gray-900">$459.00</span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">View</a>
-                                <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                                <div class="flex items-center gap-3">
+                                    <a href="#" class="text-blue-600 hover:text-blue-900 hover:bg-blue-50 p-1 rounded-lg transition-colors duration-200">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </a>
+                                    <a href="#" class="text-red-600 hover:text-red-700 hover:bg-red-50 p-1 rounded-lg transition-colors duration-200">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         <!-- Add more rows as needed -->
@@ -260,16 +261,24 @@
             </div>
 
             <div class="px-6 py-4 border-t border-gray-100">
-                <div class="flex items-center justify-between">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div class="text-sm text-gray-600">
-                        Showing 1 to 10 of 97 results
+                        Showing <span class="font-medium text-gray-900">1</span> to <span class="font-medium text-gray-900">10</span> of <span class="font-medium text-gray-900">97</span> results
                     </div>
-                    <div class="flex gap-x-2">
-                        <button class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">Previous</button>
-                        <button class="px-3 py-1 border rounded-sm bg-blue-600 text-white">1</button>
-                        <button class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">2</button>
-                        <button class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">3</button>
-                        <button class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">Next</button>
+                    <div class="inline-flex items-center gap-2">
+                        <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
+                            <i class="fas fa-chevron-left me-2 text-xs"></i>
+                            Previous
+                        </button>
+                        <div class="inline-flex -space-x-px overflow-hidden rounded-lg border border-gray-300">
+                            <button class="px-4 py-2 text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200">1</button>
+                            <button class="px-4 py-2 text-sm font-medium text-gray-500 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200">2</button>
+                            <button class="px-4 py-2 text-sm font-medium text-gray-500 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200">3</button>
+                        </div>
+                        <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
+                            Next
+                            <i class="fas fa-chevron-right ms-2 text-xs"></i>
+                        </button>
                     </div>
                 </div>
             </div>
