@@ -2,5 +2,6 @@
     "Admin": true,
     "Setting": true,
     "Cms": true,
-    "Contact": true
+    "Contact": true,
+    "Lang": true
 }
