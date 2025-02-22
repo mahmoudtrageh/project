@@ -1,4 +1,4 @@
-<header class="shadow-xs bg-white border border-b border-b-gray-200">
+<header class="shadow-xs bg-white border border-b border-b-gray-200 sticky top-0 z-[100]">
     <div class="flex items-center px-4 py-3">
         <button id="openSidebar" class="md:hidden text-gray-600 hover:bg-gray-100 p-2 rounded-lg transition-all duration-200">
             <i class="fas fa-bars text-sm"></i>

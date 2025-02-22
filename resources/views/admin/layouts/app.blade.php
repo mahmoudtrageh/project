@@ -211,7 +211,7 @@
 <body class="bg-gray-100 {{ Session::get('locale') === 'ar' ? 'font-cairo' : 'font-poppins' }} "
     dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
 
-    <div class="min-h-screen flex">
+    <div class="min-h-screen flex md:ps-[250px]" id="mainLayout">
 
         @include('admin.layouts.aside')
 
@@ -236,6 +236,7 @@
 
     <script>
         // Sidebar Toggle
+        const mainLayout = document.getElementById('mainLayout');
         const sidebar = document.getElementById('sidebar');
         const toggleBtn = document.getElementById('toggleSidebar');
         const toggleIcon = document.getElementById('toggleIcon');
@@ -250,6 +251,7 @@
             isExpanded = !isExpanded;
 
             if (isExpanded) {
+                // mainLayout.classList.add("md:ps-[250px]");
                 sidebar.classList.remove('sidebar-collapsed');
                 sidebar.classList.add('sidebar-expanded');
                 toggleIcon.classList.remove('fa-chevron-right');
@@ -257,6 +259,7 @@
                 sidebarTexts.forEach(text => text.style.display = 'inline');
                 dropdownArrows.forEach(arrow => arrow.style.display = 'inline');
             } else {
+                // mainLayout.classList.add("md:ps-[50px]");
                 sidebar.classList.remove('sidebar-expanded');
                 sidebar.classList.add('sidebar-collapsed');
                 toggleIcon.classList.remove('fa-chevron-left');
@@ -338,9 +341,7 @@
             const isRTL = document.dir === 'rtl';
             if (e.matches) {
                 // Mobile view
-                if (isRTL) {
-                    sidebar.classList.add('ltr:-translate-x-full');
-                } else {
+                if (!isRTL) {
                     sidebar.classList.add('-translate-x-full');
                 }
                 sidebar.classList.remove('sidebar-collapsed');
