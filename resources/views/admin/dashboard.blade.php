@@ -130,16 +130,16 @@
         </div>
 
         <!-- Table -->
-        <div class="bg-white rounded-lg shadow overflow-hidden">
-            <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+        <div class="bg-white rounded-lg shadow max-sm:max-w-[89vw]">
+            <div class="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
                 <h2 class="text-lg font-semibold text-gray-800">Recent Orders</h2>
-                <div class="flex items-center gap-x-4">
+                <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
                     <!-- Search Box -->
-                    <div class="relative">
+                    <div class="relative w-full sm:w-64">
                         <input
                             type="text"
                             placeholder="Search orders..."
-                             class="w-64 px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200"
+                            class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200"
                         />
                         <i class="fas fa-search absolute ltr:right-3 rtl:left-3 top-4 text-gray-400"></i>
                     </div>
@@ -147,117 +147,119 @@
                     <!-- Delete All Button -->
                     <button
                         id="deleteAllButton"
-                        class="px-4 py-2.5 bg-red-600 text-white rounded-xl hover:bg-red-700 focus:outline-hidden focus:ring-2 focus:ring-red-500"
+                        class="w-full sm:w-auto px-4 py-2.5 bg-red-600 text-white rounded-xl hover:bg-red-700 focus:outline-hidden focus:ring-2 focus:ring-red-500"
                         onclick="deleteSelectedRows()"
                     >
                         Delete All
                     </button>
 
                     <!-- Export Dropdown -->
-                    <div class="relative">
+                    <div class="relative w-full sm:w-auto">
                         <button
                             id="exportDropdownButton"
-                            class="px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+                            class="w-full sm:w-auto px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
                         >
                             Export <i class="fas fa-chevron-down ms-2"></i>
                         </button>
                         <div
                             id="exportDropdown"
-                            class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10"
+                            class="hidden absolute ltr:right-0 rtl:left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10"
                         >
                             <a
                                 href="#"
                                 class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                                 onclick="exportTable('csv')"
                             >
-                                <i class="fas fa-file-csv mr-2"></i> Export as CSV
+                                <i class="fas fa-file-csv me-2"></i> Export as CSV
                             </a>
                             <a
                                 href="#"
                                 class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                                 onclick="exportTable('excel')"
                             >
-                                <i class="fas fa-file-excel mr-2"></i> Export as Excel
+                                <i class="fas fa-file-excel me-2"></i> Export as Excel
                             </a>
                             <a
                                 href="#"
                                 class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                                 onclick="exportTable('pdf')"
                             >
-                                <i class="fas fa-file-pdf mr-2"></i> Export as PDF
+                                <i class="fas fa-file-pdf me-2"></i> Export as PDF
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="responsive-table overflow-hidden rounded-xl border border-gray-200">
-                <table class="w-full">
-                    <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
-                        <tr>
-                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                <label class="inline-flex items-center hover:bg-gray-50 p-1 rounded-lg transition-colors duration-200">
-                                    <input
-                                        type="checkbox"
-                                        id="selectAllCheckbox"
-                                        class="form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 transition duration-150 ease-in-out focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                        onclick="toggleSelectAll()"
-                                    />
-                                </label>
-                            </th>
-                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Order ID</th>
-                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Customer</th>
-                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
-                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Amount</th>
-                            <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-100">
-                        <!-- Sample row -->
-                        <tr class="table-row hover:bg-gray-50 transition-colors duration-200">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="inline-flex items-center hover:bg-gray-100 p-1 rounded-lg transition-colors duration-200">
-                                    <input
-                                        type="checkbox"
-                                        class="row-checkbox form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 transition duration-150 ease-in-out focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                    />
-                                </label>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-sm font-medium text-gray-900">#12345</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <img class="h-9 w-9 rounded-full object-cover ring-2 ring-gray-100" src="https://placehold.co/32" alt="">
-                                    <div class="ms-4">
-                                        <div class="text-sm font-semibold text-gray-900">John Smith</div>
-                                        <div class="text-sm text-gray-500">john@example.com</div>
+            <div class="overflow-x-scroll max-w-[97vw]">
+                <div class="responsive-table min-w-full">
+                    <table class="w-full whitespace-nowrap">
+                        <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
+                            <tr>
+                                <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    <label class="inline-flex items-center hover:bg-gray-50 p-1 rounded-lg transition-colors duration-200">
+                                        <input
+                                            type="checkbox"
+                                            id="selectAllCheckbox"
+                                            class="form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 transition duration-150 ease-in-out focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                            onclick="toggleSelectAll()"
+                                        />
+                                    </label>
+                                </th>
+                                <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Order ID</th>
+                                <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Customer</th>
+                                <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Amount</th>
+                                <th class="px-6 py-4 text-start text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-100">
+                            <!-- Sample row -->
+                            <tr class="table-row hover:bg-gray-50 transition-colors duration-200">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <label class="inline-flex items-center hover:bg-gray-100 p-1 rounded-lg transition-colors duration-200">
+                                        <input
+                                            type="checkbox"
+                                            class="row-checkbox form-checkbox h-4 w-4 text-blue-600 rounded border-gray-300 transition duration-150 ease-in-out focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                        />
+                                    </label>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-sm font-medium text-gray-900">#12345</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <img class="h-9 w-9 rounded-full object-cover ring-2 ring-gray-100" src="https://placehold.co/32" alt="">
+                                        <div class="ms-4">
+                                            <div class="text-sm font-semibold text-gray-900">John Smith</div>
+                                            <div class="text-sm text-gray-500">john@example.com</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-3 py-1 inline-flex items-center gap-1 text-xs font-medium rounded-full bg-green-50 text-green-700 border border-green-100">
-                                    <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-                                    Completed
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="text-sm font-medium text-gray-900">$459.00</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <div class="flex items-center gap-3">
-                                    <a href="#" class="text-blue-600 hover:text-blue-900 hover:bg-blue-50 p-1 rounded-lg transition-colors duration-200">
-                                        <i class="fa-regular fa-eye"></i>
-                                    </a>
-                                    <a href="#" class="text-red-600 hover:text-red-700 hover:bg-red-50 p-1 rounded-lg transition-colors duration-200">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- Add more rows as needed -->
-                    </tbody>
-                </table>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-3 py-1 inline-flex items-center gap-1 text-xs font-medium rounded-full bg-green-50 text-green-700 border border-green-100">
+                                        <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+                                        Completed
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-sm font-medium text-gray-900">$459.00</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex items-center gap-3">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900 hover:bg-blue-50 p-1 rounded-lg transition-colors duration-200">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </a>
+                                        <a href="#" class="text-red-600 hover:text-red-700 hover:bg-red-50 p-1 rounded-lg transition-colors duration-200">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="px-6 py-4 border-t border-gray-100">
@@ -287,6 +289,23 @@
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script>
             // Sales Chart
+            // Function to update chart dimensions
+            function updateChartDimensions() {
+                if (salesChart && revenueChart) {
+                    salesChart.updateOptions({
+                        chart: {
+                            width: '100%'
+                        }
+                    });
+                    revenueChart.updateOptions({
+                        chart: {
+                            width: '100%'
+                        }
+                    });
+                }
+            }
+
+            // Sales Chart Configuration
             var salesOptions = {
                 series: [{
                     name: 'Sales',
@@ -295,8 +314,17 @@
                 chart: {
                     type: 'area',
                     height: 320,
+                    width: '100%',
                     toolbar: {
                         show: false
+                    },
+                    zoom: {
+                        enabled: false
+                    },
+                    animations: {
+                        enabled: true,
+                        easing: 'easeinout',
+                        speed: 800
                     }
                 },
                 colors: ['#3B82F6'],
@@ -312,30 +340,114 @@
                     curve: 'smooth'
                 },
                 xaxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
-                }
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                    labels: {
+                        style: {
+                            fontSize: '12px'
+                        },
+                        rotate: -45,
+                        rotateAlways: false
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '12px'
+                        }
+                    }
+                },
+                responsive: [{
+                    breakpoint: 1024,
+                    options: {
+                        chart: {
+                            height: 280
+                        }
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    options: {
+                        chart: {
+                            height: 240
+                        }
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            height: 200
+                        },
+                        xaxis: {
+                            labels: {
+                                rotate: -90
+                            }
+                        }
+                    }
+                }]
             };
 
             var salesChart = new ApexCharts(document.querySelector("#salesChart"), salesOptions);
             salesChart.render();
 
-            // Revenue Chart
+            // Revenue Chart Configuration
             var revenueOptions = {
                 series: [44, 55, 41, 17, 15],
                 chart: {
                     type: 'donut',
-                    height: 320
+                    height: 320,
+                    width: '100%',
+                    animations: {
+                        enabled: true,
+                        easing: 'easeinout',
+                        speed: 800
+                    }
                 },
                 labels: ['Direct', 'Affiliate', 'Sponsored', 'E-mail', 'Other'],
                 colors: ['#3B82F6', '#10B981', '#8B5CF6', '#F59E0B', '#EF4444'],
+                legend: {
+                    position: 'bottom',
+                    horizontalAlign: 'center',
+                    fontSize: '14px',
+                    markers: {
+                        width: 12,
+                        height: 12,
+                        radius: 6
+                    },
+                    itemMargin: {
+                        horizontal: 10,
+                        vertical: 0
+                    }
+                },
                 responsive: [{
+                    breakpoint: 1024,
+                    options: {
+                        chart: {
+                            height: 280
+                        }
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    options: {
+                        chart: {
+                            height: 240
+                        }
+                    }
+                },
+                {
                     breakpoint: 480,
                     options: {
                         chart: {
-                            width: 200
+                            height: 200
                         },
                         legend: {
-                            position: 'bottom'
+                            position: 'bottom',
+                            fontSize: '12px',
+                            itemMargin: {
+                                horizontal: 6,
+                                vertical: 0
+                            }
                         }
                     }
                 }]
@@ -343,6 +455,12 @@
 
             var revenueChart = new ApexCharts(document.querySelector("#revenueChart"), revenueOptions);
             revenueChart.render();
+
+            // Handle window resize
+            window.addEventListener('resize', updateChartDimensions);
+            
+            // Initial update
+            updateChartDimensions();
         </script>
 
 @endsection

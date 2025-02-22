@@ -277,7 +277,7 @@
 
         closeSidebarBtn.addEventListener('click', () => {
             sidebar.classList.remove('translate-x-0');
-            sidebar.classList.add('-translate-x-full');
+            sidebar.classList.add('ltr:-translate-x-full');
         });
 
         // User Menu Toggle
@@ -335,9 +335,14 @@
         const mediaQuery = window.matchMedia('(max-width: 768px)');
 
         function handleMobileChange(e) {
+            const isRTL = document.dir === 'rtl';
             if (e.matches) {
                 // Mobile view
-                sidebar.classList.add('-translate-x-full');
+                if (isRTL) {
+                    sidebar.classList.add('ltr:-translate-x-full');
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                }
                 sidebar.classList.remove('sidebar-collapsed');
                 sidebar.classList.add('sidebar-expanded');
                 sidebarTexts.forEach(text => text.style.display = 'inline');

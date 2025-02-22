@@ -4,15 +4,15 @@
             <i class="fas fa-bars text-sm"></i>
         </button>
         
-        <div class="flex items-center flex-1 px-4 justify-between">
+        <div class="flex items-center max-md:justify-between gap-3 md:flex-1 px-2 sm:px-4 justify-between">
             <!-- Search Bar -->
-            <div class="relative flex-1 max-w-xs ms-4">
+            <div class="relative md:flex-1 max-w-42 sm:max-w-xs md:ms-4">
                 <input type="text" placeholder="{{ __('admin.search') }}" 
                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200">
                 <i class="fas fa-search absolute {{ Session::get('locale') === 'ar' ? 'left-3' : 'right-3' }} top-4 text-gray-400"></i>
             </div>
             
-            <div class="flex items-center space-x-2 md:space-x-4">
+            <div class="flex items-center gap-x-2 md:gap-x-4">
                 <!-- Theme Switcher -->
                 {{-- <div class="relative">
                     <button
@@ -85,7 +85,7 @@
                                 class="w-8 h-8 rounded-full"
                             >
                         @endif
-                        <span class="ms-2 text-gray-700 hidden md:block">{{ auth()->user()->name }}</span>
+                        <span class="ms-2 text-gray-700 hidden sm:block">{{ auth()->user()->name }}</span>
                         <i class="fas fa-chevron-down ms-2 text-gray-400"></i>
                     </button>
                     
