@@ -211,7 +211,7 @@
 <body class="bg-gray-100 {{ Session::get('locale') === 'ar' ? 'font-cairo' : 'font-poppins' }} "
     dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
 
-    <div class="min-h-screen flex md:ps-[250px]" id="mainLayout">
+    <div class="min-h-screen flex md:ps-[223px]" id="mainLayout">
 
         @include('admin.layouts.aside')
 
