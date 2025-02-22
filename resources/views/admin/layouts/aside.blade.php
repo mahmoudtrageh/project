@@ -12,7 +12,7 @@
     <nav class="mt-6 px-3">
         <!-- Dashboard Link -->
         <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl transition-all duration-200 {{ request()->routeIs('dashboard') ? 'bg-blue-100 text-blue-600' : '' }}">
-            <i class="fas fa-home w-5 h-5 {{ request()->routeIs('dashboard') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+            <i class="fas fa-home w-5 h-5 sidebar-icon {{ request()->routeIs('dashboard') ? 'text-blue-600' : 'text-gray-400' }}"></i>
             <span class="sidebar-text ms-3 font-medium">Dashboard</span>
         </a>
         
@@ -20,7 +20,7 @@
         <div class="dropdown relative mt-2">
             <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.projects.*') ? 'bg-blue-100 text-blue-600' : '' }}">
                 <div class="flex items-center">
-                    <i class="fa-solid fa-diagram-project w-5 h-5 {{ request()->routeIs('admin.projects.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+                    <i class="fa-solid fa-diagram-project w-5 h-5 sidebar-icon {{ request()->routeIs('admin.projects.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
                     <span class="sidebar-text ms-3 font-medium">Projects</span>
                 </div>
                 <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('admin.projects.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
@@ -35,7 +35,7 @@
         <div class="dropdown relative mt-2">
             <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.blogs.*') ? 'bg-blue-100 text-blue-600' : '' }}">
                 <div class="flex items-center">
-                    <i class="fa-solid fa-pen w-5 h-5 {{ request()->routeIs('admin.blogs.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+                    <i class="fa-solid fa-pen w-5 h-5 sidebar-icon {{ request()->routeIs('admin.blogs.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
                     <span class="sidebar-text ms-3 font-medium">Blogs</span>
                 </div>
                 <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('admin.blogs.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
@@ -50,7 +50,7 @@
         <div class="dropdown relative mt-2">
             <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.pages.*') ? 'bg-blue-100 text-blue-600' : '' }}">
                 <div class="flex items-center">
-                    <i class="fa-solid fa-newspaper w-5 h-5 {{ request()->routeIs('admin.pages.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+                    <i class="fa-solid fa-newspaper w-5 h-5 sidebar-icon {{ request()->routeIs('admin.pages.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
                     <span class="sidebar-text ms-3 font-medium">Pages</span>
                 </div>
                 <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('admin.pages.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
@@ -63,13 +63,13 @@
 
         <!-- Contacts Link -->
         <a href="{{ route('admin.contact.index') }}" class="flex items-center px-4 py-3 mt-2 text-gray-700 hover:bg-blue-50 rounded-xl transition-all duration-200 {{ request()->routeIs('admin.contact.index') ? 'bg-blue-100 text-blue-600' : '' }}">
-            <i class="fa-regular fa-envelope w-5 h-5 {{ request()->routeIs('admin.contact.index') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+            <i class="fa-regular fa-envelope w-5 h-5 sidebar-icon {{ request()->routeIs('admin.contact.index') ? 'text-blue-600' : 'text-gray-400' }}"></i>
             <span class="sidebar-text ms-3 font-medium">Contacts</span>
         </a>
 
         <!-- Settings Link -->
         <a href="{{ route('admin.settings') }}" class="flex items-center px-4 py-3 mt-2 text-gray-700 hover:bg-blue-50 rounded-xl transition-all duration-200 {{ request()->routeIs('admin.settings') ? 'bg-blue-100 text-blue-600' : '' }}">
-            <i class="fas fa-cog w-5 h-5 {{ request()->routeIs('admin.settings') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+            <i class="fas fa-cog w-5 h-5 sidebar-icon {{ request()->routeIs('admin.settings') ? 'text-blue-600' : 'text-gray-400' }}"></i>
             <span class="sidebar-text ms-3 font-medium">Settings</span>
         </a>
     </nav>

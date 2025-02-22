@@ -19,7 +19,9 @@
     <style>
         /* Custom Styles */
         body {
-            direction: {{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }};
+            direction:
+                {{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}
+            ;
         }
 
         .sidebar-transition {
@@ -50,7 +52,8 @@
 
         .dropdown-outside {
             position: absolute;
-            {{ Session::get('locale') === 'ar' ? 'right' : 'left' }}: 5rem;
+            {{ Session::get('locale') === 'ar' ? 'right' : 'left' }}
+            : 5rem;
             top: 0;
             background: white;
             border-radius: 0.5rem;
@@ -205,7 +208,8 @@
 
 </head>
 
-<body class="bg-gray-100 {{ Session::get('locale') === 'ar' ? 'font-cairo' : 'font-poppins' }} " dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
+<body class="bg-gray-100 {{ Session::get('locale') === 'ar' ? 'font-cairo' : 'font-poppins' }} "
+    dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
 
     <div class="min-h-screen flex">
 
@@ -236,6 +240,7 @@
         const toggleBtn = document.getElementById('toggleSidebar');
         const toggleIcon = document.getElementById('toggleIcon');
         const sidebarTexts = document.querySelectorAll('.sidebar-text');
+        const sidebarIcons = document.querySelectorAll('.sidebar-icon');
         const dropdownArrows = document.querySelectorAll('.dropdown-arrow');
         const openSidebarBtn = document.getElementById('openSidebar');
         const closeSidebarBtn = document.getElementById('closeSidebar');
@@ -257,6 +262,7 @@
                 toggleIcon.classList.remove('fa-chevron-left');
                 toggleIcon.classList.add('fa-chevron-right');
                 sidebarTexts.forEach(text => text.style.display = 'none');
+                sidebarIcons.forEach(icon => icon.classList.add('-ms-2'));
                 dropdownArrows.forEach(arrow => arrow.style.display = 'none');
             }
         }
