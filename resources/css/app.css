@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.scrollbar {
+    scrollbar-color: #aaa #f0f0f0;
+    scrollbar-width: thin;
+    -ms-overflow-style: auto;
+}
+[dir="ltr"] {
+    font-family: "Poppins", "Tajawal", monospace;
+}
+
+[dir="rtl"] {
+    font-family: "Tajawal", "Poppins", monospace;
+}
+
+.hide-scroll-bar::-webkit-scrollbar {
+    width: 0px !important;
+}
+body{
+    background-color: red !important;
+}

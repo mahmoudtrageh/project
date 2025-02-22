@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     @yield('css')
-        
+
     <style>
         /* Custom Styles */
         .sidebar-transition {
             transition: all 0.3s ease-in-out;
         }
-        
+
         .sidebar-text {
             transition: opacity 0.3s ease;
             white-space: nowrap;
@@ -153,7 +158,8 @@
 
         /* Indentation for submenu items */
         .dropdown-content a {
-            padding-left: 2rem; /* Adjust as needed */
+            padding-left: 2rem;
+            /* Adjust as needed */
         }
 
         /* Smooth transition for dropdown */
@@ -173,15 +179,15 @@
 <body class="bg-gray-100">
 
     <div class="min-h-screen flex">
-        
+
         @include('admin.layouts.aside')
- 
-         <!-- Main Content -->
-         <div class="flex-1 flex flex-col">
- 
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+
             <!-- Top Navigation -->
             @include('admin.layouts.header')
- 
+
             <!-- Main Content Area -->
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
                 <div class="container mx-auto">
@@ -195,7 +201,7 @@
 
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
-    <script>    
+    <script>
         // Sidebar Toggle
         const sidebar = document.getElementById('sidebar');
         const toggleBtn = document.getElementById('toggleSidebar');
@@ -205,10 +211,10 @@
         const openSidebarBtn = document.getElementById('openSidebar');
         const closeSidebarBtn = document.getElementById('closeSidebar');
         let isExpanded = true;
-    
+
         function toggleSidebar() {
             isExpanded = !isExpanded;
-            
+
             if (isExpanded) {
                 sidebar.classList.remove('sidebar-collapsed');
                 sidebar.classList.add('sidebar-expanded');
@@ -225,36 +231,36 @@
                 dropdownArrows.forEach(arrow => arrow.style.display = 'none');
             }
         }
-    
+
         toggleBtn.addEventListener('click', toggleSidebar);
-    
+
         // Mobile sidebar controls
         openSidebarBtn.addEventListener('click', () => {
             sidebar.classList.remove('-translate-x-full');
             sidebar.classList.add('translate-x-0');
         });
-    
+
         closeSidebarBtn.addEventListener('click', () => {
             sidebar.classList.remove('translate-x-0');
             sidebar.classList.add('-translate-x-full');
         });
-    
+
         // User Menu Toggle
         const userMenuBtn = document.getElementById('userMenuBtn');
         const userMenu = document.getElementById('userMenu');
-    
+
         userMenuBtn.addEventListener('click', () => {
             userMenu.classList.toggle('hidden');
         });
-    
+
         // Notification Menu Toggle
         const notificationBtn = document.getElementById('notificationBtn');
         const notificationMenu = document.getElementById('notificationMenu');
-    
+
         notificationBtn.addEventListener('click', () => {
             notificationMenu.classList.toggle('hidden');
         });
-    
+
         // Close menus when clicking outside
         document.addEventListener('click', (e) => {
             if (!userMenuBtn.contains(e.target) && !userMenu.contains(e.target)) {
@@ -264,10 +270,10 @@
                 notificationMenu.classList.add('hidden');
             }
         });
-    
+
         // Dropdown functionality
         const dropdowns = document.querySelectorAll('.dropdown');
-    
+
         dropdowns.forEach(dropdown => {
             const dropdownContent = dropdown.querySelector('.dropdown-content');
             dropdown.addEventListener('click', (e) => {
@@ -281,7 +287,7 @@
                 }
             });
         });
-    
+
         // Close dropdowns when clicking outside
         document.addEventListener('click', () => {
             dropdowns.forEach(dropdown => {
@@ -289,10 +295,10 @@
                 dropdownContent.classList.remove('show');
             });
         });
-    
+
         // Handle responsiveness
         const mediaQuery = window.matchMedia('(max-width: 768px)');
-        
+
         function handleMobileChange(e) {
             if (e.matches) {
                 // Mobile view
@@ -314,11 +320,11 @@
                 }
             }
         }
-    
+
         mediaQuery.addListener(handleMobileChange);
         handleMobileChange(mediaQuery);
 
-         // Toggle Select All Checkboxes
+        // Toggle Select All Checkboxes
         function toggleSelectAll() {
             const selectAllCheckbox = document.getElementById('selectAllCheckbox');
             const rowCheckboxes = document.querySelectorAll('.row-checkbox');
@@ -365,7 +371,7 @@
         }
 
         document.querySelectorAll('.dropdown').forEach(dropdown => {
-            dropdown.addEventListener('click', function() {
+            dropdown.addEventListener('click', function () {
                 const dropdownContent = this.querySelector('.dropdown-content');
                 const dropdownArrow = this.querySelector('.dropdown-arrow');
                 dropdownArrow.classList.toggle('rotate-180');
@@ -373,16 +379,17 @@
         });
     </script>
 
-@yield('js')
+    @yield('js')
 
-<script>
+    <script>
 
-CKEDITOR.replace('editor',{
-    height:300,
-    versionCheck: false, // Disable version check to hide the warning
-    filebrowserUploadUrl: "{{route('upload.image', ['_token' => csrf_token() ])}}",
-    filebrowserUploadMethod: 'form',
-    });
+        CKEDITOR.replace('editor', {
+            height: 300,
+            versionCheck: false, // Disable version check to hide the warning
+            filebrowserUploadUrl: "{{route('upload.image', ['_token' => csrf_token()])}}",
+            filebrowserUploadMethod: 'form',
+        });
     </script>
 </body>
+
 </html>
