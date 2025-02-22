@@ -1,4 +1,4 @@
-<aside id="sidebar" class="sidebar-transition bg-linear-to-t from-white via-blue-50 to-white text-gray-800 sidebar-expanded fixed md:relative min-h-screen z-50 shadow-xl border-r border-gray-100 transform transition-transform duration-300 ease-in-out {{ Session::get('locale') === 'ar' ? 'right-0 translate-x-full md:translate-x-0' : 'left-0 -translate-x-full md:translate-x-0' }}">
+<aside id="sidebar" class="sidebar-transition bg-linear-to-t from-white via-white to-white text-gray-800 sidebar-expanded fixed md:relative min-h-screen z-50 shadow-xl border-r border-gray-100 transform transition-transform duration-300 ease-in-out {{ Session::get('locale') === 'ar' ? 'right-0 translate-x-full md:translate-x-0' : 'left-0 -translate-x-full md:translate-x-0' }}">
     <div class="flex items-center justify-between p-6 border-b border-gray-100">
         <span class="text-xl font-bold sidebar-text bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Admin Panel</span>
         <button id="toggleSidebar" class="text-gray-600 hover:bg-gray-100 p-2 rounded-lg transition-all duration-200 hidden md:block">
@@ -12,7 +12,7 @@
     <nav class="mt-6 px-3">
         <!-- Dashboard Link -->
         <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl transition-all duration-200 {{ request()->routeIs('dashboard') ? 'bg-blue-100 text-blue-600' : '' }}">
-            <i class="fas fa-home w-5 h-5 sidebar-icon {{ request()->routeIs('dashboard') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+            <i class="fas fa-tachometer-alt w-5 h-5 sidebar-icon {{ request()->routeIs('dashboard') ? 'text-blue-600' : 'text-gray-400' }} transition-colors duration-200"></i>
             <span class="sidebar-text ms-3 font-medium">Dashboard</span>
         </a>
         
@@ -50,7 +50,7 @@
         <div class="dropdown relative mt-2">
             <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.pages.*') ? 'bg-blue-100 text-blue-600' : '' }}">
                 <div class="flex items-center">
-                    <i class="fa-solid fa-newspaper w-5 h-5 sidebar-icon {{ request()->routeIs('admin.pages.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+                    <i class="fa-solid fa-file-lines w-5 h-5 sidebar-icon {{ request()->routeIs('admin.pages.*') ? 'text-blue-600' : 'text-gray-400' }} transition-colors duration-200"></i>
                     <span class="sidebar-text ms-3 font-medium">Pages</span>
                 </div>
                 <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('admin.pages.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
@@ -69,7 +69,7 @@
 
         <!-- Settings Link -->
         <a href="{{ route('admin.settings') }}" class="flex items-center px-4 py-3 mt-2 text-gray-700 hover:bg-blue-50 rounded-xl transition-all duration-200 {{ request()->routeIs('admin.settings') ? 'bg-blue-100 text-blue-600' : '' }}">
-            <i class="fas fa-cog w-5 h-5 sidebar-icon {{ request()->routeIs('admin.settings') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+            <i class="fa-solid fa-sliders w-5 h-5 sidebar-icon {{ request()->routeIs('admin.settings') ? 'text-blue-600' : 'text-gray-400' }} transition-colors duration-200"></i>
             <span class="sidebar-text ms-3 font-medium">Settings</span>
         </a>
     </nav>
