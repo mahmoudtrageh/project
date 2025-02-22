@@ -19,7 +19,7 @@
         </div>
         <div>
           <h4 class="text-lg font-semibold mb-4">Connect</h4>
-          <div class="flex space-x-4">
+          <div class="flex gap-x-4">
             <a href="{{settings()->get('social_github')}}" class="text-gray-400 hover:text-white">
               <i data-lucide="github" class="w-5 h-5"></i>
             </a>

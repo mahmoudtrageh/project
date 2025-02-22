@@ -71,7 +71,7 @@
             <p class="text-xl text-gray-600 mb-8 leading-relaxed">
                 {{settings()->get('about_description')}}
             </p>
-            <div class="flex space-x-6 mb-8">
+            <div class="flex gap-x-6 mb-8">
                 <a href="{{settings()->get('social_github')}}" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-blue-500 hover:text-white transition-colors duration-300">
                     <i data-lucide="github" class="w-8 h-8"></i>
                 </a>
@@ -283,7 +283,7 @@
         <!-- Mock Browser Window -->
         <div class="relative overflow-hidden shrink-0">
           <!-- Browser Top Bar -->
-          <div class="absolute top-0 left-0 w-full h-8 bg-gray-100 flex items-center px-3 space-x-2 z-10">
+          <div class="absolute top-0 left-0 w-full h-8 bg-gray-100 flex items-center px-3 gap-x-2 z-10">
             <div class="w-3 h-3 bg-red-500 rounded-full"></div>
             <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
             <div class="w-3 h-3 bg-green-500 rounded-full"></div>

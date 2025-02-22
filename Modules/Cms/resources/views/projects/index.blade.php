@@ -16,7 +16,7 @@
         <div class="bg-white rounded-lg shadow overflow-hidden">
             <div class="p-6 border-b border-gray-100 flex justify-between items-center">
                 <h2 class="text-lg font-semibold text-gray-800">Recent Projects</h2>
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center gap-x-4">
                     <!-- Search Box -->
                     <div class="relative">
                         <input
@@ -186,7 +186,7 @@
                                 Are you sure you want to delete this project? This action cannot be undone.
                             </p>
 
-                            <div class="flex justify-end space-x-3">
+                            <div class="flex justify-end gap-x-3">
                                 <button type="button" 
                                         onclick="closeDeleteModal()"
                                         class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300">

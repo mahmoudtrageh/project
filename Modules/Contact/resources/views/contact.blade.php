@@ -58,7 +58,7 @@
         <div class="mt-8">
           <h3 class="text-lg font-medium text-gray-900 mb-4">Follow Us</h3>
           <div class="mb-12">
-            <div class="flex justify-center space-x-6 mt-8">
+            <div class="flex justify-center gap-x-6 mt-8">
                 <a href="{{settings()->get('social_github')}}" class="text-gray-600 hover:text-gray-900">
                   <i data-lucide="github" class="w-8 h-8"></i>
                 </a>

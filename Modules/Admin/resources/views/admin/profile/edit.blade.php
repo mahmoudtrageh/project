@@ -13,7 +13,7 @@
                 <!-- Profile Picture Section -->
                 <div class="mb-6">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Profile Picture</label>
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center gap-x-4">
                     <div class="shrink-0">
                     @if(auth()->user()->image)
                         <img class="h-16 w-16 rounded-full object-cover" src="{{ asset('storage/'.auth()->user()->image)}}" alt="Profile Picture">

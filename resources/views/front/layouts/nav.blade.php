@@ -18,7 +18,7 @@
             </div>
 
             <!-- Navigation Links (Desktop) -->
-            <div class="hidden md:flex items-center space-x-8">
+            <div class="hidden md:flex items-center gap-x-8">
                 <a href="{{route('home')}}" class="text-gray-600 hover:text-gray-900">Home</a>
                 <a href="{{route('about')}}" class="text-gray-600 hover:text-gray-900">About</a>
                 <a href="{{route('projects')}}" class="text-gray-600 hover:text-gray-900">Projects</a>

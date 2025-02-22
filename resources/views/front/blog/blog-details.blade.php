@@ -6,7 +6,7 @@
     <!-- Blog Header -->
     <div class="mb-8">
       <h1 class="text-4xl font-bold text-gray-900 mb-4">{{$blog->title}}</h1>
-      <div class="flex items-center space-x-4 text-gray-600">
+      <div class="flex items-center gap-x-4 text-gray-600">
        
         <span>March 15, 2024</span>
       </div>

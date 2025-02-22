@@ -8,7 +8,7 @@
                     of {{ $paginator->total() }} results
                 </div>
 
-                <div class="flex space-x-2">
+                <div class="flex gap-x-2">
                     {{-- Previous --}}
                     @if ($paginator->onFirstPage())
                         <button disabled class="px-3 py-1 border rounded-sm text-gray-400">Previous</button>

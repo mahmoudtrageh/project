@@ -10,7 +10,7 @@
         <div class="bg-white rounded-lg shadow overflow-hidden">
             <div class="p-6 border-b border-gray-100 flex justify-between items-center">
                 <h2 class="text-lg font-semibold text-gray-800">Recent contacts</h2>
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center gap-x-4">
                     <!-- Search Box -->
                     <div class="relative">
                         <input

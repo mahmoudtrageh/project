@@ -133,7 +133,7 @@
         <div class="bg-white rounded-lg shadow-sm overflow-hidden">
             <div class="p-6 border-b border-gray-100 flex justify-between items-center">
                 <h2 class="text-lg font-semibold text-gray-800">Recent Orders</h2>
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center gap-x-4">
                     <!-- Search Box -->
                     <div class="relative">
                         <input
@@ -264,7 +264,7 @@
                     <div class="text-sm text-gray-600">
                         Showing 1 to 10 of 97 results
                     </div>
-                    <div class="flex space-x-2">
+                    <div class="flex gap-x-2">
                         <button class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">Previous</button>
                         <button class="px-3 py-1 border rounded-sm bg-blue-600 text-white">1</button>
                         <button class="px-3 py-1 border rounded-sm text-gray-600 hover:bg-gray-100">2</button>

@@ -18,7 +18,7 @@
         <!-- Mock Browser Window -->
         <div class="relative overflow-hidden shrink-0">
           <!-- Browser Top Bar -->
-          <div class="absolute top-0 left-0 w-full h-8 bg-gray-100 flex items-center px-3 space-x-2 z-10">
+          <div class="absolute top-0 left-0 w-full h-8 bg-gray-100 flex items-center px-3 gap-x-2 z-10">
             <div class="w-3 h-3 bg-red-500 rounded-full"></div>
             <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
             <div class="w-3 h-3 bg-green-500 rounded-full"></div>

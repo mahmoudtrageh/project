@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="flex space-x-4 border-b border-gray-200">
+    <div class="flex gap-x-4 border-b border-gray-200">
       <button id="tab1" class="tab-button px-4 py-2 text-sm font-medium text-gray-500 hover:text-blue-600 focus:outline-none border-b-2 border-transparent hover:border-blue-600 transition-all duration-300 active">
         Info
       </button>

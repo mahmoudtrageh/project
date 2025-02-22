@@ -11,35 +11,29 @@
                        class="w-full px-4 py-2 rounded-lg border focus:outline-hidden focus:ring-2 focus:ring-blue-500">
                 <i class="fas fa-search absolute {{ Session::get('locale') === 'ar' ? 'left-3' : 'right-3' }} top-4 text-gray-400"></i>
             </div>
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center gap-x-4">
+                <!-- Theme Switcher -->
+                {{-- <div class="relative">
+                    <button
+                        id="themeToggleBtn"
+                        class="relative inline-flex items-center justify-center h-8 w-8 rounded-lg bg-gray-200 hover:bg-gray-300 transition-colors duration-200 focus:outline-none"
+                        onclick="toggleTheme()"
+                    >
+                        <i id="themeIcon" class="fas fa-sun text-gray-700"></i>
+                    </button>
+                </div> --}}
                 <!-- Language Switcher -->
                 <div class="relative">
                     <form action="{{ route('language.switch') }}" method="POST" class="inline-block">
                         @csrf
-                        <div class="relative">
-                            <select 
-                                name="locale" 
-                                onchange="this.form.submit()" 
-                                class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 {{ Session::get('locale') === 'ar' ? 'pl-8' : 'pr-8' }} rounded-lg shadow-sm leading-tight focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                            >
-                                @foreach(Config::get('app.available_locales') as $locale)
-                                    <option 
-                                        value="{{ $locale }}" 
-                                        {{ Session::get('locale') == $locale ? 'selected' : '' }}
-                                    >
-                                        {{ strtoupper($locale) }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 {{ Session::get('locale') === 'ar' ? 'left-0' : 'right-0' }} flex items-center px-2 text-gray-500">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                                </svg>
-                            </div>
-                        </div>
+                        <button type="submit" class="relative inline-flex items-center h-8 rounded-full bg-gray-200 w-16 transition-colors duration-200 focus:outline-none hover:bg-gray-300 {{ Session::get('locale') === 'ar' ? 'bg-blue-600 hover:bg-blue-700' : '' }}">
+                            <input type="hidden" name="locale" value="{{ Session::get('locale') === 'ar' ? 'en' : 'ar' }}">
+                            <span class="absolute font-medium text-xs text-gray-700 {{ Session::get('locale') === 'ar' ? 'left-2' : 'right-2' }}">{{ Session::get('locale') === 'ar' ? 'AR' : 'EN' }}</span>
+                            <span class="absolute w-6 h-6 rounded-full bg-white shadow transform transition-transform duration-200 {{ Session::get('locale') === 'ar' ? '-translate-x-1' : 'translate-x-1' }}"></span>
+                        </button>
                     </form>
                 </div>
-            
+                
                 <!-- Notification Dropdown -->
                 <div class="relative">
                     <button 
@@ -119,3 +113,33 @@
         </div>
     </div>
 </header>
+<script>
+function toggleTheme() {
+    const html = document.documentElement;
+    const themeIcon = document.getElementById('themeIcon');
+    const isDark = html.classList.contains('dark');
+
+    if (isDark) {
+        html.classList.remove('dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'light');
+    } else {
+        html.classList.add('dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Initialize theme from localStorage
+if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+    document.getElementById('themeIcon').classList.remove('fa-sun');
+    document.getElementById('themeIcon').classList.add('fa-moon');
+} else {
+    document.documentElement.classList.remove('dark');
+    document.getElementById('themeIcon').classList.remove('fa-moon');
+    document.getElementById('themeIcon').classList.add('fa-sun');
+}
+</script>
