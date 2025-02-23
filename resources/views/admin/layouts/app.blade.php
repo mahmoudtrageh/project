@@ -250,7 +250,8 @@
             isExpanded = !isExpanded;
 
             if (isExpanded) {
-                // mainLayout.classList.add("md:ps-[250px]");
+                mainLayout.classList.add("md:ps-[250px]");
+                mainLayout.classList.remove("md:ps-[50px]");
                 sidebar.classList.remove('sidebar-collapsed');
                 sidebar.classList.add('sidebar-expanded');
                 toggleIcon.classList.remove('fa-chevron-right');
@@ -258,7 +259,8 @@
                 sidebarTexts.forEach(text => text.style.display = 'inline');
                 dropdownArrows.forEach(arrow => arrow.style.display = 'inline');
             } else {
-                // mainLayout.classList.add("md:ps-[50px]");
+                mainLayout.classList.add("md:ps-[50px]");
+                mainLayout.classList.remove("md:ps-[250px]");
                 sidebar.classList.remove('sidebar-expanded');
                 sidebar.classList.add('sidebar-collapsed');
                 toggleIcon.classList.remove('fa-chevron-left');
