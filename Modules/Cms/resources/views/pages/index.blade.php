@@ -14,9 +14,9 @@
         </a>
     </div>
     <div class="bg-white rounded-lg shadow overflow-hidden">
-        <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+        <div class="p-6 border-b border-gray-100 flex justify-between items-center max-md:flex-col gap-5">
             <h2 class="text-lg font-semibold text-gray-800">Pages</h2>
-            <div class="flex items-center gap-x-6">
+            <div class="flex items-center gap-6 flex-wrap max-md:justify-center">
                 <!-- Search Box -->
                 <div class="relative group">
                     <input type="text" placeholder="Search pages..."
@@ -32,7 +32,7 @@
                         <option value="published">Published</option>
                         <option value="draft">Draft</option>
                     </select>
-                    <i class="fas fa-chevron-down absolute right-4 top-3.5 text-gray-400 pointer-events-none transition-transform duration-200"></i>
+                    <i class="fas fa-chevron-down absolute ltr:right-4 rtl:left-4 top-3.5 text-gray-400 pointer-events-none transition-transform duration-200"></i>
                 </div>
 
                 <!-- Menu Filter -->
@@ -43,12 +43,12 @@
                         <option value="1">Menu Pages</option>
                         <option value="0">Non-Menu Pages</option>
                     </select>
-                    <i class="fas fa-chevron-down absolute right-4 top-3.5 text-gray-400 pointer-events-none transition-transform duration-200"></i>
+                    <i class="fas fa-chevron-down absolute ltr:right-4 rtl:left-4 top-3.5 text-gray-400 pointer-events-none transition-transform duration-200"></i>
                 </div>
             </div>
         </div>
 
-        <div class="responsive-table">
+        <div class="responsive-table  max-w-[90vw]">
             <table class="w-full">
                 <thead class="bg-gray-50">
                     <tr>

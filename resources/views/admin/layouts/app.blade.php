@@ -158,9 +158,9 @@
             display: none;
         }
 
-        .sidebar-collapsed .dropdown-content {
+        /* .sidebar-collapsed .dropdown-content {
             display: none !important;
-        }
+        } */
 
         .rotate-180 {
             transform: rotate(180deg);
