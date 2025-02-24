@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ Session::get('locale', 'en') }}" dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
+<!DOCTYPE html><html lang="{{ Session::get('locale', 'en') }}" dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta charset="UTF-8">
@@ -159,33 +158,9 @@
             display: none;
         }
 
-        .dropdown-outside {
-            position: absolute;
-            {{ Session::get('locale') === 'ar' ? 'right' : 'left' }}
-            : 100%;
-            top: 0;
-            background: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            z-index: 1000;
-            min-width: 200px;
-            margin-{{ Session::get('locale') === 'ar' ? 'right' : 'left' }}: 0.5rem;
-        }
-
-        .sidebar-collapsed .dropdown-content {
-            position: absolute;
-            display: none;
-        }
-
-        .sidebar-collapsed .dropdown-content.show {
-            display: block;
-        }
-
-        /* Update dropdown animation for side display */
-        .sidebar-collapsed .dropdown-content {
-            transform-origin: left;
-            {{ Session::get('locale') === 'ar' ? 'transform-origin: right;' : 'transform-origin: left;' }}
-        }
+        /* .sidebar-collapsed .dropdown-content {
+            display: none !important;
+        } */
 
         .rotate-180 {
             transform: rotate(180deg);
@@ -312,7 +287,7 @@
         // User Menu Toggle
         const userMenuBtn = document.getElementById('userMenuBtn');
         const userMenu = document.getElementById('userMenu');
-        console.log(userMenuBtn);
+console.log(userMenuBtn);
         userMenuBtn.addEventListener('click', () => {
             console.log('clicked');
             userMenu.classList.toggle('hidden');
@@ -437,45 +412,14 @@
         function exportTable(format) {
             alert(`Exporting table as ${format.toUpperCase()}...`);
         }
-        document.querySelectorAll('.dropdown').forEach(dropdown => {
-        const dropdownContent = dropdown.querySelector('.dropdown-content');
-        
-        dropdown.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const isCollapsed = document.getElementById('sidebar').classList.contains('sidebar-collapsed');
-            
-            if (isCollapsed) {
-                // Position the dropdown next to the sidebar
-                dropdownContent.classList.toggle('show');
-                dropdownContent.classList.toggle('dropdown-outside');
-                
-                // Close other dropdowns
-                document.querySelectorAll('.dropdown-content').forEach(content => {
-                    if (content !== dropdownContent) {
-                        content.classList.remove('show', 'dropdown-outside');
-                    }
-                });
-            } else {
-                // Normal dropdown behavior when sidebar is expanded
-                dropdownContent.classList.toggle('show');
-                dropdownContent.classList.remove('dropdown-outside');
-            }
-            
-            // Toggle arrow rotation
-            const arrow = this.querySelector('.dropdown-arrow');
-            arrow.classList.toggle('rotate-180');
-        });
-    });
 
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', () => {
-        document.querySelectorAll('.dropdown-content').forEach(content => {
-            content.classList.remove('show', 'dropdown-outside');
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.addEventListener('click', function () {
+                const dropdownContent = this.querySelector('.dropdown-content');
+                const dropdownArrow = this.querySelector('.dropdown-arrow');
+                dropdownArrow.classList.toggle('rotate-180');
+            });
         });
-        document.querySelectorAll('.dropdown-arrow').forEach(arrow => {
-            arrow.classList.remove('rotate-180');
-        });
-    });
     </script>
 
     @yield('js')
@@ -492,5 +436,4 @@
 </body>
 
 </body>
-
 </html>

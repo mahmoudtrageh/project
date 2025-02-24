@@ -7,92 +7,84 @@
         <p class="text-gray-600">Manage your website pages</p>
     </div>
 
-    <a href="{{ route('admin.pages.create') }}"
-        class="inline-block px-4 py-2 mb-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <i class="fas fa-plus me-2"></i> Create New Page
-    </a>
-</div>
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+        <div class="p-6 border-b border-gray-100 flex justify-between items-center max-md:flex-col gap-5">
+            <h2 class="text-lg font-semibold text-gray-800">Pages</h2>
+            <div class="flex items-center gap-6 flex-wrap max-md:justify-center">
+                <!-- Search Box -->
+                <div class="relative group">
+                    <input type="text" placeholder="Search pages..."
+                        class="w-64 px-4 py-2.5 pl-11 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200" />
+                    <i class="fas fa-search absolute left-4 top-3.5 text-gray-400 group-hover:text-blue-500 transition-colors duration-200"></i>
+                </div>
 
-<div class="bg-white rounded-lg shadow">
-    <div class="p-6 border-b border-gray-100 flex justify-between items-center">
-        <h2 class="text-lg font-semibold text-gray-800">Pages</h2>
-        <div class="flex items-center gap-x-6">
-            <!-- Search Box -->
-            <div class="relative w-full sm:w-48">
-                <input type="text" placeholder="Search pages..."
-                    class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <i class="fas fa-search absolute ltr:right-3 rtl:left-3 top-3 text-gray-400"></i>
+                <!-- Status Filter -->
+                <div class="relative">
+                    <select
+                        class="appearance-none w-40 px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200 cursor-pointer hover:bg-white">
+                        <option value="">All Status</option>
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
+                    </select>
+                    <i class="fas fa-chevron-down absolute ltr:right-4 rtl:left-4 top-3.5 text-gray-400 pointer-events-none transition-transform duration-200"></i>
+                </div>
+
+                <!-- Menu Filter -->
+                <div class="relative">
+                    <select
+                        class="appearance-none w-40 px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200 cursor-pointer hover:bg-white">
+                        <option value="">All Pages</option>
+                        <option value="1">Menu Pages</option>
+                        <option value="0">Non-Menu Pages</option>
+                    </select>
+                    <i class="fas fa-chevron-down absolute ltr:right-4 rtl:left-4 top-3.5 text-gray-400 pointer-events-none transition-transform duration-200"></i>
+                </div>
             </div>
 
-            <!-- Status Filter -->
-            <select class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="">All Status</option>
-                <option value="published">Published</option>
-                <option value="draft">Draft</option>
-            </select>
-
-            <!-- Menu Filter -->
-            <select class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="">All Pages</option>
-                <option value="1">Menu Pages</option>
-                <option value="0">Non-Menu Pages</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="overflow-x-auto max-lg:max-w-[90vw]">
-        <div class="inline-block min-w-full align-middle">
-            <div class="overflow-hidden">
-                <table class="table-responsivemin-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                                <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <input type="checkbox" id="selectAllCheckbox"
-                                        class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                </th>
-                                <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Page Info
-                                </th>
-                                <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Status
-                                </th>
-                                <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Menu Status
-                                </th>
-                                <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Order
-                                </th>
-                                <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Published At
-                                </th>
-                                <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Actions
-                                </th>
-                            </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach($pages as $page)
-                                <tr class="table-row hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <input type="checkbox"
-                                            class="row-checkbox h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                                            value="{{ $page->id }}" />
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            @if($page->image)
-                                                <img class="h-10 w-10 rounded-lg object-cover" src="{{ Storage::url($page->image) }}"
-                                                    alt="{{ $page->title }}">
-                                            @else
-                                                <div class="h-10 w-10 rounded-lg bg-gray-200 flex items-center justify-center">
-                                                    <i class="fas fa-file-alt text-gray-400"></i>
-                                                </div>
-                                            @endif
-                                            <div class="ms-4">
-                                                <div class="text-sm font-medium text-gray-900">{{ $page->title }}</div>
-                                                <div class="text-xs text-gray-500">{{ $page->slug }}</div>
-                                                <div class="text-sm text-gray-500">{{ Str::limit($page->content, 50) }}</div>
-                                            </div>
+        <div class="responsive-table  max-w-[90vw]">
+            <table class="w-full">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <input type="checkbox" id="selectAllCheckbox"
+                                class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                        </th>
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Page Info
+                        </th>
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Status
+                        </th>
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Menu Status
+                        </th>
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Order
+                        </th>
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Published At
+                        </th>
+                        <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach($pages as $page)
+                        <tr class="table-row hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <input type="checkbox"
+                                    class="row-checkbox h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                    value="{{ $page->id }}" />
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    @if($page->image)
+                                        <img class="h-10 w-10 rounded-lg object-cover" src="{{ Storage::url($page->image) }}"
+                                            alt="{{ $page->title }}">
+                                    @else
+                                        <div class="h-10 w-10 rounded-lg bg-gray-200 flex items-center justify-center">
+                                            <i class="fas fa-file-alt text-gray-400"></i>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">

@@ -74,7 +74,7 @@
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto max-w-[90vw]">
                 <table class="w-full">
                     <thead class="bg-gray-50 border-y border-gray-200">
                         <tr>
