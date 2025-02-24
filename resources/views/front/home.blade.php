@@ -27,7 +27,35 @@
   body {
     overflow-x: hidden;
   }
+  <style>
+  .dark-with-shapes {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)); /* Dark gradient background */
+    position: relative;
+    overflow: hidden;
+  }
 
+  .dark-with-shapes::before,
+  .dark-with-shapes::after {
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0)); /* Gradient shapes */
+    border-radius: 50%;
+    filter: blur(50px); /* Soft blur effect */
+  }
+
+  .dark-with-shapes::before {
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    left: -200px;
+  }
+
+  .dark-with-shapes::after {
+    width: 300px;
+    height: 300px;
+    bottom: -150px;
+    right: -150px;
+  }
 </style>
 @endsection
 
@@ -259,7 +287,8 @@
 </section>
 
 <!-- Projects Section -->
-<section id="projects" class="py-16 bg-linear-to-b from-white to-gray-50 relative overflow-hidden">
+<section id="projects" class="py-16 bg-linear-to-b from-white to-gray-50 relative overflow-hidden dark-with-shapes">
+
   <!-- Decorative Shapes -->
   <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-linear-to-r from-blue-500 to-purple-500 rounded-full opacity-5 blur-3xl"></div>
@@ -315,6 +344,7 @@
       @endforeach
     </div>
   </div>
+
 </section>
 
 <!-- Clients Section -->
@@ -625,7 +655,7 @@
 </section>
 
 <!-- Blog Section -->
-<section id="blog" class="py-16 relative overflow-hidden">
+<section id="blog" class="py-16 relative overflow-hidden dark-with-shapes">
 
   <!-- Decorative Shapes -->
   <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
