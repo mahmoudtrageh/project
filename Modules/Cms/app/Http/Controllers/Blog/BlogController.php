@@ -5,6 +5,7 @@ namespace Modules\Cms\Http\Controllers\Blog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Modules\Basic\Models\Category;
 use Modules\Cms\Http\Requests\Blog\BlogRequest;
 use Modules\Cms\Models\Blog;
 
@@ -18,7 +19,8 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view('cms::blogs.create');
+        $categories = Category::where('is_active', true)->orderBy('name')->get();
+        return view('cms::blogs.create', ['categories' => $categories]);
     }
 
     public function store(BlogRequest $request)
@@ -48,7 +50,8 @@ class BlogController extends Controller
 
     public function edit(Blog $blog)
     {
-        return view('cms::blogs.edit', compact('blog'));
+        $categories = Category::where('is_active', true)->orderBy('name')->get();
+        return view('cms::blogs.edit', compact('blog', 'categories'));
     }
 
     public function update(BlogRequest $request, Blog $blog)

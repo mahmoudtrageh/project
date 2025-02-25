@@ -4,8 +4,10 @@ namespace Modules\Cms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 // use Modules\Cms\Database\Factories\BlogFactory;
 use Illuminate\Support\Str;
+use Modules\Basic\Models\Category;
 
 class Blog extends Model
 {
@@ -18,7 +20,8 @@ class Blog extends Model
         'image',
         'status',
         'published_at',
-        'featured'
+        'featured',
+        'category_id',
     ];
 
     protected $casts = [
@@ -49,5 +52,10 @@ class Blog extends Model
     public function scopeFeatured($query)
     {
         return $query->where('featured', true);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 }

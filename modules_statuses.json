@@ -3,5 +3,6 @@
     "Setting": true,
     "Cms": true,
     "Contact": true,
-    "Lang": true
+    "Lang": true,
+    "Basic": true
 }

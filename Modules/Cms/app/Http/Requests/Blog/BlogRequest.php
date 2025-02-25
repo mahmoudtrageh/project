@@ -17,6 +17,7 @@ class BlogRequest extends FormRequest
             'status' => 'required|in:draft,published',
             'featured' => 'nullable|boolean',
             'published_at' => 'nullable|date',
+            'category_id' => 'nullable|exists:categories,id',
         ];
 
         if ($this->isMethod('post') || $this->hasFile('image')) {

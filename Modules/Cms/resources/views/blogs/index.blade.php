@@ -64,6 +64,9 @@
                                     Blog Info
                                 </th>
                                 <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Category
+                                </th>
+                                <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Status
                                 </th>
                                 <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -93,6 +96,11 @@
                                             <div class="text-xs text-gray-500">{{ $blog->slug }}</div>
                                             <div class="text-sm text-gray-500">{{ Str::limit($blog->content, 50) }}</div>
                                         </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">
+                                        {{ $blog->category ? $blog->category->name : 'Uncategorized' }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">

@@ -21,6 +21,23 @@
          <span class="ms-3 font-medium  sidebar-text">{{ __('admin.dashboard') }}</span>
      </a>
 
+      <!-- Pages Dropdown -->
+      <div class="dropdown relative mt-2">
+        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.pages.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+            <div class="flex items-center">
+                <i class="fa-solid fa-file-lines w-5 h-5  sidebar-icon {{ request()->routeIs('admin.categories.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+                <span class="ms-3 font-medium sidebar-text">{{ __('Categories') }}</span>
+            </div>
+            <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('admin.categories.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+        </div>
+        <div class="dropdown-content bg-white rounded-lg shadow-lg py-2 mt-2 hidden transition-all duration-200 ease-in-out transform origin-top">
+            <a href="{{ route('admin.categories.index') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('admin.categories.index') ? 'bg-blue-100 text-blue-600' : '' }}">All Categories</a>
+            <a href="{{ route('admin.categories.create') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('admin.categories.create') ? 'bg-blue-100 text-blue-600' : '' }}">Add New Page</a>
+        </div>
+    </div>
+
      <!-- Projects Dropdown -->
      <div class="dropdown relative mt-2">
          <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.projects.*') ? 'bg-blue-100 text-blue-600' : '' }}">
