@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="{{ Session::get('locale', 'en') }}" dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
+<!DOCTYPE html>
+<html lang="{{ Session::get('locale', 'en') }}" dir="{{ Session::get('locale') === 'ar' ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta charset="UTF-8">
@@ -275,55 +276,83 @@
 
         // Mobile sidebar controls
         openSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.remove('-translate-x-full');
+            const isRTL = document.dir === 'rtl';
+            sidebar.classList.remove(isRTL ? 'translate-x-full' : '-translate-x-full');
             sidebar.classList.add('translate-x-0');
         });
 
         closeSidebarBtn.addEventListener('click', () => {
+            const isRTL = document.dir === 'rtl';
             sidebar.classList.remove('translate-x-0');
-            sidebar.classList.add('ltr:-translate-x-full');
+            sidebar.classList.add(isRTL ? 'translate-x-full' : '-translate-x-full');
         });
 
         // User Menu Toggle
         const userMenuBtn = document.getElementById('userMenuBtn');
         const userMenu = document.getElementById('userMenu');
-console.log(userMenuBtn);
-        userMenuBtn.addEventListener('click', () => {
-            console.log('clicked');
-            userMenu.classList.toggle('hidden');
-        });
-
-        // Notification Menu Toggle
         const notificationBtn = document.getElementById('notificationBtn');
         const notificationMenu = document.getElementById('notificationMenu');
-
-        notificationBtn.addEventListener('click', () => {
-            notificationMenu.classList.toggle('hidden');
+        
+        // Function to close all dropdowns
+        function closeAllDropdowns() {
+            userMenu.classList.add('hidden');
+            notificationMenu.classList.add('hidden');
+            dropdowns.forEach(dropdown => {
+                const dropdownContent = dropdown.querySelector('.dropdown-content');
+                const dropdownArrow = dropdown.querySelector('.dropdown-arrow');
+                dropdownContent.classList.remove('show');
+                dropdownContent.classList.remove('dropdown-outside');
+                if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+            });
+        }
+        
+        // User Menu Toggle with dropdown management
+        userMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!userMenu.classList.contains('hidden')) {
+                closeAllDropdowns();
+            } else {
+                closeAllDropdowns();
+                userMenu.classList.remove('hidden');
+            }
         });
-
+        
+        // Notification Menu Toggle with dropdown management
+        notificationBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!notificationMenu.classList.contains('hidden')) {
+                closeAllDropdowns();
+            } else {
+                closeAllDropdowns();
+                notificationMenu.classList.remove('hidden');
+            }
+        });
+        
         // Close menus when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!userMenuBtn.contains(e.target) && !userMenu.contains(e.target)) {
-                userMenu.classList.add('hidden');
-            }
-            if (!notificationBtn.contains(e.target) && !notificationMenu.contains(e.target)) {
-                notificationMenu.classList.add('hidden');
-            }
+        document.addEventListener('click', () => {
+            closeAllDropdowns();
         });
-
+        
         // Dropdown functionality
         const dropdowns = document.querySelectorAll('.dropdown');
-
+        
         dropdowns.forEach(dropdown => {
             const dropdownContent = dropdown.querySelector('.dropdown-content');
+            const dropdownArrow = dropdown.querySelector('.dropdown-arrow');
+            
             dropdown.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent closing when clicking inside the dropdown
-                if (!isExpanded) {
-                    dropdownContent.classList.toggle('show');
-                    dropdownContent.classList.add('dropdown-outside');
-                } else {
-                    dropdownContent.classList.toggle('show');
-                    dropdownContent.classList.remove('dropdown-outside');
+                e.stopPropagation();
+                const isCurrentlyShown = dropdownContent.classList.contains('show');
+                
+                closeAllDropdowns();
+                
+                if (!isCurrentlyShown) {
+                    if (!isExpanded) {
+                        dropdownContent.classList.add('show', 'dropdown-outside');
+                    } else {
+                        dropdownContent.classList.add('show');
+                    }
+                    if (dropdownArrow) dropdownArrow.classList.add('rotate-180');
                 }
             });
         });
@@ -436,4 +465,5 @@ console.log(userMenuBtn);
 </body>
 
 </body>
+
 </html>

@@ -1,7 +1,8 @@
- <!-- Sidebar -->
- <aside id="sidebar"
- class="sidebar-transition bg-white text-gray-800 sidebar-expanded fixed min-h-screen z-[999] shadow-xl border-r border-gray-100 transform transition-transform duration-300 ease-in-out {{ Session::get('locale') === 'ar' ? 'right-0 translate-x-full md:translate-x-0' : 'left-0 -translate-x-full md:translate-x-0' }}">
- <div class="flex items-center justify-between p-6 border-b border-gray-100">
+
+<!-- Sidebar -->
+<aside id="sidebar"
+    class="sidebar-transition bg-white text-gray-800 sidebar-expanded fixed min-h-screen z-[999] shadow-xl border-r border-gray-100 transform transition-transform duration-300 ease-in-out {{ Session::get('locale') === 'ar' ? 'right-0 translate-x-full md:translate-x-0' : 'left-0 -translate-x-full md:translate-x-0' }}">
+    <div class="flex items-center justify-between p-6 border-b border-gray-100">
      <span class="text-xl font-bold gradient-text sidebar-text">{{ __('admin.admin_panel') }}</span>
      <button id="toggleSidebar"
          class="text-gray-600 hidden md:block hover:bg-gray-100 p-2 rounded-lg transition-all duration-200">
