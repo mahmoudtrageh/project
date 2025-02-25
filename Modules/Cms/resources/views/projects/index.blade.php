@@ -59,7 +59,11 @@
             </div>
 
             <div class="responsive-table overflow-x-auto max-w-[87vw]">
-                <table class="w-full">
+
+                <div class="inline-block min-w-full align-middle">
+                <div class="overflow-hidden">
+                    <table class="min-w-full divide-y divide-gray-200">
+
                     <thead class="bg-gray-50/75 backdrop-blur-sm sticky top-0">
                         <tr>
                             <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -156,6 +160,8 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+        </div>
             </div>
 
             <!-- Delete Modal -->

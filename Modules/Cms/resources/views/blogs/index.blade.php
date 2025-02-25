@@ -15,9 +15,9 @@
   </div>
 
     <div class="bg-white rounded-lg shadow">
-        <div class="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div class="p-6 border-b border-gray-100 flex justify-between items-center">
             <h2 class="text-lg font-semibold text-gray-800">Blog Posts</h2>
-            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
+            <div class="flex items-center gap-x-6">
                 <!-- Search Box -->
                 <div class="relative w-full sm:w-48">
                     <input type="text" placeholder="Search blogs..."
