@@ -37,7 +37,7 @@
         </div>
 
         <!-- Login Form -->
-        <form class="p-8 space-y-6" action="{{route('admin.login.post')}}" method="post">
+        <form class="p-8 space-y-6" action="{{route('login.post')}}" method="post">
             @csrf
             <!-- Email Input -->
             <div>

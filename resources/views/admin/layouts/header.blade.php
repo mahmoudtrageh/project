@@ -7,7 +7,7 @@
         <div class="flex items-center max-md:justify-between gap-3 md:flex-1 px-2 sm:px-4 justify-between">
             <!-- Search Bar -->
             <div class="relative lg:flex-1 md:ms-4 max-sm:w-[50%]">
-                <input type="text" placeholder="{{ __('admin.search') }}" 
+                <input type="text" placeholder="{{ __('search') }}" 
                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200">
                 <i class="fas fa-search absolute {{ Session::get('locale') === 'ar' ? 'left-3' : 'right-3' }} top-4 text-gray-400"></i>
             </div>

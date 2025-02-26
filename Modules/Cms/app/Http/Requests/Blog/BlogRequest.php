@@ -9,8 +9,8 @@ class BlogRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'title.*' => 'required|string|max:255',
+            'content.*' => 'required|string',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',
             'meta_keywords' => 'nullable|string',

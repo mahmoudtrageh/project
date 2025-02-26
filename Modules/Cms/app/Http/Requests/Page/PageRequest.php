@@ -12,11 +12,8 @@ class PageRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string',
-            'meta_keywords' => 'nullable|string',
+            'title.*' => 'required|string|max:255',
+            'content.*' => 'required|string',
             'status' => 'required|in:draft,published',
             'published_at' => 'nullable|date',
             'order' => 'nullable|integer|min:0',

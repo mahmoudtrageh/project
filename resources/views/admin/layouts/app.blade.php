@@ -454,13 +454,14 @@
     @yield('js')
 
     <script>
-
-        CKEDITOR.replace('editor', {
+                @foreach(config('app.available_locales') as $locale)
+        CKEDITOR.replace('editor_{{$locale}}', {
             height: 300,
             versionCheck: false, // Disable version check to hide the warning
             filebrowserUploadUrl: "{{route('upload.image', ['_token' => csrf_token()])}}",
             filebrowserUploadMethod: 'form',
         });
+        @endforeach
     </script>
 </body>
 

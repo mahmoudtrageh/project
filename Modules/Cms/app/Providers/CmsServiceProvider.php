@@ -4,6 +4,8 @@ namespace Modules\Cms\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Modules\Cms\Repositories\FaqRepository;
+use Modules\Cms\Repositories\FaqRepositoryInterface;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -34,6 +36,8 @@ class CmsServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(FaqRepositoryInterface::class, FaqRepository::class);
+
         $this->app->register(EventServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
     }

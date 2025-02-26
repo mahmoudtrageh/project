@@ -5,6 +5,7 @@ use App\Http\Controllers\Home\HomeController;
 use Illuminate\Support\Facades\Route;
 use Modules\Cms\Http\Controllers\Blog\BlogController;
 use Modules\Cms\Http\Controllers\CmsController;
+use Modules\Cms\Http\Controllers\Faq\FaqController;
 use Modules\Cms\Http\Controllers\Page\PageController;
 use Modules\Cms\Http\Controllers\Project\ProjectController;
 
@@ -41,5 +42,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('blogs.toggle-featured');
 
         Route::resource('pages', PageController::class);
+        Route::resource('faqs', FaqController::class);
+
     });
 });

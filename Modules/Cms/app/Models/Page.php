@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Modules\Cms\Database\Factories\PageFactory;
 use Illuminate\Support\Str;
+use Spatie\Translatable\HasTranslations;
 
 class Page extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'title',
@@ -21,6 +22,8 @@ class Page extends Model
         'order',
         'show_in_menu'
     ];
+
+    public $translatable = ['title', 'content'];
 
     protected $casts = [
         'published_at' => 'datetime',

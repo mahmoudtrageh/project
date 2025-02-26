@@ -19,6 +19,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'locale' => SetLocale::class,
             'auth.check' => CheckAuth::class
         ]);
+        
+        // Then, apply the middleware to the web group
+        $middleware->web(append: [
+            'locale'
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

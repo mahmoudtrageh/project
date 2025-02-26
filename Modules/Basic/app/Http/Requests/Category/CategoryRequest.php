@@ -10,14 +10,14 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => ['required', 'string', 'max:255'],
+            'name.*' => ['required', 'string', 'max:255'],
             'slug' => [
                 'nullable',
                 'string',
                 'max:255',
                 'alpha_dash',
             ],
-            'description' => ['nullable', 'string'],
+            'description.*' => ['nullable', 'string'],
             'parent_id' => [
                 'nullable',
                 'integer',

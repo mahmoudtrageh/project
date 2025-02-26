@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->json('title');
             $table->string('slug')->unique();
-            $table->text('content');
+            $table->json('content');
             $table->string('image')->nullable();
             $table->enum('status', ['draft', 'published'])->default('draft');
             $table->timestamp('published_at')->nullable();

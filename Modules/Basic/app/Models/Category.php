@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Modules\Cms\Models\Blog;
+use Spatie\Translatable\HasTranslations;
 
 // use Modules\Basic\Database\Factories\CategoryFactory;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +29,8 @@ class Category extends Model
         'order',
         'image',
     ];
+
+    public $translatable = ['name', 'description'];
 
     /**
      * The attributes that should be cast.

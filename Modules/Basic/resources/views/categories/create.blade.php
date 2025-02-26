@@ -12,24 +12,60 @@
             <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
-                <!-- Name Field -->
+                <!-- Language Tabs -->
                 <div class="mb-6">
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value="{{ old('name') }}"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 @error('name') border-red-500 @enderror"
-                        placeholder="Enter category name"
-                        required
-                    />
-                    @error('name')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
+                    <div class="border-b border-gray-200">
+                        <nav class="flex -mb-px">
+                            @foreach(config('app.available_locales') as $locale)
+                                <button type="button" 
+                                        data-locale="{{ $locale }}"
+                                        id="tab-{{ $locale }}" 
+                                        class="language-tab {{ $locale == app()->getLocale() ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm">
+                                    {{ strtoupper($locale) }}
+                                </button>
+                            @endforeach
+                        </nav>
+                    </div>
                 </div>
-            
-                <!-- Slug Field -->
+
+                <!-- Form Fields with Translation Tabs -->
+                @foreach(config('app.available_locales') as $locale)
+                    <div id="content-{{ $locale }}" class="language-content {{ $locale == app()->getLocale() ? 'block' : 'hidden' }}">
+                        <!-- Name Field -->
+                        <div class="mb-6">
+                            <label for="name_{{ $locale }}" class="block text-sm font-medium text-gray-700 mb-2">Name ({{ strtoupper($locale) }})</label>
+                            <input
+                                type="text"
+                                id="name_{{ $locale }}"
+                                name="name[{{ $locale }}]"
+                                value="{{ old('name.'.$locale) }}"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 @error('name.'.$locale) border-red-500 @enderror"
+                                placeholder="Enter category name in {{ strtoupper($locale) }}"
+                                {{ $locale == app()->getFallbackLocale() ? 'required' : '' }}
+                            />
+                            @error('name.'.$locale)
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Description Field -->
+                        <div class="mb-6">
+                            <label for="description_{{ $locale }}" class="block text-sm font-medium text-gray-700 mb-2">Description ({{ strtoupper($locale) }})</label>
+                            <textarea
+                                id="description_{{ $locale }}"
+                                name="description[{{ $locale }}]"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 @error('description.'.$locale) border-red-500 @enderror"
+                                rows="4"
+                                placeholder="Enter category description in {{ strtoupper($locale) }}"
+                            >{{ old('description.'.$locale) }}</textarea>
+                            @error('description.'.$locale)
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                @endforeach
+
+                <!-- Slug Field (Not Translated) -->
                 <div class="mb-6">
                     <label for="slug" class="block text-sm font-medium text-gray-700 mb-2">Slug</label>
                     <input
@@ -42,21 +78,6 @@
                     />
                     <p class="text-xs text-gray-500 mt-1">The slug will be automatically generated from the name, but you can modify it.</p>
                     @error('slug')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-            
-                <!-- Description Field -->
-                <div class="mb-6">
-                    <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                    <textarea
-                        id="description"
-                        name="description"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 @error('description') border-red-500 @enderror"
-                        rows="4"
-                        placeholder="Enter category description"
-                    >{{ old('description') }}</textarea>
-                    @error('description')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
@@ -207,24 +228,57 @@
 
 @section('js')
 <script>
-    // Slug generation from name
-    document.getElementById('name').addEventListener('input', function() {
-        const nameValue = this.value;
-        const slugField = document.getElementById('slug');
-        
-        // Only auto-generate slug if the user hasn't manually modified it
-        if (!slugField.dataset.manuallyChanged) {
-            slugField.value = nameValue
-                .toLowerCase()
-                .replace(/[^\w\s-]/g, '') // Remove special characters
-                .replace(/\s+/g, '-')     // Replace spaces with hyphens
-                .replace(/-+/g, '-');     // Replace multiple hyphens with single hyphen
-        }
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+    // Slug generation from default locale name
+    const defaultLocale = "{{ app()->getFallbackLocale() }}";
+    const nameField = document.getElementById('name_' + defaultLocale);
+    
+    if (nameField) {
+        nameField.addEventListener('input', function() {
+            const nameValue = this.value;
+            const slugField = document.getElementById('slug');
+            
+            // Only auto-generate slug if the user hasn't manually modified it
+            if (!slugField.dataset.manuallyChanged) {
+                slugField.value = nameValue
+                    .toLowerCase()
+                    .replace(/[^\w\s-]/g, '') // Remove special characters
+                    .replace(/\s+/g, '-')     // Replace spaces with hyphens
+                    .replace(/-+/g, '-');     // Replace multiple hyphens with single hyphen
+            }
+        });
+    }
 
     document.getElementById('slug').addEventListener('input', function() {
         // Mark that the user has manually changed the slug
         this.dataset.manuallyChanged = 'true';
     });
+    
+    // Add click event listeners to all language tabs
+    document.querySelectorAll('.language-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            const locale = this.getAttribute('data-locale');
+            
+            // Hide all content sections
+            document.querySelectorAll('.language-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+            
+            // Show the selected content section
+            document.getElementById('content-' + locale).classList.remove('hidden');
+            document.getElementById('content-' + locale).classList.add('block');
+            
+            // Update tab styles
+            document.querySelectorAll('.language-tab').forEach(el => {
+                el.classList.remove('border-blue-500', 'text-blue-600');
+                el.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+            });
+            
+            this.classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+            this.classList.add('border-blue-500', 'text-blue-600');
+        });
+    });
+});
 </script>
 @endsection

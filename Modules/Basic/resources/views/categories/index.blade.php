@@ -88,16 +88,32 @@
                                 <div class="flex items-center">
                                     @if($category->image)
                                         <img class="h-10 w-10 rounded-lg object-cover" src="{{ Storage::url($category->image) }}"
-                                            alt="{{ $category->name }}">
+                                            alt="{{ $category->getTranslation('name', app()->getLocale()) }}">
                                     @else
                                         <div class="h-10 w-10 rounded-lg bg-gray-200 flex items-center justify-center">
                                             <i class="fas fa-folder text-gray-400"></i>
                                         </div>
                                     @endif
                                     <div class="ms-4">
-                                        <div class="text-sm font-medium text-gray-900">{{ $category->name }}</div>
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ $category->getTranslation('name', app()->getLocale()) }}
+                                            <span class="text-xs text-gray-500 ml-2">({{ strtoupper(app()->getLocale()) }})</span>
+                                        </div>
                                         <div class="text-xs text-gray-500">{{ $category->slug }}</div>
-                                        <div class="text-sm text-gray-500">{{ Str::limit($category->description, 50) }}</div>
+                                        <div class="text-sm text-gray-500">
+                                            {{ Str::limit($category->getTranslation('description', app()->getLocale(), false) ?? '', 50) }}
+                                        </div>
+                                        
+                                        <!-- Optional: Show available translations as badges -->
+                                        <div class="mt-1 flex space-x-1">
+                                            @foreach(array_keys($category->getTranslations('name')) as $locale)
+                                                @if($locale != app()->getLocale())
+                                                    <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                                        {{ strtoupper($locale) }}
+                                                    </span>
+                                                @endif
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </td>

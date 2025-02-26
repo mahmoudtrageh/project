@@ -12,24 +12,61 @@
             <form action="{{ route('admin.blogs.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
-                <!-- Title Field -->
+                <!-- Language Tabs -->
                 <div class="mb-6">
-                    <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Title</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        value="{{ old('title') }}"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 @error('title') border-red-500 @enderror"
-                        placeholder="Enter blog title"
-                        required
-                    />
-                    @error('title')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
+                    <div class="border-b border-gray-200">
+                        <nav class="flex -mb-px">
+                            @foreach(config('app.available_locales') as $locale)
+                                <button type="button" 
+                                        onclick="switchLanguageTab('{{ $locale }}')"
+                                        id="tab-{{ $locale }}" 
+                                        class="language-tab {{ $locale == app()->getLocale() ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm">
+                                    {{ strtoupper($locale) }}
+                                </button>
+                            @endforeach
+                        </nav>
+                    </div>
                 </div>
 
-                <!-- Slug Field -->
+                <!-- Form Fields with Translation Tabs -->
+                @foreach(config('app.available_locales') as $locale)
+                    <div id="content-{{ $locale }}" class="language-content {{ $locale == app()->getLocale() ? 'block' : 'hidden' }}">
+                        <!-- Title Field -->
+                        <div class="mb-6">
+                            <label for="title_{{ $locale }}" class="block text-sm font-medium text-gray-700 mb-2">Title ({{ strtoupper($locale) }})</label>
+                            <input
+                                type="text"
+                                id="title_{{ $locale }}"
+                                name="title[{{ $locale }}]"
+                                value="{{ old('title.'.$locale) }}"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 @error('title.'.$locale) border-red-500 @enderror"
+                                placeholder="Enter blog title in {{ strtoupper($locale) }}"
+                                {{ $locale == app()->getFallbackLocale() ? 'required' : '' }}
+                            />
+                            @error('title.'.$locale)
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Content Field -->
+                        <div class="mb-6">
+                            <label for="editor_{{ $locale }}" class="block text-sm font-medium text-gray-700 mb-2">Content ({{ strtoupper($locale) }})</label>
+                            <textarea
+                                id="editor_{{ $locale }}"
+                                name="content[{{ $locale }}]"
+                                class="editor-instance w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 @error('content.'.$locale) border-red-500 @enderror"
+                                rows="10"
+                                placeholder="Enter blog content in {{ strtoupper($locale) }}"
+                                {{ $locale == app()->getFallbackLocale() ? 'required' : '' }}
+                            >{{ old('content.'.$locale) }}</textarea>
+                            @error('content.'.$locale)
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                @endforeach
+
+                <!-- Slug Field (Not Translated) -->
                 <div class="mb-6">
                     <label for="slug" class="block text-sm font-medium text-gray-700 mb-2">Slug</label>
                     <input
@@ -42,22 +79,6 @@
                     />
                     <p class="text-xs text-gray-500 mt-1">The slug will be automatically generated from the title, but you can modify it.</p>
                     @error('slug')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <!-- Content Field -->
-                <div class="mb-6">
-                    <label for="content" class="block text-sm font-medium text-gray-700 mb-2">Content</label>
-                    <textarea
-                        id="editor"
-                        name="content"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 @error('content') border-red-500 @enderror"
-                        rows="10"
-                        placeholder="Enter blog content"
-                        required
-                    >{{ old('content') }}</textarea>
-                    @error('content')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
@@ -169,6 +190,30 @@
     </div>
 @endsection
 
-@push('scripts')
+@section('js')
 
-@endpush
+<script>
+
+function switchLanguageTab(locale) {
+        // Hide all content sections
+        document.querySelectorAll('.language-content').forEach(el => {
+            el.classList.add('hidden');
+            el.classList.remove('block');
+        });
+        
+        // Show the selected content section
+        document.getElementById('content-' + locale).classList.remove('hidden');
+        document.getElementById('content-' + locale).classList.add('block');
+        
+        // Update tab styles
+        document.querySelectorAll('.language-tab').forEach(el => {
+            el.classList.remove('border-blue-500', 'text-blue-600');
+            el.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+        });
+        
+        document.getElementById('tab-' + locale).classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+        document.getElementById('tab-' + locale).classList.add('border-blue-500', 'text-blue-600');
+    }
+
+    </script>
+@endsection

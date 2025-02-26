@@ -88,16 +88,32 @@
                                 <div class="flex items-center">
                                     @if($page->image)
                                         <img class="h-10 w-10 rounded-lg object-cover" src="{{ Storage::url($page->image) }}"
-                                            alt="{{ $page->title }}">
+                                            alt="{{ $page->getTranslation('title', app()->getLocale()) }}">
                                     @else
                                         <div class="h-10 w-10 rounded-lg bg-gray-200 flex items-center justify-center">
                                             <i class="fas fa-file-alt text-gray-400"></i>
                                         </div>
                                     @endif
                                     <div class="ms-4">
-                                        <div class="text-sm font-medium text-gray-900">{{ $page->title }}</div>
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ $page->getTranslation('title', app()->getLocale()) }}
+                                            <span class="text-xs text-gray-500 ml-2">({{ strtoupper(app()->getLocale()) }})</span>
+                                        </div>
                                         <div class="text-xs text-gray-500">{{ $page->slug }}</div>
-                                        <div class="text-sm text-gray-500">{{ Str::limit($page->content, 50) }}</div>
+                                        <div class="text-sm text-gray-500">
+                                            {{ Str::limit($page->getTranslation('content', app()->getLocale()), 50) }}
+                                        </div>
+                                        
+                                        <!-- Optional: Show available translations as badges -->
+                                        <div class="mt-1 flex space-x-1">
+                                            @foreach(array_keys($page->getTranslations('title')) as $locale)
+                                                @if($locale != app()->getLocale())
+                                                    <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                                        {{ strtoupper($locale) }}
+                                                    </span>
+                                                @endif
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </td>
