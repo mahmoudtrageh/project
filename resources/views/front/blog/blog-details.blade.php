@@ -21,7 +21,7 @@
     <article class="prose lg:prose-xl">
       <div class="bg-white rounded-lg shadow-md p-8">
         <p class="text-gray-700 mb-6 leading-relaxed">
-            {{$blog->content}}
+            {!! $blog->content !!}
         </p>
 
        

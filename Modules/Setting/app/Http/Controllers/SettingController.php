@@ -20,27 +20,31 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'site_name' => 'required|string|max:255',
-            'site_email' => 'required|email',
-            'site_description' => 'nullable|string',
-            'about_name' => 'nullable|string|max:255',
-            'about_description' => 'nullable|string',
+            'translations.site_name.*' => 'nullable|string|max:255',
+            'site_email' => 'nullable|email',
+            'translations.site_description.*' => 'nullable|string',
+            'translations.about_name.*' => 'nullable|string|max:255',
+            'translations.about_description.*' => 'nullable|string',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'favicon' => 'nullable|image|mimes:ico,png|max:1024',
-            'footer_text' => 'nullable|string',
+            'about_image' => 'nullable|image|mimes:ico,png|max:1024',
+            'translations.footer_text.*' => 'nullable|string',
             'social_github' => 'nullable|url',
             'social_twitter' => 'nullable|url',
             'social_linkedin' => 'nullable|url',
-            'location' => 'nullable|string',
+            'social_instagram' => 'nullable|url',
+            'social_tiktok' => 'nullable|url',
+            'translations.location.*' => 'nullable|string',
             'site_phone' => 'nullable|string|max:20',
+            'hero_image' => 'nullable|image|mimes:ico,png|max:1024',
         ]);
 
+        // Handle file uploads
         if ($request->hasFile('logo')) {
             if (settings()->get('logo')) {
                 $this->deleteFile(settings()->get('logo'));
             }
             $logo = $this->uploadFile($request->file('logo'));
-
             settings()->set(['logo' => $logo]);
         }
 
@@ -49,7 +53,6 @@ class SettingController extends Controller
                 $this->deleteFile(settings()->get('favicon'));
             }
             $favicon = $this->uploadFile($request->file('favicon'));
-
             settings()->set(['favicon' => $favicon]);
         }
 
@@ -58,24 +61,41 @@ class SettingController extends Controller
                 $this->deleteFile(settings()->get('about_image'));
             }
             $about_image = $this->uploadFile($request->file('about_image'));
-
             settings()->set(['about_image' => $about_image]);
         }
 
-        // Update text settings
-        settings()->set([
-            'site_name' => $request->site_name,
-            'site_email' => $request->site_email,
-            'site_description' => $request->site_description,
-            'about_name' => $request->about_name,
-            'about_description' => $request->about_description,
-            'footer_text' => $request->footer_text,
-            'social_github' => $request->social_github,
-            'social_twitter' => $request->social_twitter,
-            'social_linkedin' => $request->social_linkedin,
-            'location' => $request->location,
-            'site_phone' => $request->site_phone,
-        ]);
+        if ($request->hasFile('hero_image')) {
+            if (settings()->get('hero_image')) {
+                $this->deleteFile(settings()->get('hero_image'));
+            }
+            $hero_image = $this->uploadFile($request->file('hero_image'));
+            settings()->set(['hero_image' => $hero_image]);
+        }
+
+        // Handle non-translatable settings
+        $nonTranslatableSettings = [
+            'site_email',
+            'site_phone',
+            'social_github',
+            'social_twitter',
+            'social_linkedin',
+            'social_instagram',
+            'social_tiktok',
+        ];
+
+        foreach ($nonTranslatableSettings as $setting) {
+            if ($request->has($setting)) {
+                settings()->set([$setting => $request->input($setting)]);
+            }
+        }
+
+        // Handle translatable settings
+        if ($request->has('translations')) {
+            foreach ($request->input('translations') as $setting => $translations) {
+                // Convert translations array to JSON
+                settings()->set([$setting => json_encode($translations)]);
+            }
+        }
 
         return redirect()->back()->with('success', 'Settings updated successfully.');
     }

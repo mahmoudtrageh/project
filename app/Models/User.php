@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Modules\Booking\Models\Hotel;
+use Modules\Booking\Models\Marketer;
 
 class User extends Authenticatable
 {

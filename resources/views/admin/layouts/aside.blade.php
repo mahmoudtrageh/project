@@ -22,6 +22,23 @@
          <span class="ms-3 font-medium  sidebar-text">{{ trans('dashboard') }}</span>
      </a>
 
+         <!-- Blogs Dropdown -->
+         <div class="dropdown relative mt-2">
+            <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admins.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-pen w-5 h-5  sidebar-icon {{ request()->routeIs('admins.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+                    <span class="ms-3 font-medium  sidebar-text">{{ __('Admins') }}</span>
+                </div>
+                <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('admins.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+            </div>
+            <div class="dropdown-content bg-white rounded-lg shadow-lg py-2 mt-2 hidden transition-all duration-200 ease-in-out transform origin-top">
+                <a href="{{ route('admins.index') }}"
+                    class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('admins.index') ? 'bg-blue-100 text-blue-600' : '' }}">All Admins</a>
+                <a href="{{ route('admins.create') }}"
+                    class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('admins.create') ? 'bg-blue-100 text-blue-600' : '' }}">Add New admin</a>
+            </div>
+        </div>
+
       <!-- Pages Dropdown -->
       <div class="dropdown relative mt-2">
         <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.pages.*') ? 'bg-blue-100 text-blue-600' : '' }}">
@@ -92,7 +109,7 @@
      
       <!-- Blogs Dropdown -->
       <div class="dropdown relative mt-2">
-        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.blogs.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.faqs.*') ? 'bg-blue-100 text-blue-600' : '' }}">
             <div class="flex items-center">
                 <i class="fa-solid fa-pen w-5 h-5  sidebar-icon {{ request()->routeIs('admin.faqs.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
                 <span class="ms-3 font-medium  sidebar-text">{{ __('Faqs') }}</span>
@@ -106,6 +123,95 @@
                 class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('admin.faqs.create') ? 'bg-blue-100 text-blue-600' : '' }}">Add New faq</a>
         </div>
     </div>
+
+    <!-- Blogs Dropdown -->
+    <div class="dropdown relative mt-2">
+        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('room-types.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+            <div class="flex items-center">
+                <i class="fa-solid fa-pen w-5 h-5  sidebar-icon {{ request()->routeIs('room-types.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+                <span class="ms-3 font-medium  sidebar-text">{{ __('Room Types') }}</span>
+            </div>
+            <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('room-types.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+        </div>
+        <div class="dropdown-content bg-white rounded-lg shadow-lg py-2 mt-2 hidden transition-all duration-200 ease-in-out transform origin-top">
+            <a href="{{ route('room-types.index') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('room-types.index') ? 'bg-blue-100 text-blue-600' : '' }}">All Room Types</a>
+            <a href="{{ route('room-types.create') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('room-types.create') ? 'bg-blue-100 text-blue-600' : '' }}">Add New type</a>
+        </div>
+    </div>
+
+    <!-- Blogs Dropdown -->
+    <div class="dropdown relative mt-2">
+        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('booking-source.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+            <div class="flex items-center">
+                <i class="fa-solid fa-pen w-5 h-5  sidebar-icon {{ request()->routeIs('booking-source.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+                <span class="ms-3 font-medium  sidebar-text">{{ __('Booking Source') }}</span>
+            </div>
+            <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('booking-source.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+        </div>
+        <div class="dropdown-content bg-white rounded-lg shadow-lg py-2 mt-2 hidden transition-all duration-200 ease-in-out transform origin-top">
+            <a href="{{ route('booking-source.index') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('booking-source.index') ? 'bg-blue-100 text-blue-600' : '' }}">All Booking Source</a>
+            <a href="{{ route('booking-source.create') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('booking-source.create') ? 'bg-blue-100 text-blue-600' : '' }}">Add New source</a>
+        </div>
+    </div>
+
+    <!-- Blogs Dropdown -->
+    <div class="dropdown relative mt-2">
+        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('hotels.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+            <div class="flex items-center">
+                <i class="fa-solid fa-pen w-5 h-5  sidebar-icon {{ request()->routeIs('hotels.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+                <span class="ms-3 font-medium  sidebar-text">{{ __('Hotels') }}</span>
+            </div>
+            <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('hotels.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+        </div>
+        <div class="dropdown-content bg-white rounded-lg shadow-lg py-2 mt-2 hidden transition-all duration-200 ease-in-out transform origin-top">
+            <a href="{{ route('hotels.index') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('hotels.index') ? 'bg-blue-100 text-blue-600' : '' }}">All Hotels</a>
+            <a href="{{ route('hotels.create') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('hotels.create') ? 'bg-blue-100 text-blue-600' : '' }}">Add New hotel</a>
+        </div>
+    </div>
+
+     <!-- Blogs Dropdown -->
+     <div class="dropdown relative mt-2">
+        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('bookings.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+            <div class="flex items-center">
+                <i class="fa-solid fa-pen w-5 h-5  sidebar-icon {{ request()->routeIs('bookings.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+                <span class="ms-3 font-medium  sidebar-text">{{ __('Bookings') }}</span>
+            </div>
+            <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('bookings.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+        </div>
+        <div class="dropdown-content bg-white rounded-lg shadow-lg py-2 mt-2 hidden transition-all duration-200 ease-in-out transform origin-top">
+            <a href="{{ route('bookings.index') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('bookings.index') ? 'bg-blue-100 text-blue-600' : '' }}">All Bookings</a>
+            <a href="{{ route('bookings.create') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('bookings.create') ? 'bg-blue-100 text-blue-600' : '' }}">Add New booking</a>
+        </div>
+    </div>
+
+    <!-- Reports Dropdown -->
+<div class="dropdown relative mt-2">
+    <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('reports.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+        <div class="flex items-center">
+            <i class="fa-solid fa-chart-bar w-5 h-5 sidebar-icon {{ request()->routeIs('reports.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+            <span class="ms-3 font-medium sidebar-text">{{ __('Reports') }}</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('reports.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+    </div>
+    <div class="dropdown-content bg-white rounded-lg shadow-lg py-2 mt-2 hidden transition-all duration-200 ease-in-out transform origin-top">
+        <a href="{{ route('reports.bookings') }}"
+            class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('reports.bookings') ? 'bg-blue-100 text-blue-600' : '' }}">Bookings Report</a>
+        <a href="{{ route('reports.hotels') }}"
+            class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('reports.hotels') ? 'bg-blue-100 text-blue-600' : '' }}">Hotels Report</a>
+        <a href="{{ route('reports.marketers') }}"
+            class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('reports.marketers') ? 'bg-blue-100 text-blue-600' : '' }}">Marketers Report</a>
+        <a href="{{ route('reports.financial') }}"
+            class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('reports.financial') ? 'bg-blue-100 text-blue-600' : '' }}">Financial Report</a>
+    </div>
+</div>
 
      <!-- Contacts Link -->
      <a href="{{ route('admin.contact.index') }}"

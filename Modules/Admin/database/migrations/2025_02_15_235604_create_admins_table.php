@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('role')->default('admin');
             $table->boolean('is_active')->default(true);
             $table->timestamp('last_login_at')->nullable();
+            $table->string('phone')->nullable();
+            $table->enum('user_type', ['admin', 'marketer', 'hotel_manager', 'client'])->default('client');
             $table->rememberToken();
             $table->timestamps();
         });
