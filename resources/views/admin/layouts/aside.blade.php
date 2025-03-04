@@ -24,7 +24,7 @@
 
       <!-- Pages Dropdown -->
       <div class="dropdown relative mt-2">
-        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.pages.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.categories.*') ? 'bg-blue-100 text-blue-600' : '' }}">
             <div class="flex items-center">
                 <i class="fa-solid fa-file-lines w-5 h-5  sidebar-icon {{ request()->routeIs('admin.categories.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
                 <span class="ms-3 font-medium sidebar-text">{{ __('categories') }}</span>
@@ -92,7 +92,7 @@
      
       <!-- Blogs Dropdown -->
       <div class="dropdown relative mt-2">
-        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.blogs.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.faqs.*') ? 'bg-blue-100 text-blue-600' : '' }}">
             <div class="flex items-center">
                 <i class="fa-solid fa-pen w-5 h-5  sidebar-icon {{ request()->routeIs('admin.faqs.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
                 <span class="ms-3 font-medium  sidebar-text">{{ __('Faqs') }}</span>
@@ -116,7 +116,7 @@
 
       <!-- Pages Dropdown -->
       <div class="dropdown relative mt-2">
-        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.pages.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('admin.languages.*') ? 'bg-blue-100 text-blue-600' : '' }}">
             <div class="flex items-center">
                 <i class="fa-solid fa-file-lines w-5 h-5  sidebar-icon {{ request()->routeIs('admin.languages.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
                 <span class="ms-3 font-medium sidebar-text">{{ __('languages') }}</span>

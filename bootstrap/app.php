@@ -6,6 +6,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Modules\Admin\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\CheckAuth;
+use Modules\Seo\Http\Middleware\SEOMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -17,7 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'auth.admin' => AdminMiddleware::class,
             'locale' => SetLocale::class,
-            'auth.check' => CheckAuth::class
+            'auth.check' => CheckAuth::class,
+            'seo' => SEOMiddleware::class,
         ]);
         
         // Then, apply the middleware to the web group

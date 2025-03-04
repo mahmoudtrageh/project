@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Modules\Basic\Models\Category;
 use Modules\Cms\Http\Requests\Blog\BlogRequest;
 use Modules\Cms\Models\Blog;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -31,15 +32,17 @@ class BlogController extends Controller
             if ($request->hasFile('image')) {
                 $data['image'] = $request->file('image')->store('blogs', 'public');
             }
-
+    
             if ($data['status'] === 'published' && !isset($data['published_at'])) {
                 $data['published_at'] = now();
             }
-
+    
             $data['featured'] = $request->has('featured');
 
+            $data['slug'] = Str::slug($request->title['en']);
+    
             Blog::create($data);
-
+    
             return redirect()->route('admin.blogs.index')
                 ->with('success', 'Blog post created successfully.');
         } catch (\Exception $e) {

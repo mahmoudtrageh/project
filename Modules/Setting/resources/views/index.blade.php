@@ -32,72 +32,179 @@
                     <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data"
                         class="space-y-8">
                         @csrf
-                        <!-- General Settings -->
-                        <div class="bg-gray-50 rounded-lg p-6 space-y-6">
-                            <h3 class="text-lg font-semibold text-gray-900">General Settings</h3>
+                        
+                        <!-- Language Tabs for Translations -->
+                        <div class="mb-6">
+                            <div class="border-b border-gray-200">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Content Translations</h3>
+                                <nav class="flex -mb-px">
+                                    @foreach(config('app.available_locales') as $locale)
+                                        <button type="button" 
+                                                onclick="switchLanguageTab('{{ $locale }}')"
+                                                id="tab-{{ $locale }}" 
+                                                class="language-tab {{ $locale == app()->getLocale() ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm">
+                                            {{ strtoupper($locale) }}
+                                        </button>
+                                    @endforeach
+                                </nav>
+                            </div>
+                        </div>
+                        
+                        <!-- Translated Content -->
+                        @foreach(config('app.available_locales') as $locale)
+                            <div id="content-{{ $locale }}" class="language-content {{ $locale == app()->getLocale() ? 'block' : 'hidden' }} space-y-8">
+                                <!-- General Settings -->
+                                <div class="bg-gray-50 rounded-lg p-6 space-y-6">
+                                    <h3 class="text-lg font-semibold text-gray-900">General Settings ({{ strtoupper($locale) }})</h3>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <!-- Site Name -->
-                                <div class="space-y-2">
-                                    <label for="site_name" class="block text-sm font-medium text-gray-700">Site Name</label>
-                                    <input type="text" name="site_name" id="site_name"
-                                        value="{{ settings()->get('site_name') }}"
-                                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <!-- Site Name -->
+                                        <div class="space-y-2">
+                                            <label for="site_name_{{ $locale }}" class="block text-sm font-medium text-gray-700">
+                                                Site Name ({{ strtoupper($locale) }})
+                                            </label>
+                                            <input type="text" 
+                                                   name="translations[site_name][{{ $locale }}]" 
+                                                   id="site_name_{{ $locale }}"
+                                                   value="{{ isset(json_decode(settings()->get('site_name'))->{$locale}) ? json_decode(settings()->get('site_name'))->{$locale} : '' }}"
+                                                   class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+                                                   placeholder="Enter site name in {{ strtoupper($locale) }}">
+                                        </div>
+                                        
+                                        <!-- Site Email (non-translatable) -->
+                                        @if($locale == app()->getFallbackLocale())
+                                        <div class="space-y-2">
+                                            <label for="site_email" class="block text-sm font-medium text-gray-700">Site Email</label>
+                                            <input type="email" 
+                                                   name="site_email" 
+                                                   id="site_email"
+                                                   value="{{ settings()->get('site_email') }}"
+                                                   class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                                        </div>
+                                        @else
+                                        <div class="space-y-2">
+                                            <label class="block text-sm font-medium text-gray-500">Site Email</label>
+                                            <input type="email" 
+                                                   value="{{ settings()->get('site_email') }}"
+                                                   class="w-full px-4 py-2 rounded-lg border border-gray-200 bg-gray-50 text-gray-500 cursor-not-allowed"
+                                                   disabled>
+                                            <p class="text-xs text-gray-500">This field is not translatable</p>
+                                        </div>
+                                        @endif
+
+                                        <!-- Site Phone (non-translatable) -->
+                                        @if($locale == app()->getFallbackLocale())
+                                        <div class="space-y-2">
+                                            <label for="site_phone" class="block text-sm font-medium text-gray-700">Site Phone</label>
+                                            <input type="text" 
+                                                   name="site_phone" 
+                                                   id="site_phone"
+                                                   value="{{ settings()->get('site_phone') }}"
+                                                   class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                                        </div>
+                                        @else
+                                        <div class="space-y-2">
+                                            <label class="block text-sm font-medium text-gray-500">Site Phone</label>
+                                            <input type="text" 
+                                                   value="{{ settings()->get('site_phone') }}"
+                                                   class="w-full px-4 py-2 rounded-lg border border-gray-200 bg-gray-50 text-gray-500 cursor-not-allowed"
+                                                   disabled>
+                                            <p class="text-xs text-gray-500">This field is not translatable</p>
+                                        </div>
+                                        @endif
+
+                                        <!-- About Name -->
+                                        <div class="space-y-2">
+                                            <label for="about_name_{{ $locale }}" class="block text-sm font-medium text-gray-700">
+                                                About Name ({{ strtoupper($locale) }})
+                                            </label>
+                                            <input type="text" 
+                                                   name="translations[about_name][{{ $locale }}]" 
+                                                   id="about_name_{{ $locale }}"
+                                                   value="{{ isset(json_decode(settings()->get('about_name'))->{$locale}) ? json_decode(settings()->get('about_name'))->{$locale} : '' }}"
+                                                   class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+                                                   placeholder="Enter about name in {{ strtoupper($locale) }}">
+                                        </div>
+                                    </div>
+
+                                    <!-- Descriptions -->
+                                    <div class="space-y-6">
+                                        <div class="space-y-2">
+                                            <label for="site_description_{{ $locale }}" class="block text-sm font-medium text-gray-700">
+                                                Site Description ({{ strtoupper($locale) }})
+                                            </label>
+                                            <textarea name="translations[site_description][{{ $locale }}]" 
+                                                      id="site_description_{{ $locale }}" 
+                                                      rows="3"
+                                                      class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+                                                      placeholder="Enter site description in {{ strtoupper($locale) }}">{{ isset(json_decode(settings()->get('site_description'))->{$locale}) ? json_decode(settings()->get('site_description'))->{$locale} : '' }}</textarea>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <label for="about_description_{{ $locale }}" class="block text-sm font-medium text-gray-700">
+                                                About Description ({{ strtoupper($locale) }})
+                                            </label>
+                                            <textarea name="translations[about_description][{{ $locale }}]" 
+                                                      id="about_description_{{ $locale }}" 
+                                                      rows="3"
+                                                      class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+                                                      placeholder="Enter about description in {{ strtoupper($locale) }}">{{ isset(json_decode(settings()->get('about_description'))->{$locale}) ? json_decode(settings()->get('about_description'))->{$locale} : '' }}</textarea>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <label for="location_{{ $locale }}" class="block text-sm font-medium text-gray-700">
+                                                Location ({{ strtoupper($locale) }})
+                                            </label>
+                                            <textarea name="translations[location][{{ $locale }}]" 
+                                                      id="location_{{ $locale }}" 
+                                                      rows="3"
+                                                      class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+                                                      placeholder="Enter location in {{ strtoupper($locale) }}">{{ isset(json_decode(settings()->get('location'))->{$locale}) ? json_decode(settings()->get('location'))->{$locale} : '' }}</textarea>
+                                        </div>
+                                    </div>
                                 </div>
+                                
+                                <!-- Footer Settings -->
+                                <div class="bg-gray-50 rounded-lg p-6 space-y-4">
+                                    <h3 class="text-lg font-semibold text-gray-900">Footer Settings ({{ strtoupper($locale) }})</h3>
 
-                                <!-- Site Email -->
-                                <div class="space-y-2">
-                                    <label for="site_email" class="block text-sm font-medium text-gray-700">Site
-                                        Email</label>
-                                    <input type="email" name="site_email" id="site_email"
-                                        value="{{ settings()->get('site_email') }}"
-                                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">
-                                </div>
-
-                                <!-- Site Phone -->
-                                <div class="space-y-2">
-                                    <label for="site_phone" class="block text-sm font-medium text-gray-700">Site
-                                        Phone</label>
-                                    <input type="text" name="site_phone" id="site_phone"
-                                        value="{{ settings()->get('site_phone') }}"
-                                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">
-                                </div>
-
-                                <!-- About Name -->
-                                <div class="space-y-2">
-                                    <label for="about_name" class="block text-sm font-medium text-gray-700">About
-                                        Name</label>
-                                    <input type="text" name="about_name" id="about_name"
-                                        value="{{ settings()->get('about_name') }}"
-                                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                                    <div class="space-y-2">
+                                        <label for="footer_text_{{ $locale }}" class="block text-sm font-medium text-gray-700">
+                                            Footer Text ({{ strtoupper($locale) }})
+                                        </label>
+                                        <textarea name="translations[footer_text][{{ $locale }}]" 
+                                                  id="footer_text_{{ $locale }}" 
+                                                  rows="2"
+                                                  class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+                                                  placeholder="Enter footer text in {{ strtoupper($locale) }}">{{ isset(json_decode(settings()->get('footer_text'))->{$locale}) ? json_decode(settings()->get('footer_text'))->{$locale} : '' }}</textarea>
+                                    </div>
                                 </div>
                             </div>
-
-                            <!-- Descriptions -->
-                            <div class="space-y-6">
-                                <div class="space-y-2">
-                                    <label for="site_description" class="block text-sm font-medium text-gray-700">Site
-                                        Description</label>
-                                    <textarea name="site_description" id="site_description" rows="3"
-                                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">{{ settings()->get('site_description') }}</textarea>
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label for="about_description" class="block text-sm font-medium text-gray-700">About
-                                        Description</label>
-                                    <textarea name="about_description" id="about_description" rows="3"
-                                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">{{ settings()->get('about_description') }}</textarea>
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
-                                    <textarea name="location" id="location" rows="3"
-                                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">{{ settings()->get('location') }}</textarea>
-                                </div>
+                        @endforeach
+                        
+                        <!-- Current Site Description Preview with Locale -->
+                        <div class="bg-gray-50 rounded-lg p-6 space-y-4">
+                            <h3 class="text-lg font-semibold text-gray-900">Current Site Description</h3>
+                            
+                            <div class="space-y-4">
+                                @foreach(config('app.available_locales') as $locale)
+                                    <div class="p-4 bg-white rounded-lg shadow-sm">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded">{{ strtoupper($locale) }}</span>
+                                            <h4 class="text-sm font-medium text-gray-700">Site Description</h4>
+                                        </div>
+                                        <p class="text-gray-600">
+                                            @php
+                                                $siteDescription = json_decode(settings()->get('site_description'));
+                                            @endphp
+                                            {{ isset($siteDescription->{$locale}) ? $siteDescription->{$locale} : 'No translation available for this language' }}
+                                        </p>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
 
-                        <!-- Media Settings -->
+                        <!-- Media Settings (non-translatable) -->
                         <div class="bg-gray-50 rounded-lg p-6 space-y-6">
                             <h3 class="text-lg font-semibold text-gray-900">Media Settings</h3>
 
@@ -152,10 +259,27 @@
                                     <input type="file" name="about_image"
                                         class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition duration-150">
                                 </div>
+
+                                <!-- Hero Image -->
+                                <div class="space-y-4">
+                                    <label class="block text-sm font-medium text-gray-700">Hero Image</label>
+                                    @if(settings()->get('hero_image'))
+                                        <div class="relative group rounded-lg overflow-hidden bg-gray-100 p-2">
+                                            <img src="{{ Storage::url(settings()->get('hero_image')) }}" alt="Hero Image"
+                                                class="h-16 w-auto mx-auto object-contain">
+                                            <div
+                                                class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                                <span class="text-white text-sm">Change Image</span>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <input type="file" name="hero_image"
+                                        class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition duration-150">
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Social Media Settings -->
+                        <!-- Social Media Settings (non-translatable) -->
                         <div class="bg-gray-50 rounded-lg p-6 space-y-6">
                             <h3 class="text-lg font-semibold text-gray-900">Social Media Links</h3>
 
@@ -198,17 +322,32 @@
                                             class="w-full pl-10 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Footer Settings -->
-                        <div class="bg-gray-50 rounded-lg p-6 space-y-4">
-                            <h3 class="text-lg font-semibold text-gray-900">Footer Settings</h3>
+                                <div class="space-y-2">
+                                    <label for="social_instagram" class="block text-sm font-medium text-gray-700">Instagram
+                                        URL</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <i class="fab fa-instagram text-gray-400"></i>
+                                        </div>
+                                        <input type="url" name="social_instagram" id="social_instagram"
+                                            value="{{ settings()->get('social_instagram') }}"
+                                            class="w-full pl-10 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                                    </div>
+                                </div>
 
-                            <div class="space-y-2">
-                                <label for="footer_text" class="block text-sm font-medium text-gray-700">Footer Text</label>
-                                <textarea name="footer_text" id="footer_text" rows="2"
-                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">{{ settings()->get('footer_text') }}</textarea>
+                                <div class="space-y-2">
+                                    <label for="social_tiktok" class="block text-sm font-medium text-gray-700">Tiktok
+                                        URL</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <i class="fab fa-tiktok text-gray-400"></i>
+                                        </div>
+                                        <input type="url" name="social_tiktok" id="social_tiktok"
+                                            value="{{ settings()->get('social_tiktok') }}"
+                                            class="w-full pl-10 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -234,25 +373,47 @@
                 </div>
             </div>
         </div>
-
+</div>
 @endsection
 
-    @section('js')
-        <script>
-            // JavaScript to handle tab switching
-            const tabs = document.querySelectorAll('.tab-button');
-            const contents = document.querySelectorAll('.tab-content');
+@section('js')
+    <script>
+        // JavaScript to handle tab switching
+        const tabs = document.querySelectorAll('.tab-button');
+        const contents = document.querySelectorAll('.tab-content');
 
-            tabs.forEach((tab, index) => {
-                tab.addEventListener('click', () => {
-                    // Remove active class from all tabs and hide all content
-                    tabs.forEach(t => t.classList.remove('active', 'text-blue-600', 'border-blue-600'));
-                    contents.forEach(c => c.classList.add('hidden'));
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and hide all content
+                tabs.forEach(t => t.classList.remove('active', 'text-blue-600', 'border-blue-600'));
+                contents.forEach(c => c.classList.add('hidden'));
 
-                    // Add active class to the clicked tab and show the corresponding content
-                    tab.classList.add('active', 'text-blue-600', 'border-blue-600');
-                    contents[index].classList.remove('hidden');
-                });
+                // Add active class to the clicked tab and show the corresponding content
+                tab.classList.add('active', 'text-blue-600', 'border-blue-600');
+                contents[index].classList.remove('hidden');
             });
-        </script>
-    @endsection
+        });
+        
+        // JavaScript to handle language tab switching
+        function switchLanguageTab(locale) {
+            // Hide all content sections
+            document.querySelectorAll('.language-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+            
+            // Show the selected content section
+            document.getElementById('content-' + locale).classList.remove('hidden');
+            document.getElementById('content-' + locale).classList.add('block');
+            
+            // Update tab styles
+            document.querySelectorAll('.language-tab').forEach(el => {
+                el.classList.remove('border-blue-500', 'text-blue-600');
+                el.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+            });
+            
+            document.getElementById('tab-' + locale).classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+            document.getElementById('tab-' + locale).classList.add('border-blue-500', 'text-blue-600');
+        }
+    </script>
+@endsection

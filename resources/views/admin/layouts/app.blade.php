@@ -232,7 +232,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
 
     <script>
         // Sidebar Toggle
@@ -454,14 +454,23 @@
     @yield('js')
 
     <script>
-                @foreach(config('app.available_locales') as $locale)
-        CKEDITOR.replace('editor_{{$locale}}', {
-            height: 300,
-            versionCheck: false, // Disable version check to hide the warning
-            filebrowserUploadUrl: "{{route('upload.image', ['_token' => csrf_token()])}}",
-            filebrowserUploadMethod: 'form',
-        });
-        @endforeach
+               @foreach(config('app.available_locales') as $locale)
+    CKEDITOR.replace('editor_{{ $locale }}', {
+        height: 300,
+        versionCheck: false, // Disable version check to hide the warning
+        filebrowserUploadUrl: "{{ route('upload.image', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+        extraPlugins: 'youtube', // Enable the youtube plugin
+        toolbar: [
+            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'] },
+            { name: 'paragraph', items: ['NumberedList', 'BulletedList', 'Blockquote'] },
+            { name: 'links', items: ['Link', 'Unlink'] },
+            { name: 'insert', items: ['Image', 'Table', 'Youtube'] }, // Add Youtube button
+            { name: 'tools', items: ['Maximize'] },
+            { name: 'document', items: ['Source'] },
+        ],
+    });
+@endforeach
     </script>
 </body>
 

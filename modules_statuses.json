@@ -4,5 +4,6 @@
     "Cms": true,
     "Contact": true,
     "Lang": true,
-    "Basic": true
+    "Basic": true,
+    "Seo": true
 }
