@@ -20,6 +20,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('auth:admin')->group(function () {
         Route::get('settings', [SettingController::class, 'index'])->name('settings');
         Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
+
+        Route::post('/settings/seo', [SettingController::class, 'updateSeo'])->name('settings.update.seo');
+
     });
 
  });

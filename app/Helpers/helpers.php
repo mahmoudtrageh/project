@@ -1,5 +1,8 @@
 <?php
 
+use Modules\Basic\Models\Category;
+use Modules\Cms\Models\Blog;
+use Modules\Cms\Models\Page;
 use Modules\Contact\Models\Contact;
 
 if (!function_exists('setting')) {
@@ -35,5 +38,37 @@ if (!function_exists('getCleanContentAttribute')) {
         
         return implode(' ', $limited) . (count($words) > 15 ? '...' : '');
 
+    }
+}
+
+if (!function_exists('getTotalRecords')) {
+    function getTotalRecords(string $module) {
+        switch (strtolower($module)) {
+            case 'blog':
+                return Blog::count();
+            
+            case 'page':
+                return Page::count();
+            
+            case 'contact':
+                return Contact::count();
+            
+            case 'category':
+                return Category::count();
+            
+            default:
+                return 0;
+        }
+    }
+}
+
+if (!function_exists('getAllCounts')) {
+    function getAllCounts() {
+        return [
+            'blog' => Blog::count(),
+            'page' => Page::count(),
+            'contact' => Contact::count(),
+            'category' => Category::count()
+        ];
     }
 }

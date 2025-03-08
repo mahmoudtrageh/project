@@ -5,12 +5,20 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Modules\Cms\Models\Blog;
 
 class DashboardController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $blogs = Blog::where('status', 'published')
+                            ->whereNotNull('published_at')
+                            ->orderBy('published_at', 'desc')
+                            ->inRandomOrder()
+                            ->limit(10)
+                            ->paginate(5);
+
+        return view('admin.dashboard', ['blogs' => $blogs]);
     }
 
     public function upload(Request $request)

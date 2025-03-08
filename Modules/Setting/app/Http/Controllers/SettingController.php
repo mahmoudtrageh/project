@@ -34,9 +34,14 @@ class SettingController extends Controller
             'social_linkedin' => 'nullable|url',
             'social_instagram' => 'nullable|url',
             'social_tiktok' => 'nullable|url',
+            'social_facebook' => 'nullable|url',
             'translations.location.*' => 'nullable|string',
             'site_phone' => 'nullable|string|max:20',
             'hero_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'custom_header_code' => 'nullable|string',
+            'custom_footer_code' => 'nullable|string',
+            'custom_css' => 'nullable|string',
+            'custom_js' => 'nullable|string',
         ]);
 
         // Handle file uploads
@@ -81,6 +86,11 @@ class SettingController extends Controller
             'social_linkedin',
             'social_instagram',
             'social_tiktok',
+            'social_facebook',
+            'custom_header_code',
+            'custom_footer_code',
+            'custom_css',
+            'custom_js'
         ];
 
         foreach ($nonTranslatableSettings as $setting) {
@@ -100,6 +110,35 @@ class SettingController extends Controller
         return redirect()->back()->with('success', 'Settings updated successfully.');
     }
 
+    public function updateSeo(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'canonical_domain' => 'nullable|url',
+            'google_analytics_id' => 'nullable|string|max:30',
+        ]);
+
+        // Save non-translatable settings
+        $nonTranslatableFields = [
+            'canonical_domain', 'google_analytics_id', 'google_site_verification',
+        ];
+
+        foreach ($nonTranslatableFields as $field) {
+            if ($request->has($field)) {
+                settings()->set($field, $request->input($field));
+            }
+        }
+
+        // Handle translatable fields
+        if ($request->has('translations')) {
+            foreach ($request->input('translations') as $key => $translations) {
+                settings()->set($key, json_encode($translations));
+            }
+        }
+
+        return back()->with('success', 'SEO settings updated successfully');
+    }
+    
     protected function uploadFile($file)
     {
         // Generate a unique file name

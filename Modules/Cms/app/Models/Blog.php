@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 // use Modules\Cms\Database\Factories\BlogFactory;
 use Illuminate\Support\Str;
 use Modules\Basic\Models\Category;
+use Modules\Seo\Traits\Seoable;
 use Spatie\Translatable\HasTranslations;
 
 class Blog extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, Seoable;
 
     protected $fillable = [
         'title',
@@ -23,6 +24,7 @@ class Blog extends Model
         'published_at',
         'featured',
         'category_id',
+        'outsource_url'
     ];
 
     public $translatable = ['title', 'content'];

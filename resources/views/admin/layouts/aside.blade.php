@@ -131,6 +131,23 @@
         </div>
     </div>
 
+    <!-- Pages Dropdown -->
+    <div class="dropdown relative mt-2">
+        <div class="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-blue-50 rounded-xl cursor-pointer transition-all duration-200 {{ request()->routeIs('subscribers.*') ? 'bg-blue-100 text-blue-600' : '' }}">
+            <div class="flex items-center">
+                <i class="fa-solid fa-file-lines w-5 h-5  sidebar-icon {{ request()->routeIs('subscribers.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+                <span class="ms-3 font-medium sidebar-text">{{ __('Subscribers') }}</span>
+            </div>
+            <i class="fas fa-chevron-down text-xs dropdown-arrow transition-transform duration-200 {{ request()->routeIs('subscribers.*') ? 'text-blue-600' : 'text-gray-400' }}"></i>
+        </div>
+        <div class="dropdown-content bg-white rounded-lg shadow-lg py-2 mt-2 hidden transition-all duration-200 ease-in-out transform origin-top">
+            <a href="{{ route('subscribers.index') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('subscribers.index') ? 'bg-blue-100 text-blue-600' : '' }}">{{ __('All subscribers')}}</a>
+            <a href="{{ route('newsletters.index') }}"
+                class="block px-6 py-2 hover:bg-blue-50 text-gray-700 {{ request()->routeIs('newsletters.index') ? 'bg-blue-100 text-blue-600' : '' }}">{{ __('All newsletters')}}</a>
+        </div>
+    </div>
+    
      <!-- Settings Link -->
      <a href="{{ route('admin.settings') }}"
          class="flex items-center px-4 py-3 mt-2 text-gray-700 hover:bg-blue-50 rounded-xl transition-all duration-200 {{ request()->routeIs('admin.settings') ? 'bg-blue-100 text-blue-600' : '' }}">

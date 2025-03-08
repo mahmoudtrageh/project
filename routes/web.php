@@ -10,3 +10,4 @@ Route::middleware(['auth:admin'])->group(function () {
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);

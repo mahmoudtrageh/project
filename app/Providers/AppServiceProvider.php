@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Schema;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -27,5 +28,8 @@ class AppServiceProvider extends ServiceProvider
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
         }
+
+        Schema::defaultStringLength(191);
+
     }
 }

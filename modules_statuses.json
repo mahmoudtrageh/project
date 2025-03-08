@@ -5,5 +5,6 @@
     "Contact": true,
     "Lang": true,
     "Basic": true,
-    "Seo": true
+    "Seo": true,
+    "Newsletter": true
 }
