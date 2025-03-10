@@ -14,13 +14,20 @@ class BookingSourceController extends Controller
      */
     public function index(Request $request)
     {
-        // Only admin can view all booking sources
-        if (!Auth::user()->isAdmin()) {
+        $user = Auth::user();
+        
+        // Only admin or super admin can view booking sources
+        if (!$user->isAdmin() && !$user->isSuperAdmin()) {
             return redirect()->route('dashboard')
                 ->with('error', 'You do not have permission to view booking sources.');
         }
 
         $query = BookingSource::query();
+        
+        // Filter by admin_id if the user is an admin (not super admin)
+        if ($user->isAdmin()) {
+            $query->where('admin_id', $user->id);
+        }
         
         // Apply search filter if provided
         if ($request->has('search') && $request->search != '') {
@@ -41,9 +48,11 @@ class BookingSourceController extends Controller
      */
     public function create()
     {
-        // Only admin can create booking sources
-        if (!Auth::user()->isAdmin()) {
-            return redirect()->route('booking-sources.index')
+        $user = Auth::user();
+        
+        // Only admin or super admin can create booking sources
+        if (!$user->isAdmin() && !$user->isSuperAdmin()) {
+            return redirect()->route('booking-source.index')
                 ->with('error', 'You do not have permission to create booking sources.');
         }
         
@@ -55,17 +64,37 @@ class BookingSourceController extends Controller
      */
     public function store(Request $request)
     {
-        // Only admin can create booking sources
-        if (!Auth::user()->isAdmin()) {
+        $user = Auth::user();
+        
+        // Only admin or super admin can create booking sources
+        if (!$user->isAdmin() && !$user->isSuperAdmin()) {
             return redirect()->route('booking-source.index')
                 ->with('error', 'You do not have permission to create booking sources.');
         }
         
         // Validate the request
         $validated = $request->validate([
-            'name' => 'required|string|max:100|unique:booking_sources',
+            'name' => 'required|string|max:100',
             'description' => 'nullable|string',
         ]);
+        
+        // Check for unique name per admin
+        $exists = BookingSource::where('name', $validated['name']);
+        
+        if ($user->isAdmin()) {
+            $exists->where('admin_id', $user->id);
+        }
+        
+        if ($exists->exists()) {
+            return redirect()->back()
+                ->withErrors(['name' => 'This name already exists.'])
+                ->withInput();
+        }
+        
+        // Add admin_id for admin users
+        if ($user->isAdmin()) {
+            $validated['admin_id'] = $user->id;
+        }
         
         // Create the booking source
         BookingSource::create($validated);
@@ -79,10 +108,13 @@ class BookingSourceController extends Controller
      */
     public function edit(BookingSource $bookingSource)
     {
-        // Only admin can edit booking sources
-        if (!Auth::user()->isAdmin()) {
+        $user = Auth::user();
+        
+        // Only admin who owns this booking source or super admin can edit
+        if (!$user->isSuperAdmin() && 
+            !($user->isAdmin() && $bookingSource->admin_id == $user->id)) {
             return redirect()->route('booking-source.index')
-                ->with('error', 'You do not have permission to edit booking sources.');
+                ->with('error', 'You do not have permission to edit this booking source.');
         }
         
         return view('booking::booking-sources.edit', compact('bookingSource'));
@@ -93,17 +125,34 @@ class BookingSourceController extends Controller
      */
     public function update(Request $request, BookingSource $bookingSource)
     {
-        // Only admin can update booking sources
-        if (!Auth::user()->isAdmin()) {
+        $user = Auth::user();
+        
+        // Only admin who owns this booking source or super admin can update
+        if (!$user->isSuperAdmin() && 
+            !($user->isAdmin() && $bookingSource->admin_id == $user->id)) {
             return redirect()->route('booking-source.index')
-                ->with('error', 'You do not have permission to update booking sources.');
+                ->with('error', 'You do not have permission to update this booking source.');
         }
         
         // Validate the request
         $validated = $request->validate([
-            'name' => 'required|string|max:100|unique:booking_sources,name,' . $bookingSource->id,
+            'name' => 'required|string|max:100',
             'description' => 'nullable|string',
         ]);
+        
+        // Check for unique name per admin
+        $exists = BookingSource::where('name', $validated['name'])
+            ->where('id', '!=', $bookingSource->id);
+        
+        if ($user->isAdmin()) {
+            $exists->where('admin_id', $user->id);
+        }
+        
+        if ($exists->exists()) {
+            return redirect()->back()
+                ->withErrors(['name' => 'This name already exists.'])
+                ->withInput();
+        }
         
         // Update the booking source
         $bookingSource->update($validated);
@@ -117,10 +166,13 @@ class BookingSourceController extends Controller
      */
     public function destroy(BookingSource $bookingSource)
     {
-        // Only admin can delete booking sources
-        if (!Auth::user()->isAdmin()) {
+        $user = Auth::user();
+        
+        // Only admin who owns this booking source or super admin can delete
+        if (!$user->isSuperAdmin() && 
+            !($user->isAdmin() && $bookingSource->admin_id == $user->id)) {
             return redirect()->route('booking-source.index')
-                ->with('error', 'You do not have permission to delete booking sources.');
+                ->with('error', 'You do not have permission to delete this booking source.');
         }
         
         // Check if booking source is associated with any bookings

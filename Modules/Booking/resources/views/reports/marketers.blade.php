@@ -94,56 +94,62 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @forelse($results as $result)
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
-                                            <i class="fas fa-user"></i>
+                        @if(isset($results) && is_array($results) && count($results) > 0)
+                            @foreach($results as $result)
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">
+                                                {{ isset($result['marketer']->user) ? $result['marketer']->user->name : 'Unknown' }}
+                                            </div>
+                                            <div class="text-xs text-gray-500">
+                                                {{ isset($result['marketer']->user) ? $result['marketer']->user->email : 'No email' }}
+                                            </div>
+                                            <div class="text-xs text-gray-500">
+                                                Commission: {{ $result['marketer']->commission_percentage ?? 0 }}%
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">{{ $result['marketer']->user->name }}</div>
-                                        <div class="text-xs text-gray-500">{{ $result['marketer']->user->email }}</div>
-                                        <div class="text-xs text-gray-500">
-                                            Commission: {{ $result['marketer']->commission_percentage }}%
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                {{ $result['summary']['total_bookings'] }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                ${{ number_format($result['summary']['total_client_revenue'], 2) }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                ${{ number_format($result['summary']['total_marketer_revenue'], 2) }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                ${{ number_format($result['summary']['marketer_profit'], 2) }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                ${{ number_format($result['summary']['paid_amount'], 2) }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium 
-                                {{ $result['summary']['outstanding_amount'] > 0 ? 'text-red-600' : 'text-green-600' }}">
-                                ${{ number_format($result['summary']['outstanding_amount'], 2) }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600">
-                                <a href="{{ route('bookings.index', ['marketer_id' => $result['marketer']->id]) }}">
-                                    View Bookings
-                                </a>
-                            </td>
-                        </tr>
-                        @empty
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    {{ $result['summary']['total_bookings'] ?? 0 }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    ${{ number_format($result['summary']['total_client_revenue'] ?? 0, 2) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    ${{ number_format($result['summary']['total_marketer_revenue'] ?? 0, 2) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    ${{ number_format($result['summary']['marketer_profit'] ?? 0, 2) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    ${{ number_format($result['summary']['paid_amount'] ?? 0, 2) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium 
+                                    {{ ($result['summary']['outstanding_amount'] ?? 0) > 0 ? 'text-red-600' : 'text-green-600' }}">
+                                    ${{ number_format($result['summary']['outstanding_amount'] ?? 0, 2) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600">
+                                    <a href="{{ route('bookings.index', ['marketer_id' => $result['marketer']->id]) }}">
+                                        View Bookings
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        @else
                         <tr>
                             <td colspan="8" class="px-6 py-4 text-center text-gray-500">
                                 No marketer data found for the selected period.
                             </td>
                         </tr>
-                        @endforelse
+                        @endif
                     </tbody>
                 </table>
             </div>

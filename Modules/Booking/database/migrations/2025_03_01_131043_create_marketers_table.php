@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('marketers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->decimal('commission_percentage', 5, 2)->default(0);
+            $table->foreignId('admin_id')->constrained()->onDelete('cascade');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

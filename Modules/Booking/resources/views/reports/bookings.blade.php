@@ -47,8 +47,7 @@
                     </select>
                 </div>
 
-                <!-- Marketer Filter (Admin Only) -->
-                @if(Auth::user()->isAdmin())
+                <!-- Marketer Filter -->
                 <div>
                     <label for="marketer_id" class="block text-sm font-medium text-gray-700 mb-2">Marketer</label>
                     <select
@@ -64,7 +63,6 @@
                         @endforeach
                     </select>
                 </div>
-                @endif
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -108,27 +106,27 @@
         </form>
     </div>
 </div>
-
+ 
 <!-- Summary Stats -->
 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
     <div class="bg-white rounded-lg shadow p-6">
         <h3 class="text-sm font-medium text-gray-500 mb-2">Total Bookings</h3>
-        <p class="text-3xl font-bold text-gray-900">{{ $report['totals']['count'] }}</p>
+        <p class="text-3xl font-bold text-gray-900">{{ $report['totals']['count'] ?? 0 }}</p>
     </div>
     
     <div class="bg-white rounded-lg shadow p-6">
         <h3 class="text-sm font-medium text-gray-500 mb-2">Total Nights</h3>
-        <p class="text-3xl font-bold text-gray-900">{{ $report['totals']['nights'] }}</p>
+        <p class="text-3xl font-bold text-gray-900">{{ $report['totals']['nights'] ?? 0 }}</p>
     </div>
     
     <div class="bg-white rounded-lg shadow p-6">
         <h3 class="text-sm font-medium text-gray-500 mb-2">Total Revenue</h3>
-        <p class="text-3xl font-bold text-gray-900">${{ number_format($report['totals']['client_revenue'], 2) }}</p>
+        <p class="text-3xl font-bold text-gray-900">${{ number_format($report['totals']['client_revenue'] ?? 0, 2) }}</p>
     </div>
     
     <div class="bg-white rounded-lg shadow p-6">
         <h3 class="text-sm font-medium text-gray-500 mb-2">Total Profit</h3>
-        <p class="text-3xl font-bold text-gray-900">${{ number_format($report['totals']['admin_profit'], 2) }}</p>
+        <p class="text-3xl font-bold text-gray-900">${{ number_format($report['totals']['admin_profit'] ?? 0, 2) }}</p>
     </div>
 </div>
 
@@ -168,6 +166,9 @@
                             <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Status
                             </th>
+                            <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Actions
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -178,7 +179,7 @@
                                 <div class="text-xs text-gray-500">{{ $booking->client_phone }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ $booking->hotel->name }}</div>
+                                <div class="text-sm text-gray-900">{{ $booking->hotel->name ?? 'Unknown' }}</div>
                                 <div class="text-xs text-gray-500">{{ $booking->roomType ? $booking->roomType->name : 'Standard' }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
@@ -212,10 +213,20 @@
                                     {{ ucfirst($booking->status) }}
                                 </span>
                             </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="{{ route('bookings.show', $booking->id) }}" class="text-blue-600 hover:text-blue-900 mr-3">
+                                    View
+                                </a>
+                                @if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin())
+                                <a href="{{ route('bookings.edit', $booking->id) }}" class="text-indigo-600 hover:text-indigo-900">
+                                    Edit
+                                </a>
+                                @endif
+                            </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="8" class="px-6 py-4 text-center text-gray-500">
+                            <td colspan="9" class="px-6 py-4 text-center text-gray-500">
                                 No booking data found for the selected filters.
                             </td>
                         </tr>

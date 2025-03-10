@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
+use Modules\Admin\Http\Controllers\AdminController;
 use Modules\Booking\Http\Controllers\BookingController;
 use Modules\Booking\Http\Controllers\BookingSourceController;
 use Modules\Booking\Http\Controllers\HotelController;
@@ -31,11 +32,14 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/payments/{payment}', [PaymentController::class, 'destroy'])->name('payments.destroy');
     
     Route::resource('hotels', HotelController::class);
-    
+    Route::post('/hotels/make-payment', [HotelController::class, 'processPayment'])->name('hotels.make-payment');
+    Route::post('/marketers/{marketer}/make-payment', [AdminController::class, 'processPayment'])->name('marketers.make-payment');
+
     Route::resource('room-types', RoomTypeController::class)->except(['show']);
     
     Route::resource('booking-source', BookingSourceController::class)->except(['show']);
-    
+    Route::get('/bookings/{booking}/pdf', [BookingController::class, 'exportPdf'])->name('bookings.pdf');
+
     Route::prefix('reports')->name('reports.')->group(function () {
         Route::get('/bookings', [ReportController::class, 'bookings'])->name('bookings');
         Route::get('/marketers', [ReportController::class, 'marketers'])->name('marketers');

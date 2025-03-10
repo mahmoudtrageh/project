@@ -15,6 +15,12 @@
                class="inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500">
                 <i class="fas fa-arrow-left me-2"></i> Back to List
             </a>
+
+            
+<a href="{{ route('bookings.pdf', $booking) }}" 
+class="ml-2 inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+ <i class="fas fa-file-pdf mr-2"></i> Export PDF
+</a>
         </div>
     </div>
 
@@ -370,6 +376,7 @@ $marketerPaidPercentage = $marketerProfit > 0 ?
 class="w-full block text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
 <i class="fas fa-edit me-2"></i> Edit Booking
 </a>
+
 
 @can('manage-payments')
 <button type="button" onclick="openAddPaymentModal()"

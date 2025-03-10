@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('contact_person')->nullable();
             $table->string('contact_phone')->nullable();
-            $table->foreignId('manager_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('manager_id')->nullable()->constrained('admins')->onDelete('set null');
             $table->timestamps();
             $table->softDeletes();
         });

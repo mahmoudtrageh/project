@@ -48,6 +48,7 @@
     </div>
 </div>
 
+@if(isset($report) && !empty($report))
 <!-- Annual Summary -->
 <div class="bg-white rounded-lg shadow mb-6">
     <div class="px-6 py-4 border-b border-gray-200">
@@ -57,22 +58,22 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div class="bg-blue-50 rounded-lg p-4">
                 <h3 class="text-blue-800 text-sm font-medium mb-2">Total Client Revenue</h3>
-                <div class="text-blue-900 text-2xl font-bold">${{ number_format($report['annual_totals']['client_revenue'], 2) }}</div>
+                <div class="text-blue-900 text-2xl font-bold">${{ number_format($report['annual_totals']['client_revenue'] ?? 0, 2) }}</div>
             </div>
             
             <div class="bg-red-50 rounded-lg p-4">
                 <h3 class="text-red-800 text-sm font-medium mb-2">Total Hotel Costs</h3>
-                <div class="text-red-900 text-2xl font-bold">${{ number_format($report['annual_totals']['hotel_costs'], 2) }}</div>
+                <div class="text-red-900 text-2xl font-bold">${{ number_format($report['annual_totals']['hotel_costs'] ?? 0, 2) }}</div>
             </div>
             
             <div class="bg-yellow-50 rounded-lg p-4">
                 <h3 class="text-yellow-800 text-sm font-medium mb-2">Total Marketer Profit</h3>
-                <div class="text-yellow-900 text-2xl font-bold">${{ number_format($report['annual_totals']['marketer_profit'], 2) }}</div>
+                <div class="text-yellow-900 text-2xl font-bold">${{ number_format($report['annual_totals']['marketer_profit'] ?? 0, 2) }}</div>
             </div>
             
             <div class="bg-green-50 rounded-lg p-4">
                 <h3 class="text-green-800 text-sm font-medium mb-2">Total Admin Profit</h3>
-                <div class="text-green-900 text-2xl font-bold">${{ number_format($report['annual_totals']['admin_profit'], 2) }}</div>
+                <div class="text-green-900 text-2xl font-bold">${{ number_format($report['annual_totals']['admin_profit'] ?? 0, 2) }}</div>
             </div>
         </div>
     </div>
@@ -111,47 +112,63 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach($report['monthly_summary'] as $month)
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                {{ $month['month'] }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                ${{ number_format($month['client_revenue'], 2) }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                ${{ number_format($month['hotel_costs'], 2) }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                ${{ number_format($month['marketer_profit'], 2) }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium
-                                {{ $month['admin_profit'] > 0 ? 'text-green-600' : 'text-red-600' }}">
-                                ${{ number_format($month['admin_profit'], 2) }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                @php
-                                    $profitMargin = $month['client_revenue'] > 0 ? 
-                                        (($month['admin_profit'] / $month['client_revenue']) * 100) : 0;
-                                @endphp
-                                
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="
-                                        {{ $profitMargin > 0 ? 'bg-green-600' : 'bg-red-600' }} 
-                                        h-2.5 rounded-full" 
-                                        style="width: {{ abs(min(max($profitMargin, -100), 100)) }}%">
+                        @if(isset($report['monthly_summary']) && is_array($report['monthly_summary']))
+                            @foreach($report['monthly_summary'] as $month)
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $month['month'] ?? 'Unknown' }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    ${{ number_format($month['client_revenue'] ?? 0, 2) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    ${{ number_format($month['hotel_costs'] ?? 0, 2) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    ${{ number_format($month['marketer_profit'] ?? 0, 2) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium
+                                    {{ ($month['admin_profit'] ?? 0) > 0 ? 'text-green-600' : 'text-red-600' }}">
+                                    ${{ number_format($month['admin_profit'] ?? 0, 2) }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    @php
+                                        $clientRevenue = $month['client_revenue'] ?? 0;
+                                        $adminProfit = $month['admin_profit'] ?? 0;
+                                        $profitMargin = $clientRevenue > 0 ? 
+                                            (($adminProfit / $clientRevenue) * 100) : 0;
+                                    @endphp
+                                    
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="
+                                            {{ $profitMargin > 0 ? 'bg-green-600' : 'bg-red-600' }} 
+                                            h-2.5 rounded-full" 
+                                            style="width: {{ abs(min(max($profitMargin, -100), 100)) }}%">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="text-xs {{ $profitMargin > 0 ? 'text-green-600' : 'text-red-600' }} mt-1">
-                                    {{ number_format($profitMargin, 1) }}%
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
+                                    <div class="text-xs {{ $profitMargin > 0 ? 'text-green-600' : 'text-red-600' }} mt-1">
+                                        {{ number_format($profitMargin, 1) }}%
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                                    No monthly data available for the selected year.
+                                </td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+@else
+<div class="bg-white rounded-lg shadow p-6 text-center">
+    <p class="text-gray-600">No financial data available for the selected period. Please try another year or check that there are bookings in the system.</p>
+</div>
+@endif
+
 @endsection

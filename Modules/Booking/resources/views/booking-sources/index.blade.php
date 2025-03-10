@@ -52,9 +52,6 @@
                                     Description
                                 </th>
                                 <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Bookings
-                                </th>
-                                <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Created At
                                 </th>
                                 <th class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -81,9 +78,6 @@
                                     <div class="text-sm text-gray-500">
                                         {{ Str::limit($bookingSource->description, 50) ?? 'No description' }}
                                     </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ $bookingSource->bookings_count ?? 0 }} bookings
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $bookingSource->created_at->format('M d, Y') }}

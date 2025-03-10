@@ -422,20 +422,32 @@
             }
         }
 
-        // Toggle Export Dropdown
-        const exportDropdownButton = document.getElementById('exportDropdownButton');
-        const exportDropdown = document.getElementById('exportDropdown');
-
+        // Toggle Export Dropdown - Wrapped in a safety check
+window.onload = function() {
+    // Chart initialization code from earlier
+    const chartElement = document.getElementById('profitChart');
+    if (chartElement) {
+        // ... chart initialization code here ...
+    }
+    
+    // Export dropdown functionality
+    const exportDropdownButton = document.getElementById('exportDropdownButton');
+    const exportDropdown = document.getElementById('exportDropdown');
+    
+    // Only add event listeners if the elements exist
+    if (exportDropdownButton && exportDropdown) {
         exportDropdownButton.addEventListener('click', () => {
             exportDropdown.classList.toggle('hidden');
         });
-
+        
         // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
             if (!exportDropdownButton.contains(e.target)) {
                 exportDropdown.classList.add('hidden');
             }
         });
+    }
+};
 
         // Export Table Functionality
         function exportTable(format) {

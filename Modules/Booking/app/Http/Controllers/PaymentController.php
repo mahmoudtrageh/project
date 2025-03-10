@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Modules\Admin\Models\Admin;
+use Modules\Booking\Models\Booking;
 use Modules\Booking\Models\Payment;
 
 class PaymentController extends Controller
@@ -18,8 +18,8 @@ class PaymentController extends Controller
     {
         $user = Auth::user();
         
-        // Only admin can add payments
-        if (!$user->isAdmin()) {
+        // Only admin or super admin can add payments
+        if (!$user->isAdmin() && !$user->isSuperAdmin()) {
             return redirect()->back()
                 ->with('error', 'You do not have permission to add payments.');
         }
@@ -35,6 +35,19 @@ class PaymentController extends Controller
             'notes' => 'nullable|string',
         ]);
         
+        // Check if the booking belongs to this admin
+        $booking = Booking::findOrFail($validated['booking_id']);
+        
+        if ($user->isAdmin() && $booking->admin_id != $user->id) {
+            return redirect()->back()
+                ->with('error', 'You do not have permission to add payments to this booking.');
+        }
+        
+        // Add admin_id for admin users
+        if ($user->isAdmin()) {
+            $validated['admin_id'] = $user->id;
+        }
+        
         // Create the payment
         $payment = Payment::create($validated);
         
@@ -49,10 +62,11 @@ class PaymentController extends Controller
     {
         $user = Auth::user();
         
-        // Only admin can delete payments
-        if (!$user->isAdmin()) {
+        // Check permissions
+        if (!$user->isSuperAdmin() && 
+            !($user->isAdmin() && $payment->admin_id == $user->id)) {
             return redirect()->back()
-                ->with('error', 'You do not have permission to delete payments.');
+                ->with('error', 'You do not have permission to delete this payment.');
         }
         
         $payment->delete();

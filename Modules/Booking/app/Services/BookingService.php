@@ -3,13 +3,16 @@
 namespace Modules\Booking\Services;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\DB;
 use Modules\Booking\Models\Booking;
 
 class BookingService
 {
     /**
      * Calculate the number of nights for a booking
+     *
+     * @param string $enterDate
+     * @param string $leaveDate
+     * @return int
      */
     public function calculateNights($enterDate, $leaveDate)
     {
@@ -20,31 +23,65 @@ class BookingService
     }
     
     /**
+     * Calculate the total price based on price per night, rooms, and nights
+     *
+     * @param float $pricePerNight
+     * @param int $roomsNumber
+     * @param int $nights
+     * @return float
+     */
+    private function calculateTotalPrice($pricePerNight, $roomsNumber, $nights)
+    {
+        return $pricePerNight * $roomsNumber * $nights;
+    }
+    
+    /**
      * Calculate the total client price
+     *
+     * @param float $clientPrice
+     * @param int $roomsNumber
+     * @param int $nights
+     * @return float
      */
     public function calculateTotalClientPrice($clientPrice, $roomsNumber, $nights)
     {
-        return $clientPrice * $roomsNumber * $nights;
+        return $this->calculateTotalPrice($clientPrice, $roomsNumber, $nights);
     }
     
     /**
      * Calculate the total marketer price
+     *
+     * @param float $marketerPrice
+     * @param int $roomsNumber
+     * @param int $nights
+     * @return float
      */
     public function calculateTotalMarketerPrice($marketerPrice, $roomsNumber, $nights)
     {
-        return $marketerPrice * $roomsNumber * $nights;
+        return $this->calculateTotalPrice($marketerPrice, $roomsNumber, $nights);
     }
     
     /**
      * Calculate the total buying price
+     *
+     * @param float $buyingPrice
+     * @param int $roomsNumber
+     * @param int $nights
+     * @return float
      */
     public function calculateTotalBuyingPrice($buyingPrice, $roomsNumber, $nights)
     {
-        return $buyingPrice * $roomsNumber * $nights;
+        return $this->calculateTotalPrice($buyingPrice, $roomsNumber, $nights);
     }
     
     /**
      * Calculate the marketer profit
+     *
+     * @param float $clientPrice
+     * @param float $marketerPrice
+     * @param int $roomsNumber
+     * @param int $nights
+     * @return float
      */
     public function calculateMarketerProfit($clientPrice, $marketerPrice, $roomsNumber, $nights)
     {
@@ -56,48 +93,75 @@ class BookingService
     
     /**
      * Calculate the admin profit
+     *
+     * @param float $clientPrice
+     * @param float $marketerPrice
+     * @param float $buyingPrice
+     * @param int $roomsNumber
+     * @param int $nights
+     * @param bool $hasMarketer
+     * @return float
      */
     public function calculateAdminProfit($clientPrice, $marketerPrice, $buyingPrice, $roomsNumber, $nights, $hasMarketer = true)
     {
+        $totalBuyingPrice = $this->calculateTotalBuyingPrice($buyingPrice, $roomsNumber, $nights);
+        
         if ($hasMarketer) {
             $totalMarketerPrice = $this->calculateTotalMarketerPrice($marketerPrice, $roomsNumber, $nights);
-            $totalBuyingPrice = $this->calculateTotalBuyingPrice($buyingPrice, $roomsNumber, $nights);
-            
             return $totalMarketerPrice - $totalBuyingPrice;
-        } else {
-            $totalClientPrice = $this->calculateTotalClientPrice($clientPrice, $roomsNumber, $nights);
-            $totalBuyingPrice = $this->calculateTotalBuyingPrice($buyingPrice, $roomsNumber, $nights);
-            
-            return $totalClientPrice - $totalBuyingPrice;
-        }
+        } 
+        
+        $totalClientPrice = $this->calculateTotalClientPrice($clientPrice, $roomsNumber, $nights);
+        return $totalClientPrice - $totalBuyingPrice;
+    }
+    
+    /**
+     * Get a query for bookings with specified statuses
+     * 
+     * @param array $statuses
+     * @return Builder
+     */
+    private function getBookingsByStatusQuery(array $statuses)
+    {
+        return Booking::whereIn('status', $statuses);
     }
     
     /**
      * Get a query for active bookings (pending or confirmed)
+     * 
+     * @return Builder
      */
     public function getActiveBookingsQuery()
     {
-        return Booking::whereIn('status', ['pending', 'confirmed']);
+        return $this->getBookingsByStatusQuery(['pending', 'confirmed']);
     }
     
     /**
      * Get a query for completed bookings
+     * 
+     * @return Builder
      */
     public function getCompletedBookingsQuery()
     {
-        return Booking::where('status', 'completed');
+        return $this->getBookingsByStatusQuery(['completed']);
     }
     
     /**
      * Get a query for cancelled bookings
+     * 
+     * @return Builder
      */
     public function getCancelledBookingsQuery()
     {
-        return Booking::where('status', 'cancelled');
+        return $this->getBookingsByStatusQuery(['cancelled']);
     }
     
     /**
      * Get bookings for a specific date range
+     * 
+     * @param string $startDate
+     * @param string $endDate
+     * @return Builder
      */
     public function getBookingsInDateRange($startDate, $endDate)
     {

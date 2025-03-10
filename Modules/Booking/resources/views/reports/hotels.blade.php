@@ -123,10 +123,10 @@
                                     <div class="ml-4">
                                         <div class="text-sm font-medium text-gray-900">{{ $result['hotel']->name }}</div>
                                         <div class="text-xs text-gray-500">{{ Str::limit($result['hotel']->address, 40) }}</div>
-                                        @if($result['hotel']->manager)
-                                        <div class="text-xs text-gray-500">
-                                            Manager: {{ $result['hotel']->manager->name }}
-                                        </div>
+                                        @if(isset($result['hotel']->manager) && $result['hotel']->manager)
+                                            <div class="text-xs text-gray-500">
+                                                Manager: {{ $result['hotel']->manager->name }}
+                                            </div>
                                         @endif
                                     </div>
                                 </div>

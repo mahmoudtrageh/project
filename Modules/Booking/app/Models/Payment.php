@@ -4,6 +4,9 @@ namespace Modules\Booking\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Admin\Models\Admin;
+
 // use Modules\Booking\Database\Factories\PaymentFactory;
 
 class Payment extends Model
@@ -18,6 +21,7 @@ class Payment extends Model
         'payment_method',
         'transaction_id',
         'notes',
+        'admin_id',
     ];
 
     protected $casts = [
@@ -30,5 +34,13 @@ class Payment extends Model
     public function booking()
     {
         return $this->belongsTo(Booking::class);
+    }
+
+     /**
+     * Get the admin that owns the payment.
+     */
+    public function admin(): BelongsTo
+    {
+        return $this->belongsTo(Admin::class, 'admin_id');
     }
 }

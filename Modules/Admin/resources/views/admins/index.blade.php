@@ -90,11 +90,6 @@
                                             <div class="text-sm font-medium text-gray-900">
                                                 {{ $admin->name }}
                                             </div>
-                                            @if($admin->isMarketer())
-                                            <div class="text-xs text-gray-500">
-                                                Commission: {{ $admin->marketerProfile->commission_percentage }}%
-                                            </div>
-                                            @endif
                                         </div>
                                     </div>
                                 </td>
@@ -122,13 +117,17 @@
                                     {{ $admin->created_at->format('M d, Y') }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <a href="{{ route('admins.show', $admin) }}" 
+                                       class="text-blue-600 hover:text-blue-900 mr-3">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
                                     <a href="{{ route('admins.edit', $admin) }}" 
                                        class="text-indigo-600 hover:text-indigo-900 mr-3">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
                                     @if($admin->id !== Auth::id())
                                     <button type="button" 
-                                            onclick="openDeleteModal('{{ route('admin.admins.destroy', $admin) }}')"
+                                            onclick="openDeleteModal('{{ route('admins.destroy', $admin) }}')"
                                             class="text-red-600 hover:text-red-900">
                                         <i class="fas fa-trash"></i> Delete
                                     </button>
