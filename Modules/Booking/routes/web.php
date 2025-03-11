@@ -37,6 +37,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::resource('room-types', RoomTypeController::class)->except(['show']);
     
+    
     Route::resource('booking-source', BookingSourceController::class)->except(['show']);
     Route::get('/bookings/{booking}/pdf', [BookingController::class, 'exportPdf'])->name('bookings.pdf');
 
