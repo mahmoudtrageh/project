@@ -449,6 +449,7 @@ window.onload = function() {
     }
 };
 
+
         // Export Table Functionality
         function exportTable(format) {
             alert(`Exporting table as ${format.toUpperCase()}...`);
